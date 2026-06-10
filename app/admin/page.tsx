@@ -3,6 +3,8 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
+import Underline from "@tiptap/extension-underline";
+import Link from "@tiptap/extension-link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type Post = {
@@ -59,7 +61,12 @@ function EditorPost({
   const inputImagemRef = useRef<HTMLInputElement>(null);
 
   const editor = useEditor({
-    extensions: [StarterKit, Image],
+    extensions: [
+      StarterKit,
+      Image,
+      Underline,
+      Link.configure({ openOnClick: false }),
+    ],
     content: conteudo,
     immediatelyRender: false,
     onUpdate: ({ editor: ed }) => onChange(ed.getHTML()),
@@ -110,11 +117,33 @@ function EditorPost({
         <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} className={editor.isActive("italic") ? "ativo" : ""}>
           Itálico
         </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className={editor.isActive("underline") ? "ativo" : ""}
+        >
+          Sublinhado
+        </button>
         <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={editor.isActive("heading", { level: 2 }) ? "ativo" : ""}>
           Título
         </button>
         <button type="button" onClick={() => editor.chain().focus().toggleBulletList().run()} className={editor.isActive("bulletList") ? "ativo" : ""}>
           Lista
+        </button>
+        <button
+          type="button"
+          className={editor.isActive("link") ? "ativo" : ""}
+          onClick={() => {
+            const url = window.prompt("URL do link:");
+            if (url === null) return;
+            if (url.trim() === "") {
+              editor.chain().focus().extendMarkRange("link").unsetLink().run();
+            } else {
+              editor.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
+            }
+          }}
+        >
+          Link
         </button>
         <button type="button" onClick={() => inputImagemRef.current?.click()}>
           Inserir imagem
@@ -186,6 +215,28 @@ export default function AdminPage() {
     });
     setEditando(true);
     setMensagem("");
+  };
+
+  const excluirPost = async (post: Post) => {
+    const confirmado = window.confirm(
+      "Tem certeza que deseja excluir este post? Esta ação não pode ser desfeita."
+    );
+    if (!confirmado) return;
+
+    setMensagem("");
+    try {
+      const res = await fetch("/api/admin/excluir", {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({ id: post.id }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.erro || "Falha ao excluir");
+      await carregarPosts();
+      setMensagem("Post excluído com sucesso!");
+    } catch (err) {
+      setMensagem(err instanceof Error ? err.message : "Erro ao excluir");
+    }
   };
 
   const handleUploadCapa = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -297,21 +348,33 @@ export default function AdminPage() {
           {posts.length === 0 ? (
             <p className="admin-vazio">Nenhum post ainda.</p>
           ) : (
-            <ul className="admin-lista">
-              {posts.map((p) => (
-                <li key={p.id}>
-                  <div>
-                    <strong>{p.titulo}</strong>
-                    <span className={p.publicado ? "status pub" : "status rasc"}>
-                      {p.publicado ? "Publicado" : "Rascunho"}
-                    </span>
-                  </div>
-                  <button type="button" onClick={() => editarPost(p)}>
-                    Editar
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className="admin-lista">
+                {posts.map((p) => (
+                  <li key={p.id}>
+                    <div>
+                      <strong>{p.titulo}</strong>
+                      <span className={p.publicado ? "status pub" : "status rasc"}>
+                        {p.publicado ? "Publicado" : "Rascunho"}
+                      </span>
+                    </div>
+                    <div className="admin-lista-acoes">
+                      <button type="button" onClick={() => editarPost(p)}>
+                        Editar
+                      </button>
+                      <button type="button" className="btn-excluir" onClick={() => excluirPost(p)}>
+                        Excluir
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {mensagem && (
+                <p className={mensagem.includes("sucesso") ? "admin-ok" : "admin-erro"}>
+                  {mensagem}
+                </p>
+              )}
+            </>
           )}
         </div>
       ) : (
@@ -542,23 +605,11 @@ const adminStyles = `
   .editor-toolbar {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    align-items: center;
+    gap: 8px;
     padding: 10px;
     background: #f8f7f5;
     border-bottom: 1px solid #d8d4cf;
-  }
-  .editor-toolbar button {
-    padding: 6px 12px;
-    border: 1px solid #d8d4cf;
-    background: #fff;
-    border-radius: 4px;
-    font-size: 13px;
-    cursor: pointer;
-  }
-  .editor-toolbar button.ativo {
-    background: #c89127;
-    color: #fff;
-    border-color: #c89127;
   }
   .admin-lista-topo {
     display: flex;
@@ -585,6 +636,20 @@ const adminStyles = `
   }
   .admin-lista li:last-child {
     border-bottom: none;
+  }
+  .admin-lista-acoes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .btn-excluir {
+    background: #c0392b;
+    color: #fff;
+    border: none;
+  }
+  .btn-excluir:hover {
+    background: #a93226;
   }
   .status {
     display: inline-block;
@@ -628,6 +693,26 @@ const adminStyles = `
     background: transparent;
     color: #333433;
     border: 2px solid #333433;
+  }
+  .admin .editor-toolbar button {
+    padding: 6px 12px;
+    border: 1px solid #d8d4cf;
+    background: #fff;
+    color: #333433;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    height: auto;
+    min-height: unset;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .admin .editor-toolbar button.ativo {
+    background: #c89127;
+    color: #fff;
+    border-color: #c89127;
+    font-weight: 600;
   }
   .admin-erro {
     color: #c0392b;
