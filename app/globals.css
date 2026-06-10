@@ -146,9 +146,29 @@ section { padding: 80px 0; }
 .numeros { position: relative; overflow: hidden; background: var(--ambar); min-height: 280px; }
 .numeros::before { content: ""; position: absolute; inset: 0; background: url('/images/bg-cta.jpg') center/cover; opacity: .5; }
 .num-row { position: relative; z-index: 2; display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
-.num { background: rgba(255,255,255,.16); padding: 30px 42px; display: flex; align-items: center; gap: 20px; min-width: 380px; }
-.num .v { font-size: 64px; font-weight: 800; color: var(--grafite); line-height: 1; }
-.num .l { font-size: 18px; color: var(--grafite); font-weight: 500; line-height: 1.3; }
+.num {
+  background: rgba(255,255,255,.16);
+  padding: 30px 42px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: 12px;
+  min-width: 380px;
+}
+.num .v {
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--grafite);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.num .l {
+  font-size: 18px;
+  color: var(--grafite);
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: normal;
+}
 
 /* SERVIÇOS */
 .servicos { background: var(--cimento); }
@@ -226,7 +246,7 @@ article.wrap > img {
 .contato { background: var(--cimento); overflow: hidden; padding: 60px 0; }
 .contato-grid { position: relative; display: grid; grid-template-columns: 42% 58%; align-items: stretch; max-width: 1280px; margin: 0 auto; min-height: 600px; }
 .contato-foto {
-  background-image: url('/images/cta-contato.png');
+  background-image: url('/images/cta-contato.webp');
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: contain;
@@ -409,6 +429,11 @@ footer { background: var(--grafite-2); color: #bbb; padding: 60px 0 28px; }
   .post .capa { min-height: 160px; height: auto; aspect-ratio: 16 / 9; }
 
   .num-row { flex-direction: column; align-items: stretch; }
+  .num {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
   .aval-resumo { flex-wrap: wrap; justify-content: center; }
 }
 
