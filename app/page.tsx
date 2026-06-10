@@ -62,6 +62,11 @@ export default async function Home() {
             </p>
             <a href="#contato" className="btn">ENTRE EM CONTATO</a>
           </div>
+          <img
+            className="hero-img-mobile"
+            src={`${UP}/2025/04/banner-hero.webp`}
+            alt="Engenheiro da MG Perícias"
+          />
         </div>
       </section>
 

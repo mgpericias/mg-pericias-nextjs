@@ -24,6 +24,17 @@ create table if not exists posts (
 );
 alter table posts enable row level security;
 
+-- 3. Leads de landing pages
+create table if not exists leads (
+  id          uuid primary key default gen_random_uuid(),
+  nome        text not null,
+  whatsapp    text not null,
+  condominio  text,
+  origem      text,
+  criado_em   timestamptz not null default now()
+);
+alter table leads enable row level security;
+
 -- Observação de segurança:
 -- RLS está LIGADO e sem políticas públicas de propósito. O site acessa essas
 -- tabelas só pelo servidor (service role), que ignora RLS. Assim, nenhum
