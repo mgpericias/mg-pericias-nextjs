@@ -46,7 +46,7 @@ export default async function Home() {
     <>
       <Header />
 
-      <section className="hero" id="inicio" style={{ padding: 0 }}>
+      <section className="hero" id="inicio">
         <div className="hero-inner">
           <div className="hero-txt">
             <h1>
@@ -62,11 +62,6 @@ export default async function Home() {
             </p>
             <a href="#contato" className="btn">ENTRE EM CONTATO</a>
           </div>
-          <img
-            className="hero-img-mobile"
-            src={`${UP}/2025/04/banner-hero.webp`}
-            alt="Engenheiro da MG Perícias"
-          />
         </div>
       </section>
 

@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
         from: "Site MG Perícias <contato@mgpericias.com.br>",
-        to: ["mgpericias2021@gmail.com"],
+        to: ["contato@mgpericias.com.br"],
         subject: `Novo lead - ${dados.origem || "site"}`,
         text: `Nome: ${dados.nome}\nWhatsApp: ${dados.whatsapp}\nCondomínio: ${dados.condominio || "—"}\nOrigem: ${dados.origem || "—"}`,
       });

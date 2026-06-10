@@ -35,12 +35,9 @@ header { position: sticky; top: 0; z-index: 50; background: var(--cimento); bord
 .menu a:hover { color: var(--ambar); }
 
 /* HERO */
-.hero { position: relative; background: var(--grafite); color: #fff; overflow: hidden; min-height: 680px; display: flex; align-items: center; }
-.hero::before { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 55%; background: linear-gradient(120deg, transparent 0, transparent 30%, rgba(255,255,255,.04) 31%); z-index: 1; }
-.hero::after { content: ""; position: absolute; right: 0; bottom: 0; top: 0; width: 52%; background: url('https://mgpericias.com.br/wp-content/uploads/2025/04/banner-hero.webp') no-repeat right center; background-size: cover; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); z-index: 1; }
-.hero-inner { position: relative; z-index: 2; max-width: 1140px; margin: 0 auto; padding: 0 24px; width: 100%; }
-.hero-img-mobile { display: none; }
-.hero-txt { max-width: 560px; }
+.hero { background: var(--grafite); color: #fff; padding: 100px 0; display: flex; align-items: center; justify-content: center; }
+.hero-inner { max-width: 1140px; margin: 0 auto; padding: 0 24px; width: 100%; }
+.hero-txt { max-width: 720px; margin: 0 auto; text-align: center; }
 .hero h1 { font-size: 43px; font-weight: 800; margin-bottom: 22px; line-height: 1.25; }
 .hero p { font-size: 20px; color: #e4e1de; margin-bottom: 30px; font-weight: 400; }
 
@@ -226,21 +223,8 @@ footer { background: var(--grafite-2); color: #bbb; padding: 60px 0 28px; }
 
 @media (max-width: 880px) {
   .menu { display: none; }
-  .hero { min-height: auto; padding: 48px 0 0; align-items: stretch; }
-  .hero::before { display: none; }
-  .hero::after { display: none; }
-  .hero-inner { display: flex; flex-direction: column; gap: 28px; padding-bottom: 0; }
-  .hero-txt { max-width: none; }
+  .hero { padding: 64px 0; }
   .hero h1 { font-size: 32px; }
-  .hero-img-mobile {
-    display: block;
-    width: calc(100% + 48px);
-    max-width: none;
-    margin: 0 -24px;
-    height: 300px;
-    object-fit: cover;
-    object-position: center top;
-  }
   .flip { perspective: none; min-height: auto; }
   .flip-inner {
     transform: none !important;
