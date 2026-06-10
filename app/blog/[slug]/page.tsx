@@ -67,10 +67,17 @@ export default async function PostPage({
           />
         )}
         <div
-          style={{ fontSize: 17, color: "#333", lineHeight: 1.8, whiteSpace: "pre-wrap" }}
-        >
-          {post.conteudo}
-        </div>
+          className="post-conteudo"
+          dangerouslySetInnerHTML={{ __html: post.conteudo }}
+        />
+        <style>{`
+          .post-conteudo { font-size: 17px; color: #333; line-height: 1.8; }
+          .post-conteudo h2 { font-size: 26px; font-weight: 800; color: var(--grafite); margin: 1.4em 0 0.6em; }
+          .post-conteudo p { margin-bottom: 1em; }
+          .post-conteudo ul, .post-conteudo ol { margin: 0 0 1em 1.4em; }
+          .post-conteudo img { max-width: 100%; height: auto; border-radius: 6px; margin: 1.2em 0; }
+          .post-conteudo strong { font-weight: 700; }
+        `}</style>
         <p style={{ marginTop: 40 }}>
           <a href="/blog" className="ler" style={{ color: "var(--ambar)", fontWeight: 700 }}>
             ‹ Voltar ao blog

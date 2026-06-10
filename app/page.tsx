@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ContactForm from "@/components/ContactForm";
 import Avaliacoes from "@/components/Avaliacoes";
+import ContadorNumeros from "@/components/ContadorNumeros";
 import { getAvaliacoes } from "@/lib/avaliacoes";
 
 // Revalida a home a cada 24h (para refletir novas avaliações)
@@ -90,14 +91,12 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="numeros">
-        <div className="wrap">
-          <div className="num-row">
-            <div className="num"><span className="v">+200</span><span className="l">laudos para condomínios</span></div>
-            <div className="num"><span className="v">+25</span><span className="l">obras geridas e fiscalizadas</span></div>
-          </div>
-        </div>
-      </section>
+      <ContadorNumeros
+        itens={[
+          { valor: 200, rotulo: "laudos para condomínios" },
+          { valor: 25, rotulo: "obras geridas e fiscalizadas" },
+        ]}
+      />
 
       <section className="servicos" id="servicos">
         <div className="wrap">
