@@ -1,0 +1,189 @@
+:root {
+  --grafite: #333433;
+  --grafite-2: #262726;
+  --cimento: #E4E1DE;
+  --ambar: #C89127;
+  --ambar-h: #a8791d;
+  --texto: #333333;
+  --branco: #fff;
+  --borda: #d8d4cf;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texto); line-height: 1.7; font-size: 16px;
+}
+h1, h2, h3, h4 { font-family: 'Inter', sans-serif; line-height: 1.2; font-weight: 800; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.ambar { color: var(--ambar); }
+img { max-width: 100%; display: block; }
+
+.btn {
+  display: inline-block; background: var(--ambar); color: #fff;
+  padding: 16px 34px; text-decoration: none; font-weight: 700; font-size: 18px;
+  border: none; cursor: pointer; transition: background .2s; border-radius: 0; letter-spacing: .02em;
+}
+.btn:hover { background: var(--ambar-h); }
+
+/* HEADER */
+header { position: sticky; top: 0; z-index: 50; background: var(--cimento); border-bottom: 1px solid var(--borda); }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 90px; }
+.nav img.logo { height: 58px; width: auto; }
+.menu { display: flex; gap: 36px; list-style: none; }
+.menu a { text-decoration: none; color: var(--grafite); font-size: 17px; font-weight: 600; transition: color .2s; }
+.menu a:hover { color: var(--ambar); }
+
+/* HERO */
+.hero { position: relative; background: var(--grafite); color: #fff; overflow: hidden; min-height: 680px; display: flex; align-items: center; }
+.hero::before { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 55%; background: linear-gradient(120deg, transparent 0, transparent 30%, rgba(255,255,255,.04) 31%); z-index: 1; }
+.hero::after { content: ""; position: absolute; right: 0; bottom: 0; top: 0; width: 52%; background: url('https://mgpericias.com.br/wp-content/uploads/2025/04/banner-hero.webp') no-repeat right center; background-size: cover; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); z-index: 1; }
+.hero-inner { position: relative; z-index: 2; max-width: 1140px; margin: 0 auto; padding: 0 24px; width: 100%; }
+.hero-txt { max-width: 560px; }
+.hero h1 { font-size: 43px; font-weight: 800; margin-bottom: 22px; line-height: 1.25; }
+.hero p { font-size: 20px; color: #e4e1de; margin-bottom: 30px; font-weight: 400; }
+
+/* CLIENTES */
+.clientes { background: var(--cimento); padding: 54px 0; }
+.clientes-row { display: flex; align-items: center; justify-content: space-around; gap: 40px; flex-wrap: wrap; }
+.clientes-row img { height: 88px; width: auto; filter: grayscale(1); opacity: .55; }
+
+section { padding: 80px 0; }
+.center { text-align: center; }
+.sec-titulo { font-size: 44px; font-weight: 800; color: var(--grafite); margin-bottom: 14px; }
+.sec-sub { font-size: 18px; color: #555; max-width: 720px; margin: 0 auto 50px; }
+
+/* POR QUE ESCOLHER — cards que giram */
+.porque { background: #fff; }
+.porque .sec-titulo { font-size: 32px; }
+.dif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 46px; }
+.flip { background: transparent; perspective: 1200px; min-height: 320px; }
+.flip-inner { position: relative; width: 100%; height: 100%; min-height: 320px; transition: transform .7s; transform-style: preserve-3d; }
+.flip:hover .flip-inner { transform: rotateY(180deg); }
+.flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 34px 26px; text-align: center; }
+.flip-front { background: var(--grafite); color: #fff; }
+.flip-front h3 { font-size: 24px; color: #fff; font-weight: 800; }
+.flip-back { background: var(--ambar); color: #fff; transform: rotateY(180deg); }
+.flip-back p { font-size: 15px; color: #fff; line-height: 1.6; }
+
+/* NÚMEROS */
+.numeros { position: relative; overflow: hidden; background: var(--ambar); }
+.numeros::before { content: ""; position: absolute; inset: 0; background: url('https://mgpericias.com.br/wp-content/uploads/2025/04/bg-cta.jpg') center/cover; opacity: .5; }
+.num-row { position: relative; z-index: 2; display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+.num { background: rgba(255,255,255,.16); padding: 30px 42px; display: flex; align-items: center; gap: 20px; min-width: 380px; }
+.num .v { font-size: 64px; font-weight: 800; color: var(--grafite); line-height: 1; }
+.num .l { font-size: 18px; color: var(--grafite); font-weight: 500; line-height: 1.3; }
+
+/* SERVIÇOS */
+.servicos { background: var(--cimento); }
+.servicos .sec-titulo, .servicos .sec-sub { text-align: left; margin-left: 0; }
+.serv-bloco { margin-top: 30px; }
+.serv-bloco h3 { font-size: 30px; font-weight: 800; color: var(--grafite); margin-bottom: 18px; }
+.serv-bloco ul { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
+.serv-bloco li { background: #6f6c68; color: #fff; padding: 18px 24px; font-size: 17px; border-radius: 2px; }
+.serv-cta { text-align: center; margin-top: 40px; }
+.serv-cta .btn { background: rgba(200,145,39,.25); color: #9c7012; }
+
+/* QUEM SOMOS */
+.quem { background: #fff; }
+.quem-top { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.quem-top .sec-titulo { font-size: 44px; text-align: left; margin-bottom: 18px; }
+.quem-top p { font-size: 17px; color: #555; }
+.quem-top img { border-radius: 4px; width: 100%; object-fit: cover; }
+
+/* MVV */
+.mvv-sec { position: relative; overflow: hidden; background: #eceae6; }
+.mvv-sec::before { content: ""; position: absolute; inset: 0; background: url('https://mgpericias.com.br/wp-content/uploads/2025/04/bg-cta2.jpg') center/cover; opacity: .12; }
+.mvv { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+.mvv .box { text-align: left; padding: 6px 0 6px 28px; border-left: 3px solid var(--ambar); }
+.mvv .box h3 { color: #4C4B4B; font-size: 32px; font-weight: 800; margin-bottom: 18px; }
+.mvv .box p { font-size: 16px; color: #555; line-height: 1.7; }
+
+/* EQUIPE */
+.equipe { background: #fff; }
+.equipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 46px; }
+.membro { border-radius: 4px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+.membro img { width: 100%; aspect-ratio: 1/1.05; object-fit: cover; object-position: top; }
+.membro .faixa { background: var(--ambar); padding: 22px 24px; color: #fff; }
+.membro .faixa h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.membro .faixa p { font-size: 14px; color: #fff; line-height: 1.5; opacity: .95; }
+
+/* AVALIAÇÕES */
+.aval { background: var(--cimento); }
+.aval-resumo { display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 46px; }
+.aval-resumo .nota { font-size: 58px; font-weight: 800; color: var(--grafite); line-height: 1; }
+.aval-resumo .estrelas { color: var(--ambar); font-size: 28px; letter-spacing: 3px; }
+.aval-resumo .meta { font-size: 15px; color: #666; }
+.aval-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-bottom: 36px; text-align: left; }
+.aval-card { background: #fff; border-radius: 4px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,.05); }
+.aval-card .estrelas { color: var(--ambar); font-size: 17px; letter-spacing: 2px; margin-bottom: 14px; }
+.aval-card p { font-size: 15px; color: #444; margin-bottom: 18px; }
+.aval-card .autor { font-weight: 700; font-size: 14px; color: var(--grafite); }
+.aval-card .data { font-size: 13px; color: #999; }
+
+/* BLOG */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: left; }
+.post { background: #fff; border: 1px solid var(--borda); border-radius: 4px; overflow: hidden; transition: transform .2s; text-decoration: none; color: inherit; display: block; }
+.post:hover { transform: translateY(-5px); }
+.post .capa { height: 180px; background: var(--grafite) center/cover; position: relative; }
+.post .capa .cat { position: absolute; bottom: 14px; left: 14px; background: var(--ambar); color: #fff; font-size: 11px; padding: 5px 12px; letter-spacing: .05em; font-weight: 700; }
+.post .body { padding: 24px; }
+.post .body h3 { font-size: 19px; font-weight: 700; color: var(--grafite); margin-bottom: 10px; line-height: 1.3; }
+.post .body p { font-size: 14px; color: #666; margin-bottom: 14px; }
+.post .ler { color: var(--ambar); font-weight: 700; font-size: 14px; }
+
+/* CONTATO */
+.contato { background: var(--cimento); overflow: hidden; padding: 60px 0; }
+.contato-grid { position: relative; display: grid; grid-template-columns: 42% 58%; align-items: stretch; max-width: 1280px; margin: 0 auto; min-height: 600px; }
+.contato-foto { background: url('https://mgpericias.com.br/wp-content/uploads/2025/04/cta-contato.png') no-repeat center bottom; background-size: contain; background-color: transparent; }
+.contato-painel { background: var(--grafite); color: #fff; padding: 50px 56px 50px 90px; clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); margin-left: -8%; display: flex; flex-direction: column; justify-content: center; }
+.contato-painel h2 { font-size: 38px; font-weight: 800; margin-bottom: 24px; color: var(--ambar); }
+.form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.form input { padding: 16px 18px; border: none; background: #f1efec; color: #333; font-size: 15px; font-family: inherit; border-radius: 0; }
+.form input::placeholder { color: #777; }
+.form input:focus { outline: 2px solid var(--ambar); }
+.form .btn { background: var(--ambar); width: 100%; text-align: center; margin-top: 4px; }
+.contato-info { display: flex; flex-direction: column; gap: 20px; }
+.contato-info div { display: flex; gap: 16px; align-items: flex-start; color: #e4e1de; font-size: 16px; line-height: 1.5; }
+.contato-info svg { width: 24px; height: 24px; stroke: var(--ambar); fill: none; flex-shrink: 0; margin-top: 2px; }
+
+/* FOOTER */
+footer { background: var(--grafite-2); color: #bbb; padding: 60px 0 28px; }
+.foot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; align-items: start; }
+.foot-grid h4 { color: #fff; font-size: 24px; margin-bottom: 8px; font-weight: 800; position: relative; display: inline-block; padding-bottom: 10px; }
+.foot-grid h4::after { content: ""; position: absolute; left: 0; bottom: 0; width: 70px; height: 3px; background: var(--ambar); }
+.foot-grid ul { list-style: none; margin-top: 14px; }
+.foot-grid a { color: #bbb; text-decoration: none; display: block; margin-bottom: 11px; font-size: 15px; }
+.foot-grid a:hover { color: var(--ambar); }
+.foot-grid p { font-size: 15px; margin-bottom: 16px; line-height: 1.6; }
+.foot-logo { text-align: right; }
+.foot-logo img { height: 120px; margin-left: auto; margin-bottom: 18px; }
+.foot-social { display: flex; gap: 14px; justify-content: flex-end; }
+.foot-social a { width: 46px; height: 46px; border-radius: 50%; background: var(--ambar); display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.foot-social svg { width: 22px; height: 22px; fill: #fff; }
+.foot-bottom { border-top: 1px solid var(--ambar); padding-top: 22px; text-align: center; font-size: 14px; color: #999; }
+
+.wpp { position: fixed; bottom: 26px; right: 26px; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 60; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.wpp:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+.wpp::before { content: ''; position: absolute; inset: 0; background: #25D366; border-radius: 50%; z-index: -1; animation: wpp-pulse 2s infinite; }
+.wpp svg { width: 32px; height: 32px; fill: #fff; }
+@keyframes wpp-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  70% { transform: scale(1.3); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+@media (max-width: 880px) {
+  .menu { display: none; }
+  .hero::after, .hero::before { display: none; }
+  .hero h1 { font-size: 32px; }
+  .dif-grid, .quem-top, .mvv, .equipe-grid, .aval-grid, .blog-grid, .contato-grid, .foot-grid { grid-template-columns: 1fr; }
+  .sec-titulo, .quem-top .sec-titulo, .contato-painel h2 { font-size: 32px; }
+  .num { min-width: auto; width: 100%; }
+  .contato-grid { min-height: auto; }
+  .contato-foto { min-height: 340px; background-size: cover; }
+  .contato-painel { clip-path: none; margin-left: 0; padding: 36px 28px; }
+  .foot-logo { text-align: left; }
+  .foot-logo img { margin-left: 0; }
+  .foot-social { justify-content: flex-start; }
+}
