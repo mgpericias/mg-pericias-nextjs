@@ -4,7 +4,7 @@ export default function Header() {
       <div className="wrap nav">
         <img
           className="logo"
-          src="https://mgpericias.com.br/wp-content/uploads/2025/04/logo-mgpericias.png"
+          src="/images/logo-mgpericias.png"
           alt="MG Perícias"
         />
         <ul className="menu">

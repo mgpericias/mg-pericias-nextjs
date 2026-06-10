@@ -24,7 +24,7 @@ export default function Footer() {
           </div>
           <div className="foot-logo">
             <img
-              src="https://mgpericias.com.br/wp-content/uploads/2025/04/logo-footer.png"
+              src="/images/logo-footer.png"
               alt="MG Perícias"
             />
             <div className="foot-social">

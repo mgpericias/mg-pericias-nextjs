@@ -2,10 +2,19 @@
 
 import { useState } from "react";
 
-const WHATSAPP_URL =
-  "https://wa.me/5527999704394?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20de%20inspe%C3%A7%C3%A3o%20predial%20e%20quero%20agendar%20minha%20avalia%C3%A7%C3%A3o.";
+type Props = {
+  origem: string;
+  submitTexto: string;
+  sucessoTexto: string;
+  whatsappUrl: string;
+};
 
-export default function FormularioLead() {
+export default function FormularioLead({
+  origem,
+  submitTexto,
+  sucessoTexto,
+  whatsappUrl,
+}: Props) {
   const [nome, setNome] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [condominio, setCondominio] = useState("");
@@ -29,7 +38,7 @@ export default function FormularioLead() {
           nome: nome.trim(),
           whatsapp: whatsapp.trim(),
           condominio: condominio.trim() || null,
-          origem: "inspecao-predial",
+          origem,
         }),
       });
       if (!res.ok) {
@@ -47,9 +56,9 @@ export default function FormularioLead() {
   if (enviado) {
     return (
       <div className="lp-form-sucesso">
-        <p>Recebemos seus dados! Em breve entraremos em contato.</p>
+        <p>{sucessoTexto}</p>
         <a
-          href={WHATSAPP_URL}
+          href={whatsappUrl}
           className="btn lp-btn-wpp"
           target="_blank"
           rel="noopener noreferrer"
@@ -83,7 +92,7 @@ export default function FormularioLead() {
         onChange={(e) => setCondominio(e.target.value)}
       />
       <button type="submit" className="btn" disabled={enviando}>
-        {enviando ? "ENVIANDO..." : "QUERO MINHA AVALIAÇÃO GRATUITA"}
+        {enviando ? "ENVIANDO..." : submitTexto}
       </button>
       {erro && <p className="lp-form-erro">{erro}</p>}
     </form>
