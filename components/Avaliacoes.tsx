@@ -1,3 +1,6 @@
+"use client";
+
+import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import type { ResumoAvaliacoes } from "@/lib/avaliacoes";
 
 const LINK_AVALIAR =
@@ -13,6 +16,55 @@ function Estrelas({ nota }: { nota: number }) {
 }
 
 export default function Avaliacoes({ dados }: { dados: ResumoAvaliacoes | null }) {
+  const avaliacoes = dados?.avaliacoes ?? [];
+  const total = avaliacoes.length;
+  const [pos, setPos] = useState(total);
+  const [visiveis, setVisiveis] = useState(3);
+  const [animar, setAnimar] = useState(true);
+
+  useEffect(() => {
+    const atualizar = () => setVisiveis(window.innerWidth <= 880 ? 1 : 3);
+    atualizar();
+    window.addEventListener("resize", atualizar);
+    return () => window.removeEventListener("resize", atualizar);
+  }, []);
+
+  useEffect(() => {
+    setPos(total);
+  }, [total]);
+
+  const slides =
+    total > 0 ? [...avaliacoes, ...avaliacoes, ...avaliacoes] : [];
+
+  const avancar = useCallback(() => {
+    if (total === 0) return;
+    setAnimar(true);
+    setPos((p) => p + 1);
+  }, [total]);
+
+  const voltar = useCallback(() => {
+    if (total === 0) return;
+    setAnimar(true);
+    setPos((p) => p - 1);
+  }, [total]);
+
+  const aoFimTransicao = useCallback(() => {
+    if (total === 0) return;
+    if (pos >= total * 2) {
+      setAnimar(false);
+      requestAnimationFrame(() => {
+        setPos((p) => p - total);
+        requestAnimationFrame(() => setAnimar(true));
+      });
+    } else if (pos < total) {
+      setAnimar(false);
+      requestAnimationFrame(() => {
+        setPos((p) => p + total);
+        requestAnimationFrame(() => setAnimar(true));
+      });
+    }
+  }, [pos, total]);
+
   if (!dados || dados.total === 0) return null;
 
   return (
@@ -33,26 +85,141 @@ export default function Avaliacoes({ dados }: { dados: ResumoAvaliacoes | null }
             <div className="meta">{dados.total} avaliações no Google</div>
           </div>
         </div>
-        <div className="aval-grid">
-          {dados.avaliacoes.slice(0, 6).map((a, i) => (
-            <div className="aval-card" key={i}>
-              <Estrelas nota={a.nota} />
-              <p>{a.texto}</p>
-              <div className="autor">{a.autor}</div>
-              {a.data && <div className="data">{a.data}</div>}
+
+        <div className="aval-carrossel">
+          <button
+            type="button"
+            className="aval-seta"
+            onClick={voltar}
+            aria-label="Avaliação anterior"
+          >
+            ‹
+          </button>
+
+          <div
+            className="aval-janela"
+            style={
+              {
+                "--visiveis": visiveis,
+                "--total-slides": slides.length,
+              } as CSSProperties
+            }
+          >
+            <div
+              className={`aval-trilho${animar ? " aval-trilho--animar" : ""}`}
+              style={{
+                transform: `translateX(-${(pos / slides.length) * 100}%)`,
+              }}
+              onTransitionEnd={aoFimTransicao}
+            >
+              {slides.map((a, i) => (
+                <div className="aval-slide" key={`${a.autor}-${i}`}>
+                  <div className="aval-card">
+                    <Estrelas nota={a.nota} />
+                    <p>{a.texto}</p>
+                    <div className="autor">{a.autor}</div>
+                    {a.data && <div className="data">{a.data}</div>}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <button
+            type="button"
+            className="aval-seta"
+            onClick={avancar}
+            aria-label="Próxima avaliação"
+          >
+            ›
+          </button>
         </div>
+
         <a
           className="btn"
           href={LINK_AVALIAR}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ background: "transparent", border: "2px solid var(--grafite)", color: "var(--grafite)" }}
+          style={{
+            background: "transparent",
+            border: "2px solid var(--grafite)",
+            color: "var(--grafite)",
+          }}
         >
           VER TODAS NO GOOGLE
         </a>
       </div>
+
+      <style jsx>{`
+        .aval-carrossel {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 36px;
+        }
+
+        .aval-janela {
+          flex: 1;
+          overflow: hidden;
+          min-width: 0;
+        }
+
+        .aval-trilho {
+          display: flex;
+          width: calc(100% * var(--total-slides) / var(--visiveis));
+          will-change: transform;
+        }
+
+        .aval-trilho--animar {
+          transition: transform 0.45s ease;
+        }
+
+        .aval-slide {
+          flex: 0 0 calc(100% / var(--total-slides));
+          padding: 0 13px;
+          box-sizing: border-box;
+          text-align: left;
+        }
+
+        .aval-seta {
+          flex-shrink: 0;
+          width: 44px;
+          height: 44px;
+          border: 2px solid var(--grafite);
+          border-radius: 50%;
+          background: #fff;
+          color: var(--grafite);
+          font-size: 28px;
+          line-height: 1;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 0 2px;
+          transition: background 0.2s, color 0.2s;
+        }
+
+        .aval-seta:hover {
+          background: var(--grafite);
+          color: #fff;
+        }
+
+        @media (max-width: 880px) {
+          .aval-carrossel {
+            gap: 8px;
+          }
+
+          .aval-slide {
+            padding: 0 4px;
+          }
+
+          .aval-seta {
+            width: 38px;
+            height: 38px;
+            font-size: 24px;
+          }
+        }
+      `}</style>
     </section>
   );
 }
