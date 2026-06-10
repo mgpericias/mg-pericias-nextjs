@@ -17,7 +17,7 @@ body {
 h1, h2, h3, h4 { font-family: 'Inter', sans-serif; line-height: 1.2; font-weight: 800; }
 .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 .ambar { color: var(--ambar); }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 
 .btn {
   display: inline-block; background: var(--ambar); color: #fff;
@@ -65,7 +65,7 @@ section { padding: 80px 0; }
 .flip-back p { font-size: 15px; color: #fff; line-height: 1.6; }
 
 /* NÚMEROS */
-.numeros { position: relative; overflow: hidden; background: var(--ambar); }
+.numeros { position: relative; overflow: hidden; background: var(--ambar); min-height: 280px; }
 .numeros::before { content: ""; position: absolute; inset: 0; background: url('https://mgpericias.com.br/wp-content/uploads/2025/04/bg-cta.jpg') center/cover; opacity: .5; }
 .num-row { position: relative; z-index: 2; display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
 .num { background: rgba(255,255,255,.16); padding: 30px 42px; display: flex; align-items: center; gap: 20px; min-width: 380px; }
@@ -87,7 +87,7 @@ section { padding: 80px 0; }
 .quem-top { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
 .quem-top .sec-titulo { font-size: 44px; text-align: left; margin-bottom: 18px; }
 .quem-top p { font-size: 17px; color: #555; }
-.quem-top img { border-radius: 4px; width: 100%; object-fit: cover; }
+.quem-top img { border-radius: 4px; width: 100%; max-width: 100%; height: auto; object-fit: cover; }
 
 /* MVV */
 .mvv-sec { position: relative; overflow: hidden; background: #eceae6; }
@@ -101,7 +101,7 @@ section { padding: 80px 0; }
 .equipe { background: #fff; }
 .equipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 46px; align-items: stretch; }
 .membro { border-radius: 4px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,.08); display: flex; flex-direction: column; height: 100%; }
-.membro img { width: 100%; height: 320px; flex-shrink: 0; object-fit: cover; object-position: top; }
+.membro img { width: 100%; max-width: 100%; height: 320px; flex-shrink: 0; object-fit: cover; object-position: top; }
 .membro .faixa { background: var(--ambar); padding: 22px 24px; color: #fff; flex: 1; display: flex; flex-direction: column; justify-content: flex-start; min-height: 150px; }
 .membro .faixa h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
 .membro .faixa p { font-size: 14px; color: #fff; line-height: 1.5; opacity: .95; }
@@ -123,17 +123,37 @@ section { padding: 80px 0; }
 .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: left; }
 .post { background: #fff; border: 1px solid var(--borda); border-radius: 4px; overflow: hidden; transition: transform .2s; text-decoration: none; color: inherit; display: block; }
 .post:hover { transform: translateY(-5px); }
-.post .capa { height: 180px; background: var(--grafite) center/cover; position: relative; }
+.post .capa {
+  height: 180px;
+  background-color: var(--grafite);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
 .post .capa .cat { position: absolute; bottom: 14px; left: 14px; background: var(--ambar); color: #fff; font-size: 11px; padding: 5px 12px; letter-spacing: .05em; font-weight: 700; }
 .post .body { padding: 24px; }
 .post .body h3 { font-size: 19px; font-weight: 700; color: var(--grafite); margin-bottom: 10px; line-height: 1.3; }
 .post .body p { font-size: 14px; color: #666; margin-bottom: 14px; }
 .post .ler { color: var(--ambar); font-weight: 700; font-size: 14px; }
+.post-capa-artigo,
+article.wrap > img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 /* CONTATO */
 .contato { background: var(--cimento); overflow: hidden; padding: 60px 0; }
 .contato-grid { position: relative; display: grid; grid-template-columns: 42% 58%; align-items: stretch; max-width: 1280px; margin: 0 auto; min-height: 600px; }
-.contato-foto { background: url('https://mgpericias.com.br/wp-content/uploads/2025/04/cta-contato.png') no-repeat center bottom; background-size: contain; background-color: transparent; }
+.contato-foto {
+  background-image: url('https://mgpericias.com.br/wp-content/uploads/2025/04/cta-contato.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  background-color: transparent;
+}
 .contato-painel { background: var(--grafite); color: #fff; padding: 50px 56px 50px 90px; clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); margin-left: -8%; display: flex; flex-direction: column; justify-content: center; }
 .contato-painel h2 { font-size: 38px; font-weight: 800; margin-bottom: 24px; color: var(--ambar); }
 .form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
@@ -266,4 +286,47 @@ footer { background: var(--grafite-2); color: #bbb; padding: 60px 0 28px; }
   .lp-hero-txt h1 { font-size: 30px; }
   .lp-img-placeholder { min-height: 260px; clip-path: none; max-width: 100%; }
   .lp-hero-img { justify-content: center; }
+}
+
+@media (max-width: 768px) {
+  .wrap { padding: 0 16px; }
+
+  .clientes-row { justify-content: center; gap: 20px; }
+  .clientes-row img { height: auto; max-height: 72px; width: auto; max-width: 42%; }
+  .nav img.logo { height: auto; max-height: 52px; }
+  .foot-logo img { height: auto; max-height: 96px; width: auto; max-width: 100%; }
+
+  .quem-top img { width: 100%; max-width: 100%; height: auto; min-height: 200px; max-height: 360px; }
+  .membro img { height: auto; min-height: 220px; max-height: 320px; aspect-ratio: 4 / 5; }
+
+  .numeros { min-height: 240px; }
+  .numeros::before { background-size: cover; background-position: center; }
+  .mvv-sec::before { background-size: cover; background-position: center; }
+  .contato-foto {
+    min-height: 300px;
+    background-size: cover;
+    background-position: center bottom;
+  }
+  .post .capa { min-height: 160px; height: auto; aspect-ratio: 16 / 9; }
+
+  .num-row { flex-direction: column; align-items: stretch; }
+  .aval-resumo { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 12px; }
+
+  .clientes-row img { max-height: 56px; max-width: 46%; }
+  .nav img.logo { max-height: 44px; }
+  .foot-logo img { max-height: 80px; }
+
+  .quem-top img { min-height: 160px; max-height: 280px; }
+  .membro img { min-height: 180px; max-height: 260px; }
+
+  .numeros { min-height: 200px; }
+  .contato-foto { min-height: 220px; }
+  .post .capa { min-height: 140px; }
+
+  section { padding: 56px 0; }
+  .contato { padding: 40px 0; }
 }
