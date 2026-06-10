@@ -65,10 +65,12 @@ export default async function Home() {
       </section>
 
       <div className="clientes">
-        <div className="wrap clientes-row">
-          {CLIENTES.map((c) => (
-            <img key={c} src={`/images/${c}.png`} alt={c} />
-          ))}
+        <div className="clientes-viewport">
+          <div className="clientes-track">
+            {[...CLIENTES, ...CLIENTES].map((c, i) => (
+              <img key={`${c}-${i}`} src={`/images/${c}.png`} alt={c} />
+            ))}
+          </div>
         </div>
       </div>
 
