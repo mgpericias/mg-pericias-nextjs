@@ -37,7 +37,6 @@ const EQUIPE = [
 ];
 
 const CLIENTES = ["logo-autoglass", "contractor", "cais-artes", "camorim"];
-const IMG = "/images";
 
 export default async function Home() {
   const avaliacoes = await getAvaliacoes();
@@ -68,7 +67,7 @@ export default async function Home() {
       <div className="clientes">
         <div className="wrap clientes-row">
           {CLIENTES.map((c) => (
-            <img key={c} src={`${IMG}/${c}.png`} alt={c} />
+            <img key={c} src={`/images/${c}.png`} alt={c} />
           ))}
         </div>
       </div>
@@ -121,7 +120,7 @@ export default async function Home() {
               <h2 className="sec-titulo">Quem somos</h2>
               <p>Somos uma empresa capixaba especializada em Engenharia Diagnóstica, com atuação em Auditoria, Avaliações e Perícias. Com mais de 13 anos de experiência acumulada por nosso sócio fundador, nos destacamos pela expertise em engenharia condominial e pelo compromisso em oferecer soluções precisas e confiáveis.</p>
             </div>
-            <img src={`${IMG}/TIME-MG-1.jpg`} alt="Equipe MG Perícias" />
+            <img src="/images/TIME-MG-1.jpg" alt="Equipe MG Perícias" />
           </div>
         </div>
       </section>
@@ -143,7 +142,7 @@ export default async function Home() {
           <div className="equipe-grid">
             {EQUIPE.map((m) => (
               <div className="membro" key={m.nome}>
-                <img src={`${IMG}/${m.img}.jpg`} alt={m.nome} />
+                <img src={`/images/${m.img}.jpg`} alt={m.nome} />
                 <div className="faixa"><h3>{m.nome}</h3><p>{m.bio}</p></div>
               </div>
             ))}

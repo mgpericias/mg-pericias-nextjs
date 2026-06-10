@@ -36,11 +36,9 @@ header { position: sticky; top: 0; z-index: 50; background: var(--cimento); bord
 
 /* HERO */
 .hero {
+  position: relative;
+  overflow: hidden;
   background-color: var(--grafite);
-  background-image: url('/hero-engenheiro.webp');
-  background-position: center right;
-  background-repeat: no-repeat;
-  background-size: cover;
   color: #fff;
   padding: 100px 0;
   display: flex;
@@ -48,14 +46,46 @@ header { position: sticky; top: 0; z-index: 50; background: var(--cimento); bord
   justify-content: center;
   min-height: 520px;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--grafite) 0%,
+    var(--grafite) 40%,
+    rgba(51, 52, 51, 0.9) 52%,
+    transparent 70%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  background-image: url('/images/banner-hero.webp');
+  background-position: 80% center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+}
 .hero-inner {
+  position: relative;
+  z-index: 2;
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 24px;
   width: 100%;
 }
 .hero-txt {
-  max-width: 560px;
+  max-width: 520px;
+  padding-right: 24px;
+  position: relative;
+  z-index: 2;
   margin: 0;
   text-align: left;
 }
@@ -281,6 +311,10 @@ footer { background: var(--grafite-2); color: #bbb; padding: 60px 0 28px; }
     min-height: auto;
     background-image: none;
     background-color: var(--grafite);
+  }
+  .hero::before,
+  .hero::after {
+    display: none;
   }
   .hero-txt { max-width: 720px; margin: 0 auto; text-align: center; }
   .hero h1 { font-size: 32px; }
