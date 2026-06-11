@@ -67,7 +67,7 @@ export default async function Home() {
       <div className="clientes">
         <div className="clientes-viewport">
           <div className="clientes-track">
-            {[...CLIENTES, ...CLIENTES].map((c, i) => (
+            {[...CLIENTES, ...CLIENTES, ...CLIENTES, ...CLIENTES, ...CLIENTES, ...CLIENTES].map((c, i) => (
               <img key={`${c}-${i}`} src={`/images/${c}.png`} alt={c} />
             ))}
           </div>

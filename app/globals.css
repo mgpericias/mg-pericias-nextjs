@@ -96,26 +96,31 @@ header { position: sticky; top: 0; z-index: 50; background: var(--cimento); bord
 
 /* CLIENTES */
 .clientes { background: var(--cimento); padding: 54px 0; }
-.clientes-viewport { overflow: hidden; width: 100%; }
+.clientes-viewport {
+  overflow: hidden;
+  width: 100%;
+}
 .clientes-track {
   display: flex;
   align-items: center;
-  gap: 64px;
   width: max-content;
   animation: scroll-logos 30s linear infinite;
 }
-.clientes-track:hover { animation-play-state: paused; }
+.clientes-track:hover {
+  animation-play-state: paused;
+}
 .clientes-track img {
-  height: auto;
-  max-height: 60px;
+  height: 44px;
   width: auto;
+  margin-right: 80px;
   flex-shrink: 0;
-  filter: grayscale(1);
-  opacity: .55;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
 }
 @keyframes scroll-logos {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .clientes-track {
