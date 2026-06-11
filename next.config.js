@@ -8,6 +8,11 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      { source: '/obra', destination: '/obra.html' },
+    ];
+  },
 };
 
 module.exports = nextConfig;
