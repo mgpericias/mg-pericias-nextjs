@@ -11,7 +11,14 @@ const nextConfig = {
   async rewrites() {
     return [
       { source: '/obra', destination: '/obra.html' },
-      { source: '/app', destination: '/app.html' },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/app.html",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
   async redirects() {
