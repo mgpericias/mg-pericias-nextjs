@@ -7,7 +7,7 @@ import { Resend } from "resend";
 
 export async function POST(req: Request) {
   try {
-    const { nome, email, telefone } = await req.json();
+    const { nome, email, telefone, mensagem } = await req.json();
 
     if (!nome || !email || !telefone) {
       return NextResponse.json({ erro: "Campos obrigatórios" }, { status: 400 });
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       to: ["contato@mgpericias.com.br"],
       replyTo: email,
       subject: `Novo contato pelo site — ${nome}`,
-      text: `Nome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}`,
+      text: `Nome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}\n\nO que precisa:\n${mensagem?.trim() || "(não informado)"}`,
     });
 
     return NextResponse.json({ ok: true });

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "enviando" | "ok" | "erro">("idle");
-  const [form, setForm] = useState({ nome: "", email: "", telefone: "" });
+  const [form, setForm] = useState({ nome: "", email: "", telefone: "", mensagem: "" });
 
   async function enviar() {
     if (!form.nome || !form.email || !form.telefone) {
@@ -20,7 +20,7 @@ export default function ContactForm() {
       });
       if (!res.ok) throw new Error();
       setStatus("ok");
-      setForm({ nome: "", email: "", telefone: "" });
+      setForm({ nome: "", email: "", telefone: "", mensagem: "" });
     } catch {
       setStatus("erro");
     }
@@ -55,6 +55,23 @@ export default function ContactForm() {
         placeholder="Telefone*"
         value={form.telefone}
         onChange={(e) => setForm({ ...form, telefone: e.target.value })}
+      />
+      <textarea
+        placeholder="Descreva o que você precisa"
+        value={form.mensagem}
+        onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
+        rows={4}
+        style={{
+          padding: "16px 18px",
+          border: "none",
+          background: "#f1efec",
+          color: "#333",
+          fontSize: 15,
+          fontFamily: "inherit",
+          borderRadius: 0,
+          resize: "vertical",
+          minHeight: 100,
+        }}
       />
       <button className="btn" onClick={enviar} disabled={status === "enviando"}>
         {status === "enviando" ? "ENVIANDO..." : "ENVIAR"}
