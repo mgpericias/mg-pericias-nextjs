@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -9,19 +10,31 @@ import { getAvaliacoes } from "@/lib/avaliacoes";
 // Revalida a home a cada 24h (para refletir novas avaliações)
 export const revalidate = 86400;
 
-const SERVICOS_OBRAS = [
-  "Gestão de contratação de obras",
-  "Fiscalização de obras",
-];
-
-const SERVICOS_LAUDOS = [
-  "Laudo de Inspeção Predial",
-  "Laudo de Auditoria da Construção",
-  "Parecer Técnico",
-  "Laudo de Vistoria Cautelar de Vizinhança",
-  "Mapeamento de fachadas",
-  "Laudo de Análise Estrutural",
-  "Laudo de Conferência de Fração Ideal",
+const SERVICOS = [
+  { titulo: "Gestão de Contratos e Obras", img: "/images/cards/card-gestao-obras.webp",
+    resumo: "Cuidamos da contratação e acompanhamos a obra do início ao fim. O condomínio paga o preço justo e recebe o que contratou.",
+    link: "/gestao-fiscalizacao-obras" },
+  { titulo: "Laudo de Inspeção Predial", img: "/images/cards/card-inspecao-predial.webp",
+    resumo: "Avaliação completa do estado do prédio, conforme a NBR 16747. Mostra o que precisa de atenção e em que ordem agir.",
+    link: "/inspecao-predial" },
+  { titulo: "Laudo de Auditoria da Construção", img: "/images/cards/card-auditoria-construcao.webp",
+    resumo: "Verificação técnica da qualidade da obra entregue pela construtora. Base para cobrar reparos ainda na garantia.",
+    link: "/auditoria-construcao" },
+  { titulo: "Parecer Técnico", img: "/images/cards/card-parecer-tecnico.webp",
+    resumo: "Análise de um problema específico com conclusão objetiva, assinada por engenheiro. Documento válido para decisões e disputas.",
+    link: "/parecer-tecnico" },
+  { titulo: "Inspeção Preliminar de Fachada", img: "/images/cards/card-inspecao-fachada.webp",
+    resumo: "Inspeção da fachada com drone, sem rapel e sem balancinho. Mostra o estado geral do revestimento com agilidade e custo menor.",
+    link: "/inspecao-preliminar-fachada" },
+  { titulo: "Mapeamento de Fachadas", img: "/images/cards/card-mapeamento-fachadas.webp",
+    resumo: "Inspeção das fachadas para localizar trincas, infiltrações e risco de desplacamento. Prioriza os reparos e evita acidentes.",
+    link: "/mapeamento-fachadas" },
+  { titulo: "Laudo de Análise Estrutural", img: "/images/cards/card-analise-estrutural.webp",
+    resumo: "Avaliação da estrutura do edifício por engenheiro especialista. Indica a gravidade real do problema e o que fazer.",
+    link: "/analise-estrutural" },
+  { titulo: "Laudo de Conferência de Fração Ideal", img: "/images/cards/card-fracao-ideal.webp",
+    resumo: "Conferência dos cálculos de fração ideal das unidades. Garante rateio correto das despesas do condomínio.",
+    link: "/fracao-ideal" },
 ];
 
 const DIFERENCIAIS = [
@@ -103,15 +116,24 @@ export default async function Home() {
         <div className="wrap">
           <h2 className="sec-titulo">Conheça nossos <span className="ambar">serviços</span></h2>
           <p className="sec-sub">Soluções completas em gestão de obras e laudos técnicos para condomínios e empresas.</p>
-          <div className="serv-bloco">
-            <h3>Obras</h3>
-            <ul>{SERVICOS_OBRAS.map((s) => <li key={s}>{s}</li>)}</ul>
+          <div className="serv-grid">
+            {SERVICOS.map((s) => (
+              <div className="serv-card" key={s.titulo}>
+                <div className="serv-inner">
+                  <div
+                    className="serv-face serv-front"
+                    style={{ backgroundImage: `url(${s.img})` }}
+                  >
+                    <h3>{s.titulo}</h3>
+                  </div>
+                  <div className="serv-face serv-back">
+                    <p>{s.resumo}</p>
+                    <Link href={s.link} className="serv-btn">Saiba mais</Link>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="serv-bloco">
-            <h3>Laudos</h3>
-            <ul>{SERVICOS_LAUDOS.map((s) => <li key={s}>{s}</li>)}</ul>
-          </div>
-          <div className="serv-cta"><a href="#contato" className="btn">SAIBA MAIS SOBRE NOSSOS SERVIÇOS!</a></div>
         </div>
       </section>
 
