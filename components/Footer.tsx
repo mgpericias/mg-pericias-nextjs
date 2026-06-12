@@ -29,7 +29,7 @@ export default function Footer() {
           <div>
             <h4>Contato</h4>
             <p style={{ marginTop: 14 }}>
-              (27) 99970-4394<br /><br />
+              <a href="tel:+5527999704394">(27) 99970-4394</a><br /><br />
               contato@mgpericias.com.br<br /><br />
               Rua Italina Pereira Mota, 440, Sala 107, Jardim Camburi,<br />
               Vitória/ES, CEP 29090-370
@@ -55,7 +55,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="foot-bottom">© 2025 All Rights Reserved.</div>
+        <div className="foot-bottom">
+          © {new Date().getFullYear()} MG Perícias. Todos os direitos reservados.
+        </div>
       </div>
     </footer>
   );

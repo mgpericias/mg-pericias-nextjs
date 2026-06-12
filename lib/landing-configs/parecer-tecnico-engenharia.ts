@@ -1,16 +1,20 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_PARECER } from "@/lib/landing-configs/passos";
 
 export const data: LandingData = {
   slug: "parecer-tecnico-engenharia",
   origem: "parecer-tecnico-engenharia",
-  h1: "Parecer Técnico de Engenharia no Estado do Espírito Santo",
+  h1: "Parecer Técnico de Engenharia em Vitória/ES",
   subtitulo:
-    "Quando há divergência técnica, opiniões conflitantes entre prestadores ou dúvida sobre a melhor decisão, um Parecer Técnico independente traz clareza. Análise pontual, objetiva e assinada por engenheiro especialista em Engenharia Diagnóstica.",
+    "Dois orçamentos dizendo coisas diferentes? Assembleia travada em uma discussão técnica? Um parecer independente, assinado por engenheiro, encerra a dúvida e destrava a decisão.",
   whatsappMsg: "Olá! Preciso de um Parecer Técnico de engenharia.",
+  nomeServicoDuvida: "Parecer Técnico de Engenharia",
   credibilidade: [
     "+13 anos de experiência",
     "Análise independente",
     "Documento objetivo e assinado",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-parecer-tecnico.webp",
   paraQuemTitulo: "Para quem é o Parecer Técnico",
@@ -75,6 +79,9 @@ export const data: LandingData = {
       detalhe: "respondemos dúvidas sobre o conteúdo do parecer",
     },
   ],
+  passos: PASSOS_PARECER,
+  urgenciaTexto:
+    "Decisão adiada em assembleia volta maior na próxima. Resolva com base técnica.",
   faq: [
     {
       pergunta: "Qual a diferença entre Parecer Técnico e Laudo?",
@@ -98,14 +105,13 @@ export const data: LandingData = {
     },
     {
       pergunta: "Quanto custa?",
-      resposta:
-        "Varia conforme a questão analisada. Solicite orçamento pelo WhatsApp. Em até 24h enviamos proposta.",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
   ],
 };
 
 export const metadata = {
-  title: "Parecer Técnico de Engenharia no Estado do Espírito Santo | MG Perícias",
+  title: "Parecer Técnico de Engenharia em Vitória/ES | MG Perícias",
   description:
-    "Parecer técnico independente para condomínios, disputas e tomadas de decisão. Engenharia Diagnóstica com +13 anos no Estado do Espírito Santo.",
+    "Parecer técnico independente para condomínios, disputas e tomadas de decisão. Engenharia Diagnóstica com +13 anos em Vitória e Grande Vitória.",
 };

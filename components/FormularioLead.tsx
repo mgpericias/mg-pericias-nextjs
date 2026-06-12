@@ -9,6 +9,13 @@ type Props = {
   whatsappUrl: string;
 };
 
+function formatarTelefone(valor: string) {
+  const digitos = valor.replace(/\D/g, "").slice(0, 11);
+  if (digitos.length <= 2) return digitos.length ? `(${digitos}` : "";
+  if (digitos.length <= 7) return `(${digitos.slice(0, 2)}) ${digitos.slice(2)}`;
+  return `(${digitos.slice(0, 2)}) ${digitos.slice(2, 7)}-${digitos.slice(7)}`;
+}
+
 export default function FormularioLead({
   origem,
   submitTexto,
@@ -82,7 +89,7 @@ export default function FormularioLead({
         type="tel"
         placeholder="WhatsApp*"
         value={whatsapp}
-        onChange={(e) => setWhatsapp(e.target.value)}
+        onChange={(e) => setWhatsapp(formatarTelefone(e.target.value))}
         required
       />
       <input
@@ -94,6 +101,9 @@ export default function FormularioLead({
       <button type="submit" className="btn" disabled={enviando}>
         {enviando ? "ENVIANDO..." : submitTexto}
       </button>
+      <p className="lp-form-privacidade">
+        Seus dados são usados apenas para retornar o seu contato.
+      </p>
       {erro && <p className="lp-form-erro">{erro}</p>}
     </form>
   );

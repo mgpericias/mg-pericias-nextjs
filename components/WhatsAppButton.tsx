@@ -1,10 +1,16 @@
-export default function WhatsAppButton() {
+type Props = {
+  msg?: string;
+};
+
+export default function WhatsAppButton({
+  msg = "Olá! Vim pelo site e gostaria de um orçamento.",
+}: Props) {
   const numero = "5527999704394";
-  const msg = encodeURIComponent("Olá! Vim pelo site e gostaria de um orçamento.");
+  const texto = encodeURIComponent(msg);
   return (
     <a
       className="wpp"
-      href={`https://wa.me/${numero}?text=${msg}`}
+      href={`https://wa.me/${numero}?text=${texto}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"

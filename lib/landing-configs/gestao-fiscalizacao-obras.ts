@@ -1,22 +1,26 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_GESTAO_OBRAS } from "@/lib/landing-configs/passos";
 
 export const metadata = {
-  title: "Gestão e Fiscalização de Obras na Grande Vitória | MG Perícias",
+  title: "Gestão e Fiscalização de Obras em Vitória/ES | MG Perícias",
   description:
-    "Gestão da contratação e fiscalização de obras para condomínios na Grande Vitória. Escopo certo, preço justo e obra acompanhada do início ao fim.",
+    "Gestão da contratação e fiscalização de obras para condomínios em Vitória e Grande Vitória. Escopo certo, preço justo e obra acompanhada do início ao fim.",
 };
 
 export const data: LandingData = {
   slug: "gestao-fiscalizacao-obras",
   origem: "gestao-fiscalizacao-obras",
-  h1: "Gestão e Fiscalização de Obras na Grande Vitória",
+  h1: "Gestão e Fiscalização de Obras em Vitória/ES",
   subtitulo:
-    "Contratar e executar obra de condomínio do jeito certo: escopo bem definido, fornecedor qualificado, preço justo e execução acompanhada por engenheiro do início ao fim. O condomínio paga o combinado e recebe o que contratou.",
+    "Obra aprovada e medo de aditivos, atrasos e retrabalho? Cuidamos da contratação e fiscalizamos a execução do início ao fim. O condomínio paga o combinado e recebe o que contratou.",
   whatsappMsg: "Olá! Quero um orçamento de Gestão e Fiscalização de Obras para meu condomínio.",
+  nomeServicoDuvida: "Gestão e Fiscalização de Obras",
   credibilidade: [
     "+13 anos de experiência",
     "Independência total de fornecedores",
     "Acompanhamento até a entrega",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-gestao-obras.webp",
   paraQuemTitulo: "Para quem é a Gestão e Fiscalização de Obras:",
@@ -84,7 +88,11 @@ export const data: LandingData = {
       detalhe: "problemas registrados e cobrados formalmente da empreiteira",
     },
   ],
+  passos: PASSOS_GESTAO_OBRAS,
   mostrarBotaoPortfolio: true,
+  assembleiaGestao: true,
+  urgenciaTexto:
+    "Nossa agenda de fiscalização aceita um número limitado de obras simultâneas. Garanta o acompanhamento da sua.",
   faq: [
     {
       pergunta: "Vocês recebem comissão de fornecedores?",
@@ -115,6 +123,10 @@ export const data: LandingData = {
       pergunta: "Posso contratar só a gestão da contratação, sem a fiscalização?",
       resposta:
         "Sim. Os escopos podem ser contratados juntos ou separados, conforme a necessidade do condomínio.",
+    },
+    {
+      pergunta: "Quanto custa?",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
   ],
 };

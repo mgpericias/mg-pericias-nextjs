@@ -13,16 +13,19 @@ function NumeroAnimado({
   valor,
   rotulo,
   ativo,
+  hidratado,
 }: {
   valor: number;
   rotulo: string;
   ativo: boolean;
+  hidratado: boolean;
 }) {
-  const [atual, setAtual] = useState(0);
+  const [atual, setAtual] = useState(valor);
 
   useEffect(() => {
-    if (!ativo) return;
+    if (!ativo || !hidratado) return;
 
+    setAtual(0);
     const inicio = performance.now();
     let frame = 0;
 
@@ -36,7 +39,7 @@ function NumeroAnimado({
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [ativo, valor]);
+  }, [ativo, hidratado, valor]);
 
   return (
     <div className="num">
@@ -49,6 +52,11 @@ function NumeroAnimado({
 export default function ContadorNumeros({ itens }: { itens: Item[] }) {
   const secaoRef = useRef<HTMLElement>(null);
   const [ativo, setAtivo] = useState(false);
+  const [hidratado, setHidratado] = useState(false);
+
+  useEffect(() => {
+    setHidratado(true);
+  }, []);
 
   useEffect(() => {
     const el = secaoRef.current;
@@ -78,6 +86,7 @@ export default function ContadorNumeros({ itens }: { itens: Item[] }) {
               valor={item.valor}
               rotulo={item.rotulo}
               ativo={ativo}
+              hidratado={hidratado}
             />
           ))}
         </div>

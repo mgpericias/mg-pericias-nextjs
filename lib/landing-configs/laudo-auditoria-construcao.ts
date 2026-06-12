@@ -1,17 +1,21 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_AUDITORIA } from "@/lib/landing-configs/passos";
 
 export const data: LandingData = {
   slug: "laudo-auditoria-construcao",
   origem: "laudo-auditoria-construcao",
-  h1: "Laudo de Auditoria da Construção no Estado do Espírito Santo",
+  h1: "Laudo de Auditoria da Construção em Vitória/ES",
   subtitulo:
-    "Verifique se a construção foi entregue conforme o projeto, com qualidade técnica e dentro dos padrões. Auditoria independente para condomínios novos, recém-entregues e empreendimentos em garantia.",
+    "Recebeu o prédio da construtora e os problemas já apareceram? Documente cada vício ainda na garantia e cobre os reparos com fundamento técnico, antes que o custo vire do condomínio.",
   whatsappMsg:
     "Olá! Quero um orçamento de Laudo de Auditoria da Construção para meu condomínio.",
+  nomeServicoDuvida: "Laudo de Auditoria da Construção",
   credibilidade: [
     "+13 anos de experiência",
     "Auditoria independente",
     "Base técnica para acionar a garantia",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-auditoria-construcao.webp",
   paraQuemTitulo: "Para quem é a Auditoria da Construção",
@@ -32,8 +36,9 @@ export const data: LandingData = {
         "precisam de base técnica para negociar reparos com a construtora",
     },
     {
-      perfil: "Investidores",
-      descricao: "querem proteger o valor do imóvel desde a entrega",
+      perfil: "Moradores de prédio novo",
+      descricao:
+        "querem que os problemas do prédio sejam resolvidos pela construtora, não pelo rateio",
     },
   ],
   quandoTitulo: "Quando contratar a Auditoria",
@@ -74,6 +79,9 @@ export const data: LandingData = {
       detalhe: "o que cobrar primeiro e por quê",
     },
   ],
+  passos: PASSOS_AUDITORIA,
+  urgenciaTexto:
+    "Os prazos de garantia correm desde a entrega das chaves. Cada mês sem documentar é prazo perdido.",
   faq: [
     {
       pergunta: "Qual o prazo para acionar a construtora?",
@@ -97,14 +105,13 @@ export const data: LandingData = {
     },
     {
       pergunta: "Quanto custa?",
-      resposta:
-        "Depende do porte do empreendimento e do escopo. Solicite orçamento pelo WhatsApp. Em até 24h enviamos proposta.",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
   ],
 };
 
 export const metadata = {
-  title: "Laudo de Auditoria da Construção no Estado do Espírito Santo | MG Perícias",
+  title: "Auditoria da Construção em Vitória/ES | MG Perícias",
   description:
-    "Auditoria técnica de obras no Estado do Espírito Santo. Verificamos qualidade, conformidade e adequação da construção entregue. +13 anos de experiência.",
+    "Auditoria técnica de obras em Vitória e Grande Vitória. Verificamos qualidade, conformidade e adequação da construção entregue. +13 anos de experiência.",
 };

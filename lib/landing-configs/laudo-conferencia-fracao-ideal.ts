@@ -1,22 +1,26 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_FRACAO_IDEAL } from "@/lib/landing-configs/passos";
 
 export const metadata = {
-  title: "Conferência de Fração Ideal no Estado do Espírito Santo | MG Perícias",
+  title: "Conferência de Fração Ideal em Vitória/ES | MG Perícias",
   description:
-    "Conferência técnica de fração ideal para condomínios no Estado do Espírito Santo. Garanta que a divisão proporcional está correta. Laudo técnico assinado.",
+    "Conferência técnica de fração ideal para condomínios em Vitória e Grande Vitória. Garanta que a divisão proporcional está correta. Laudo técnico assinado.",
 };
 
 export const data: LandingData = {
   slug: "laudo-conferencia-fracao-ideal",
   origem: "laudo-conferencia-fracao-ideal",
-  h1: "Laudo de Conferência de Fração Ideal no Estado do Espírito Santo",
+  h1: "Laudo de Conferência de Fração Ideal em Vitória/ES",
   subtitulo:
-    "Garantia técnica de que a divisão proporcional do seu condomínio está correta. A conferência da fração ideal protege contra cobranças injustas e encerra disputas entre condôminos.",
+    "Condôminos questionando o rateio? A conferência técnica da fração ideal mostra se a conta está certa e encerra a discussão com cálculo assinado por engenheiro.",
   whatsappMsg: "Olá! Quero um orçamento de Conferência de Fração Ideal para meu condomínio.",
+  nomeServicoDuvida: "Conferência de Fração Ideal",
   credibilidade: [
     "+13 anos de experiência",
     "Cálculo técnico conferido",
     "Documento válido para registro",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-fracao-ideal.webp",
   paraQuemTitulo: "Para quem é a Conferência de Fração Ideal:",
@@ -76,6 +80,9 @@ export const data: LandingData = {
       detalhe: "documento utilizável junto ao registro de imóveis e em disputas",
     },
   ],
+  passos: PASSOS_FRACAO_IDEAL,
+  urgenciaTexto:
+    "Cada rateio emitido com fração errada é uma cobrança a corrigir depois.",
   faq: [
     {
       pergunta: "O laudo serve para alterar a matrícula?",
@@ -99,8 +106,7 @@ export const data: LandingData = {
     },
     {
       pergunta: "Quanto custa?",
-      resposta:
-        "Depende do porte do condomínio e da documentação disponível. Solicite orçamento pelo WhatsApp. Em até 24h enviamos proposta.",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
   ],
 };

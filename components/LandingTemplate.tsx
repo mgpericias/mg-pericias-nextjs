@@ -4,10 +4,16 @@ import Footer from "@/components/Footer";
 import FormularioLead from "@/components/FormularioLead";
 import ContadorNumeros from "@/components/ContadorNumeros";
 import Avaliacoes from "@/components/Avaliacoes";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import ResponsavelTecnico from "@/components/ResponsavelTecnico";
 import { getAvaliacoes } from "@/lib/avaliacoes";
 import {
+  ASSEMBLEIA_TEXTO_GESTAO,
+  ASSEMBLEIA_TEXTO_PADRAO,
+  RISCO_SINDICO_TEXTO,
+} from "@/lib/landing-helpers";
+import {
   LP_CLIENTES,
-  LP_COMO_FUNCIONA,
   LP_DIFERENCIAIS,
   LP_NUMEROS,
   LP_BASE,
@@ -21,12 +27,19 @@ export interface LandingFaqItem {
   sufixo?: string;
 }
 
+export interface LandingPasso {
+  num: string;
+  titulo: string;
+  descricao: string;
+}
+
 export interface LandingData {
   slug: string;
   origem: string;
   h1: string;
   subtitulo: string;
   whatsappMsg: string;
+  nomeServicoDuvida: string;
   credibilidade: string[];
   cardImg: string;
   paraQuemTitulo: string;
@@ -35,9 +48,13 @@ export interface LandingData {
   quando: { titulo: string; descricao: string }[];
   recebeTitulo: string;
   recebe: { item: string; detalhe: string }[];
+  passos: LandingPasso[];
   prazoFormato?: string;
   faq: LandingFaqItem[];
   mostrarBotaoPortfolio?: boolean;
+  mostrarRiscoSindico?: boolean;
+  urgenciaTexto: string;
+  assembleiaGestao?: boolean;
 }
 
 function serviceSchema(data: LandingData) {
@@ -83,6 +100,12 @@ function faqSchema(faq: LandingFaqItem[]) {
 export default async function LandingTemplate({ data }: { data: LandingData }) {
   const avaliacoes = await getAvaliacoes();
   const whatsappUrl = `https://wa.me/${LP_WHATSAPP}?text=${encodeURIComponent(data.whatsappMsg)}`;
+  const duvidaUrl = `https://wa.me/${LP_WHATSAPP}?text=${encodeURIComponent(
+    `Olá! Tenho uma dúvida sobre ${data.nomeServicoDuvida}.`
+  )}`;
+  const assembleiaTexto = data.assembleiaGestao
+    ? ASSEMBLEIA_TEXTO_GESTAO
+    : ASSEMBLEIA_TEXTO_PADRAO;
 
   return (
     <>
@@ -95,7 +118,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(data.faq)) }}
       />
 
-      <Header contatoHref="#contato" />
+      <Header contatoHref="#contato" variant="lp" />
 
       <section className="lp-hero-v2">
         <div className="wrap lp-hero-v2-grid">
@@ -111,8 +134,13 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
               >
                 Solicitar orçamento via WhatsApp
               </a>
-              <a href="#contato" className="lp-btn-outline">
-                Falar com um engenheiro
+              <a
+                href={duvidaUrl}
+                className="lp-btn-outline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Tirar uma dúvida rápida
               </a>
             </div>
             <ul className="lp-credibilidade">
@@ -166,6 +194,15 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         </div>
       </section>
 
+      {data.mostrarRiscoSindico && (
+        <section className="lp-risco-sindico center">
+          <div className="wrap">
+            <h2 className="sec-titulo">A responsabilidade é do síndico</h2>
+            <p>{RISCO_SINDICO_TEXTO}</p>
+          </div>
+        </section>
+      )}
+
       <section className="lp-recebe center">
         <div className="wrap">
           <h2 className="sec-titulo">{data.recebeTitulo}</h2>
@@ -193,7 +230,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         <div className="wrap">
           <h2 className="sec-titulo">Como funciona, em 4 passos</h2>
           <div className="lp-passos-v2-grid">
-            {LP_COMO_FUNCIONA.map((p) => (
+            {data.passos.map((p) => (
               <div className="lp-passo-v2" key={p.num}>
                 <span className="lp-passo-v2-num">{p.num} · {p.titulo}</span>
                 <p>{p.descricao}</p>
@@ -221,14 +258,16 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         </div>
       </section>
 
+      <ResponsavelTecnico />
+
       <ContadorNumeros itens={LP_NUMEROS} />
 
       <section className="lp-faq center">
         <div className="wrap">
           <h2 className="sec-titulo">Perguntas frequentes</h2>
           <div className="lp-faq-list">
-            {data.faq.map((item) => (
-              <details key={item.pergunta}>
+            {data.faq.map((item, index) => (
+              <details key={item.pergunta} open={index === 0}>
                 <summary>{item.pergunta}</summary>
                 <p>
                   {item.resposta}
@@ -246,6 +285,21 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         </div>
       </section>
 
+      <section className="lp-assembleia center">
+        <div className="wrap">
+          <h2 className="sec-titulo">Apresentamos o resultado na sua assembleia</h2>
+          <p>{assembleiaTexto}</p>
+          <a
+            href={whatsappUrl}
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Quero esse apoio
+          </a>
+        </div>
+      </section>
+
       <Avaliacoes dados={avaliacoes} />
 
       <section className="lp-form-sec center" id="contato">
@@ -254,9 +308,10 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
           <p className="lp-contato-intro">
             Em até 24 horas, retornamos sua solicitação com uma proposta personalizada. Sem compromisso.
           </p>
+          <p className="lp-urgencia-form">{data.urgenciaTexto}</p>
           <FormularioLead
             origem={data.origem}
-            submitTexto="ENVIAR"
+            submitTexto="Receber proposta em 24h"
             sucessoTexto="Recebemos sua solicitação! Em até 24 horas retornaremos com uma proposta personalizada."
             whatsappUrl={whatsappUrl}
           />
@@ -275,7 +330,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
               </Link>
             )}
             <p>
-              (27) 99970-4394<br />
+              <a href="tel:+5527999704394">(27) 99970-4394</a><br />
               contato@mgpericias.com.br<br />
               Rua Italina Pereira Mota, 440, Sala 107, Jardim Camburi, Vitória/ES, CEP 29090-370
             </p>
@@ -284,6 +339,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
       </section>
 
       <Footer />
+      <WhatsAppButton msg={data.whatsappMsg} />
     </>
   );
 }

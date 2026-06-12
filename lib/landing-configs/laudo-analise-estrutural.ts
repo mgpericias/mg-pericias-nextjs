@@ -1,22 +1,26 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_ANALISE_ESTRUTURAL } from "@/lib/landing-configs/passos";
 
 export const metadata = {
-  title: "Laudo de Análise Estrutural no Estado do Espírito Santo | MG Perícias",
+  title: "Laudo de Análise Estrutural em Vitória/ES | MG Perícias",
   description:
-    "Análise estrutural de edificações no Estado do Espírito Santo. Diagnóstico técnico para identificar riscos, orientar reformas e proteger seu patrimônio.",
+    "Análise estrutural de edificações em Vitória e Grande Vitória. Diagnóstico técnico para identificar riscos, orientar reformas e proteger seu patrimônio.",
 };
 
 export const data: LandingData = {
   slug: "laudo-analise-estrutural",
   origem: "laudo-analise-estrutural",
-  h1: "Laudo de Análise Estrutural no Estado do Espírito Santo",
+  h1: "Laudo de Análise Estrutural em Vitória/ES",
   subtitulo:
-    "Sua edificação dá sinais de problema estrutural? A análise técnica independente avalia os riscos, identifica as causas e orienta a solução. Para edificações de qualquer idade.",
+    "Fissuras em pilares, vigas ou lajes tiram seu sono? Um especialista avalia a gravidade real, explica a causa e indica exatamente o que fazer, sem alarmismo e sem subestimar.",
   whatsappMsg: "Olá! Quero um orçamento de Laudo de Análise Estrutural.",
+  nomeServicoDuvida: "Laudo de Análise Estrutural",
   credibilidade: [
     "+13 anos de experiência",
     "Engenheiro especialista em estruturas",
     "Avaliação de risco objetiva",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-analise-estrutural.webp",
   paraQuemTitulo: "Para quem é a Análise Estrutural:",
@@ -57,6 +61,7 @@ export const data: LandingData = {
       descricao: "remoção de paredes, aberturas em lajes, sobrecargas novas",
     },
   ],
+  mostrarRiscoSindico: true,
   recebeTitulo: "O que você recebe:",
   recebe: [
     {
@@ -76,6 +81,9 @@ export const data: LandingData = {
       detalhe: "o que fazer, em que ordem e com que urgência",
     },
   ],
+  passos: PASSOS_ANALISE_ESTRUTURAL,
+  urgenciaTexto:
+    "Problema estrutural não melhora sozinho. Quanto antes a causa for identificada, menor a intervenção.",
   faq: [
     {
       pergunta: "O laudo identifica risco de desabamento?",
@@ -99,8 +107,7 @@ export const data: LandingData = {
     },
     {
       pergunta: "Quanto custa?",
-      resposta:
-        "Depende do porte da edificação e da extensão das manifestações. Solicite orçamento pelo WhatsApp. Em até 24h enviamos proposta.",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
   ],
 };

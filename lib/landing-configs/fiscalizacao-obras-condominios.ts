@@ -1,4 +1,5 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { PASSOS_GESTAO_OBRAS } from "@/lib/landing-configs/passos";
 
 export const metadata = {
   title: "Fiscalização de Obras em Condomínios em Vitória | MG Perícias",
@@ -14,6 +15,10 @@ export const data: LandingData = {
     "Evite problemas estruturais, desperdícios financeiros e conflitos entre moradores com uma fiscalização técnica especializada em engenharia civil. Tenha acompanhamento profissional em todas as etapas da obra e garanta mais segurança para o seu condomínio.",
   whatsappMsg:
     "Olá! Gostaria de solicitar uma avaliação técnica para fiscalização de obras no meu condomínio em Vitória.",
+  nomeServicoDuvida: "Fiscalização de Obras em Condomínios",
+  passos: PASSOS_GESTAO_OBRAS,
+  urgenciaTexto:
+    "Nossa agenda de fiscalização aceita um número limitado de obras simultâneas. Garanta o acompanhamento da sua.",
   credibilidade: [
     "Equipe especializada em condomínios",
     "Engenheiros experientes e qualificados",

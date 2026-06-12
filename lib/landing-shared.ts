@@ -4,12 +4,12 @@ export const LP_DIFERENCIAIS = [
   {
     titulo: "Conhecimento técnico",
     texto:
-      "Nossa equipe conta com especialistas qualificados e mais de uma década de experiência em Engenharia Diagnóstica.",
+      "Nossa equipe conta com especialistas qualificados e mais de 13 anos de experiência em Engenharia Diagnóstica.",
   },
   {
     titulo: "Qualidade do serviço",
     texto:
-      "Laudos completos e personalizados, produzidos com rigor técnico e clareza na comunicação, garantindo resultados confiáveis e soluções sob medida para você.",
+      "Laudos completos e personalizados, com rigor técnico e linguagem clara para o síndico decidir.",
   },
   {
     titulo: "Relacionamento próximo",

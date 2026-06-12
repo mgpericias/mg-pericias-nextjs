@@ -1,22 +1,26 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_MAPEAMENTO } from "@/lib/landing-configs/passos";
 
 export const metadata = {
-  title: "Mapeamento de Fachadas no Estado do Espírito Santo | MG Perícias",
+  title: "Mapeamento de Fachadas em Vitória/ES | MG Perícias",
   description:
-    "Mapeamento técnico de fachadas para condomínios no Estado do Espírito Santo. Diagnóstico preciso para reformas, restauros e prevenção de patologias.",
+    "Mapeamento técnico de fachadas para condomínios em Vitória e Grande Vitória. Diagnóstico preciso para reformas, restauros e prevenção de patologias.",
 };
 
 export const data: LandingData = {
   slug: "mapeamento-de-fachadas",
   origem: "mapeamento-de-fachadas",
-  h1: "Mapeamento de Fachadas no Estado do Espírito Santo",
+  h1: "Mapeamento de Fachadas em Vitória/ES",
   subtitulo:
-    "Diagnóstico técnico detalhado das fachadas do seu condomínio. Identifica patologias, classifica a gravidade e define o escopo correto do restauro ou da reforma.",
+    "Vai restaurar a fachada ou teme desplacamento de revestimento? O mapeamento identifica cada patologia, classifica a gravidade e entrega o escopo pronto para orçar o restauro sem surpresa.",
   whatsappMsg: "Olá! Quero um orçamento de Mapeamento de Fachadas para meu condomínio.",
+  nomeServicoDuvida: "Mapeamento de Fachadas",
   credibilidade: [
     "+13 anos de experiência",
     "Inspeção de proximidade com ensaios",
     "Escopo pronto para licitar o restauro",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-mapeamento-fachadas.webp",
   paraQuemTitulo: "Para quem é o Mapeamento de Fachadas:",
@@ -57,6 +61,7 @@ export const data: LandingData = {
       descricao: "situação de risco que exige diagnóstico imediato",
     },
   ],
+  mostrarRiscoSindico: true,
   recebeTitulo: "O que você recebe:",
   recebe: [
     {
@@ -77,6 +82,9 @@ export const data: LandingData = {
       detalhe: "o reparo certo para cada tipo de patologia",
     },
   ],
+  passos: PASSOS_MAPEAMENTO,
+  urgenciaTexto:
+    "O período de chuvas agrava infiltrações e desplacamentos. Antecipe o diagnóstico.",
   faq: [
     {
       pergunta: "O mapeamento exige acesso aos apartamentos?",
@@ -105,8 +113,7 @@ export const data: LandingData = {
     },
     {
       pergunta: "Quanto custa?",
-      resposta:
-        "Depende do número de fachadas, da altura e do estado de conservação. Solicite orçamento pelo WhatsApp. Em até 24h enviamos proposta.",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
   ],
 };

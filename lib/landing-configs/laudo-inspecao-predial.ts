@@ -1,17 +1,20 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_INSERCAO_PREDIAL } from "@/lib/landing-configs/passos";
 
 export const data: LandingData = {
   slug: "laudo-inspecao-predial",
   origem: "laudo-inspecao-predial",
-  h1: "Laudo de Inspeção Predial no Estado do Espírito Santo",
+  h1: "Laudo de Inspeção Predial em Vitória/ES",
   subtitulo:
-    "Seu condomínio precisa de um laudo técnico confiável, conforme a ABNT NBR 16747. A MG Perícias entrega Engenharia Diagnóstica há mais de 13 anos, com laudos que classificam anomalias, orientam decisões e protegem patrimônio.",
+    "Laudo vencido, fissuras aparecendo ou cobrança da administradora? Receba o diagnóstico completo do seu prédio, conforme a ABNT NBR 16747, com prioridades claras do que fazer primeiro.",
   whatsappMsg:
     "Olá! Quero um orçamento de Laudo de Inspeção Predial para meu condomínio.",
+  nomeServicoDuvida: "Laudo de Inspeção Predial",
   credibilidade: [
     "+13 anos de experiência",
     "Conforme ABNT NBR 16747",
-    "Atendimento em toda Grande Vitória",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-inspecao-predial.webp",
   paraQuemTitulo: "Para quem é o Laudo de Inspeção Predial",
@@ -30,11 +33,6 @@ export const data: LandingData = {
       perfil: "Conselhos consultivos",
       descricao:
         "querem decidir reformas com base em dados, não em palpite",
-    },
-    {
-      perfil: "Construtoras e incorporadoras",
-      descricao:
-        "precisam comprovar conformidade de edificações entregues",
     },
   ],
   quandoTitulo: "Quando contratar uma Inspeção Predial",
@@ -65,6 +63,7 @@ export const data: LandingData = {
         "quando há divergência entre síndicos, moradores ou prestadores",
     },
   ],
+  mostrarRiscoSindico: true,
   recebeTitulo: "O que está incluso no nosso Laudo de Inspeção Predial",
   recebe: [
     {
@@ -97,8 +96,11 @@ export const data: LandingData = {
         "disponibilidade para apresentar o laudo em assembleia, sob demanda",
     },
   ],
+  passos: PASSOS_INSERCAO_PREDIAL,
   prazoFormato:
     "Prazo de entrega: 15 a 30 dias após a vistoria, conforme a complexidade. Formato: PDF assinado digitalmente.",
+  urgenciaTexto:
+    "Condomínios costumam aprovar o orçamento do ano com o laudo em mãos. Quanto antes a vistoria, mais tempo para planejar.",
   faq: [
     {
       pergunta: "O Laudo de Inspeção Predial é obrigatório?",
@@ -112,8 +114,7 @@ export const data: LandingData = {
     },
     {
       pergunta: "Quanto custa um Laudo de Inspeção Predial?",
-      resposta:
-        "O investimento varia conforme o porte do condomínio, o número de torres e o nível da inspeção. Solicite um orçamento pelo WhatsApp. Em até 24h enviamos proposta com escopo claro.",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
     {
       pergunta: "Quem pode emitir o laudo?",
@@ -139,7 +140,7 @@ export const data: LandingData = {
 };
 
 export const metadata = {
-  title: "Laudo de Inspeção Predial no Estado do Espírito Santo | MG Perícias",
+  title: "Laudo de Inspeção Predial em Vitória/ES | MG Perícias",
   description:
-    "Laudo de Inspeção Predial conforme ABNT NBR 16747 para condomínios no Estado do Espírito Santo. +13 anos de Engenharia Diagnóstica. Solicite orçamento.",
+    "Laudo de Inspeção Predial conforme ABNT NBR 16747 para condomínios em Vitória e Grande Vitória. +13 anos de Engenharia Diagnóstica. Solicite orçamento.",
 };

@@ -1,17 +1,21 @@
 import type { LandingData } from "@/components/LandingTemplate";
+import { CREDIBILIDADE_GEO, FAQ_PRECO_RESPOSTA } from "@/lib/landing-helpers";
+import { PASSOS_INSPECAO_FACHADA } from "@/lib/landing-configs/passos";
 
 export const data: LandingData = {
   slug: "inspecao-preliminar-fachada",
   origem: "inspecao-preliminar-fachada",
-  h1: "Inspeção Preliminar de Fachada com Drone no Estado do Espírito Santo",
+  h1: "Inspeção Preliminar de Fachada com Drone em Vitória/ES",
   subtitulo:
-    "Avaliação visual completa das fachadas do condomínio feita com drone, sem rapel e sem balancinho. Mostra o estado geral do revestimento com agilidade e custo menor, e indica se o condomínio precisa avançar para um mapeamento completo.",
+    "Manchas ou fissuras na fachada e dúvida se é grave? O sobrevoo com drone mostra o estado real do revestimento em poucos dias, com custo menor, e indica se vale avançar para um mapeamento completo.",
   whatsappMsg:
     "Olá! Quero um orçamento de Inspeção Preliminar de Fachada com drone para meu condomínio.",
+  nomeServicoDuvida: "Inspeção Preliminar de Fachada",
   credibilidade: [
     "Sem rapel e sem balancinho",
     "Resultado em poucos dias",
     "Custo menor que o mapeamento completo",
+    CREDIBILIDADE_GEO,
   ],
   cardImg: "/images/cards/card-inspecao-fachada.webp",
   paraQuemTitulo: "Para quem é a Inspeção Preliminar de Fachada",
@@ -59,6 +63,7 @@ export const data: LandingData = {
         "chuvas intensas e ventanias podem agravar patologias existentes",
     },
   ],
+  mostrarRiscoSindico: true,
   recebeTitulo: "O que você recebe",
   recebe: [
     {
@@ -82,8 +87,11 @@ export const data: LandingData = {
         "se o quadro pede mapeamento completo, reparo pontual ou apenas monitoramento",
     },
   ],
+  passos: PASSOS_INSPECAO_FACHADA,
   prazoFormato:
     "Prazo de entrega: poucos dias após o sobrevoo. Formato: PDF ilustrado assinado digitalmente.",
+  urgenciaTexto:
+    "O período de chuvas agrava infiltrações e desplacamentos. Antecipe o diagnóstico.",
   faq: [
     {
       pergunta: "Qual a diferença para o Mapeamento de Fachadas?",
@@ -107,14 +115,13 @@ export const data: LandingData = {
     },
     {
       pergunta: "Quanto custa?",
-      resposta:
-        "É o serviço de fachada de menor investimento do nosso portfólio. Solicite orçamento pelo WhatsApp. Em até 24h enviamos proposta.",
+      resposta: FAQ_PRECO_RESPOSTA,
     },
   ],
 };
 
 export const metadata = {
-  title: "Inspeção Preliminar de Fachada com Drone no Estado do Espírito Santo | MG Perícias",
+  title: "Inspeção de Fachada com Drone em Vitória/ES | MG Perícias",
   description:
-    "Inspeção de fachada com drone no Estado do Espírito Santo. Visão rápida e econômica do estado do revestimento para orientar a decisão do síndico. Solicite orçamento.",
+    "Inspeção de fachada com drone em Vitória e Grande Vitória. Visão rápida e econômica do estado do revestimento para orientar a decisão do síndico. Solicite orçamento.",
 };
