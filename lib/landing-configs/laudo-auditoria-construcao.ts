@@ -74,7 +74,6 @@ export const data: LandingData = {
     ],
     whatsappMsg:
       "Olá! Quero auditar a construção do meu condomínio dentro da garantia.",
-    imagemDireita: true,
   },
   recebeTitulo: "O que você recebe",
   recebe: [

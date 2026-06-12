@@ -71,7 +71,6 @@ export const data: LandingData = {
       "Dinheiro gasto na solução que não resolve",
     ],
     whatsappMsg: "Olá! Preciso de um parecer técnico para decidir com segurança.",
-    imagemDireita: true,
   },
   recebeTitulo: "O que você recebe",
   recebe: [

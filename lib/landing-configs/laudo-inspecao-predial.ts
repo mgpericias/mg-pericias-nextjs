@@ -85,7 +85,6 @@ export const data: LandingData = {
     ],
     whatsappMsg:
       "Olá! Quero um laudo de inspeção predial para o meu condomínio.",
-    imagemDireita: true,
   },
   recebeTitulo: "O que está incluso no nosso Laudo de Inspeção Predial",
   recebe: [

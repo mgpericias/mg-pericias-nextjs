@@ -71,7 +71,7 @@ export const data: LandingData = {
     },
   ],
   dor: {
-    imagem: "/images/dor/dor-trinca.webp",
+    imagem: "/images/dor/dor-bomba.webp",
     imagemAlt: "Engenheiro avaliando trinca estrutural em edificação",
     titulo: "Problema estrutural não melhora sozinho",
     texto:
@@ -82,7 +82,6 @@ export const data: LandingData = {
       "A intervenção fica maior quanto mais se adia",
     ],
     whatsappMsg: "Olá! Quero uma análise estrutural do meu prédio.",
-    imagemDireita: true,
   },
   recebeTitulo: "O que você recebe:",
   recebe: [

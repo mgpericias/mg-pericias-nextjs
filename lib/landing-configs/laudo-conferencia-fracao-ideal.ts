@@ -74,7 +74,6 @@ export const data: LandingData = {
       "Dificuldade de corrigir sem laudo técnico",
     ],
     whatsappMsg: "Olá! Quero conferir a fração ideal do meu condomínio.",
-    imagemDireita: true,
   },
   recebeTitulo: "O que você recebe:",
   recebe: [

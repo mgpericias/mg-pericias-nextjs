@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import FormularioLead from "@/components/FormularioLead";
 import ContadorNumeros from "@/components/ContadorNumeros";
 import Avaliacoes from "@/components/Avaliacoes";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import TrackWhatsAppLink from "@/components/TrackWhatsAppLink";
 import ResponsavelTecnico from "@/components/ResponsavelTecnico";
 import LandingAnimLayout, {
@@ -308,16 +307,6 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         <div className="wrap">
           <h2 className="sec-titulo">{assembleiaTitulo}</h2>
           <p>{assembleiaTexto}</p>
-          <TrackWhatsAppLink
-            href={whatsappUrl}
-            className="btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            servico={data.origem}
-            local="contato"
-          >
-            Quero esse apoio
-          </TrackWhatsAppLink>
         </div>
       </section>
 
@@ -337,16 +326,6 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
             whatsappUrl={whatsappUrl}
           />
           <div className="lp-contato-info">
-            <TrackWhatsAppLink
-              href={whatsappUrl}
-              className="btn lp-btn-wpp"
-              target="_blank"
-              rel="noopener noreferrer"
-              servico={data.origem}
-              local="contato"
-            >
-              Falar no WhatsApp
-            </TrackWhatsAppLink>
             {data.mostrarBotaoPortfolio && (
               <Link href="/obra" className="btn lp-btn-portfolio">
                 Ver portfólio de obras
@@ -364,7 +343,6 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
       </LandingAnimLayout>
 
       <Footer />
-      <WhatsAppButton msg={data.whatsappMsg} servico={data.origem} />
     </>
   );
 }

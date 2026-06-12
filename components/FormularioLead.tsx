@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { trackEvent } from "@/lib/analytics";
-import TrackWhatsAppLink from "@/components/TrackWhatsAppLink";
 
 type Props = {
   origem: string;
@@ -67,16 +66,6 @@ export default function FormularioLead({
     return (
       <div className="lp-form-sucesso">
         <p>{sucessoTexto}</p>
-        <TrackWhatsAppLink
-          href={whatsappUrl}
-          className="btn lp-btn-wpp"
-          target="_blank"
-          rel="noopener noreferrer"
-          servico={origem}
-          local="contato"
-        >
-          FALAR AGORA NO WHATSAPP
-        </TrackWhatsAppLink>
       </div>
     );
   }
