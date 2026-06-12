@@ -10,9 +10,8 @@ export default function ResponsavelTecnico() {
         <div className="lp-responsavel-txt">
           <h2 className="sec-titulo">Quem assina o seu laudo</h2>
           <p>
-            Júlio Machado Gomes, engenheiro civil e responsável técnico da MG Perícias.
-            Especialista em Engenharia Diagnóstica, participa pessoalmente das vistorias e
-            assina os documentos com ART registrada no CREA. Você fala direto com quem faz.
+            Júlio Machado Gomes, engenheiro civil e responsável técnico da MG Perícias, com mais de 13 anos de experiência em Engenharia Diagnóstica.
+            Participa pessoalmente das vistorias e assina os documentos com ART registrada no CREA. Você fala direto com quem faz.
           </p>
           <p className="lp-responsavel-crea">CREA-ES 44.551 D/ES</p>
         </div>

@@ -4,7 +4,7 @@ export const LP_DIFERENCIAIS = [
   {
     titulo: "Conhecimento técnico",
     texto:
-      "Nossa equipe conta com especialistas qualificados e mais de 13 anos de experiência em Engenharia Diagnóstica.",
+      "Nossa equipe reúne especialistas com mais de 13 anos de experiência em Engenharia Diagnóstica.",
   },
   {
     titulo: "Qualidade do serviço",

@@ -12,7 +12,7 @@ export const data: LandingData = {
   whatsappMsg: "Olá! Preciso de um Parecer Técnico de engenharia.",
   nomeServicoDuvida: "Parecer Técnico de Engenharia",
   credibilidade: [
-    "+13 anos de experiência",
+    "+13 anos de experiência da equipe",
     "Análise independente",
     "Documento objetivo e assinado",
     CREDIBILIDADE_GEO,
@@ -127,5 +127,5 @@ export const data: LandingData = {
 export const metadata = {
   title: "Parecer Técnico de Engenharia em Vitória/ES | MG Perícias",
   description:
-    "Parecer técnico independente para condomínios, disputas e tomadas de decisão. Engenharia Diagnóstica com +13 anos em Vitória e Grande Vitória.",
+    "Parecer técnico independente para condomínios, disputas e tomadas de decisão. Equipe com +13 anos de experiência em Vitória e Grande Vitória.",
 };

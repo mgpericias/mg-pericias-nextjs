@@ -21,7 +21,7 @@ export const data: LandingData = {
     "Olá! Quero um orçamento de Laudo de Inspeção Predial para meu condomínio.",
   nomeServicoDuvida: "Laudo de Inspeção Predial",
   credibilidade: [
-    "+13 anos de experiência",
+    "+13 anos de experiência da equipe",
     "Conforme ABNT NBR 16747",
     CREDIBILIDADE_GEO,
   ],
@@ -164,5 +164,5 @@ export const data: LandingData = {
 export const metadata = {
   title: "Laudo de Inspeção Predial em Vitória/ES | MG Perícias",
   description:
-    "Laudo de Inspeção Predial conforme ABNT NBR 16747 para condomínios em Vitória e Grande Vitória. +13 anos de Engenharia Diagnóstica. Solicite orçamento.",
+    "Laudo de Inspeção Predial conforme ABNT NBR 16747 para condomínios em Vitória e Grande Vitória. Equipe com +13 anos de experiência em Engenharia Diagnóstica. Solicite orçamento.",
 };

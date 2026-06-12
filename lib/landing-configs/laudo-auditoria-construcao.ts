@@ -13,7 +13,7 @@ export const data: LandingData = {
     "Olá! Quero um orçamento de Laudo de Auditoria da Construção para meu condomínio.",
   nomeServicoDuvida: "Laudo de Auditoria da Construção",
   credibilidade: [
-    "+13 anos de experiência",
+    "+13 anos de experiência da equipe",
     "Auditoria independente",
     "Base técnica para acionar a garantia",
     CREDIBILIDADE_GEO,
@@ -128,5 +128,5 @@ export const data: LandingData = {
 export const metadata = {
   title: "Auditoria da Construção em Vitória/ES | MG Perícias",
   description:
-    "Auditoria técnica de obras em Vitória e Grande Vitória. Verificamos qualidade, conformidade e adequação da construção entregue. +13 anos de experiência.",
+    "Auditoria técnica de obras em Vitória e Grande Vitória. Verificamos qualidade, conformidade e adequação da construção entregue. Equipe com +13 anos de experiência.",
 };

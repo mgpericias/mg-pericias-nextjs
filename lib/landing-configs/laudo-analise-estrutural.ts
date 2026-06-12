@@ -26,7 +26,7 @@ export const data: LandingData = {
   whatsappMsg: "Olá! Quero um orçamento de Laudo de Análise Estrutural.",
   nomeServicoDuvida: "Laudo de Análise Estrutural",
   credibilidade: [
-    "+13 anos de experiência",
+    "+13 anos de experiência da equipe",
     "Engenheiro especialista em estruturas",
     "Avaliação de risco objetiva",
     CREDIBILIDADE_GEO,

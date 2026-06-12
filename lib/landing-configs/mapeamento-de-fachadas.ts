@@ -17,7 +17,7 @@ export const data: LandingData = {
   whatsappMsg: "Olá! Quero um orçamento de Mapeamento de Fachadas para meu condomínio.",
   nomeServicoDuvida: "Mapeamento de Fachadas",
   credibilidade: [
-    "+13 anos de experiência",
+    "+13 anos de experiência da equipe",
     "Inspeção de proximidade com ensaios",
     "Escopo pronto para licitar o restauro",
     CREDIBILIDADE_GEO,

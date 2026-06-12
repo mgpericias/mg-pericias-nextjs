@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Engenharia Diagnóstica para Condomínios | MG Perícias ES",
   description:
-    "Engenharia diagnóstica para condomínios na Grande Vitória. Laudo de inspeção predial, fiscalização de obras e parecer técnico. +13 anos. Fale conosco!",
+    "Engenharia diagnóstica para condomínios na Grande Vitória. Laudo de inspeção predial, fiscalização de obras e parecer técnico. Equipe com +13 anos de experiência. Fale conosco!",
   openGraph: {
     title: "Engenharia Diagnóstica para Condomínios | MG Perícias ES",
     description:

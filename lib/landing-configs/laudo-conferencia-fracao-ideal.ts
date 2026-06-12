@@ -18,7 +18,7 @@ export const data: LandingData = {
   whatsappMsg: "Olá! Quero um orçamento de Conferência de Fração Ideal para meu condomínio.",
   nomeServicoDuvida: "Conferência de Fração Ideal",
   credibilidade: [
-    "+13 anos de experiência",
+    "+13 anos de experiência da equipe",
     "Cálculo técnico conferido",
     "Documento válido para registro",
     CREDIBILIDADE_GEO,

@@ -17,7 +17,7 @@ export const data: LandingData = {
   whatsappMsg: "Olá! Quero um orçamento de Gestão e Fiscalização de Obras para meu condomínio.",
   nomeServicoDuvida: "Gestão e Fiscalização de Obras",
   credibilidade: [
-    "+13 anos de experiência",
+    "+13 anos de experiência da equipe",
     "Independência total de fornecedores",
     "Acompanhamento até a entrega",
     CREDIBILIDADE_GEO,

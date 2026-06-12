@@ -40,7 +40,7 @@ const SERVICOS = [
 ];
 
 const DIFERENCIAIS = [
-  { titulo: "Conhecimento técnico", texto: "Nossa equipe conta com especialistas qualificados e mais de 13 anos de experiência em Engenharia Diagnóstica." },
+  { titulo: "Conhecimento técnico", texto: "Nossa equipe reúne especialistas com mais de 13 anos de experiência em Engenharia Diagnóstica." },
   { titulo: "Qualidade do serviço", texto: "Laudos completos e personalizados, com rigor técnico e linguagem clara para o síndico decidir." },
   { titulo: "Relacionamento próximo", texto: "Trabalhamos lado a lado com nossos clientes para entender e superar suas expectativas." },
 ];
@@ -68,7 +68,7 @@ export default async function Home() {
               <span className="ambar">Engenharia Diagnóstica.</span>
             </h1>
             <p>
-              Há mais de 13 anos, transformando diagnósticos técnicos em decisões
+              Nossa equipe soma mais de 13 anos de experiência, transformando diagnósticos técnicos em decisões
               seguras para condomínios e administradoras.
               <br /><br />
               Nossos laudos detalhados e a gestão eficiente de obras garantem
@@ -144,7 +144,7 @@ export default async function Home() {
           <div className="quem-top">
             <div>
               <h2 className="sec-titulo">Quem somos</h2>
-              <p>Somos uma empresa capixaba especializada em Engenharia Diagnóstica, com atuação em Auditoria, Avaliações e Perícias. Com mais de 13 anos de experiência acumulada por nosso sócio fundador, nos destacamos pela expertise em engenharia condominial e pelo compromisso em oferecer soluções precisas e confiáveis.</p>
+              <p>Somos uma empresa capixaba especializada em Engenharia Diagnóstica, com atuação em Auditoria, Avaliações e Perícias. Com mais de 13 anos de experiência acumulada por nossa equipe, nos destacamos pela expertise em engenharia condominial e pelo compromisso em oferecer soluções precisas e confiáveis.</p>
             </div>
             <img src="/images/TIME-MG-1.jpg" alt="Equipe MG Perícias" />
           </div>
