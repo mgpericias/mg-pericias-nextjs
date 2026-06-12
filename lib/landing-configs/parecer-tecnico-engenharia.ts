@@ -5,6 +5,7 @@ import { PASSOS_PARECER } from "@/lib/landing-configs/passos";
 export const data: LandingData = {
   slug: "parecer-tecnico-engenharia",
   origem: "parecer-tecnico-engenharia",
+  animacao: "lupa",
   h1: "Parecer Técnico de Engenharia em Vitória/ES",
   subtitulo:
     "Dois orçamentos dizendo coisas diferentes? Assembleia travada em uma discussão técnica? Um parecer independente, assinado por engenheiro, encerra a dúvida e destrava a decisão.",

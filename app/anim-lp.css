@@ -1,0 +1,201 @@
+/* Animações de scroll nas LPs — prefixo .anim- */
+
+.anim-lp-root.anim-lp-balancinho .anim-lp-main {
+  padding-right: 0;
+}
+
+@media (min-width: 1024px) {
+  .anim-lp-root.anim-lp-balancinho .anim-lp-main {
+    padding-right: 240px;
+  }
+}
+
+.anim-drone-wrap {
+  position: fixed;
+  right: 4vw;
+  top: 0;
+  width: 190px;
+  height: 146px;
+  pointer-events: none;
+  z-index: 40;
+  will-change: transform;
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.28));
+  opacity: 0;
+  visibility: hidden;
+}
+
+.anim-drone-wrap.anim-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.anim-helice {
+  transform-origin: center;
+  animation: anim-girar 0.09s linear infinite;
+}
+
+@keyframes anim-girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.anim-balancinho-lateral {
+  position: fixed;
+  right: 6vw;
+  top: 0;
+  bottom: 0;
+  width: 215px;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.anim-balancinho-lateral.anim-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.anim-predio-svg {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.anim-alpinista {
+  will-change: transform;
+}
+
+.anim-lupa-scroll {
+  position: fixed;
+  left: 3vw;
+  top: 0;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.3));
+}
+
+.anim-lupa-scroll.anim-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.anim-lupa-secao {
+  background: #fff;
+  padding: 80px 0;
+}
+
+.anim-lupa-secao .wrap {
+  text-align: left;
+}
+
+.anim-lupa-secao .sec-titulo {
+  margin-bottom: 12px;
+}
+
+.anim-lupa-secao-intro {
+  max-width: 560px;
+  font-size: 17px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.anim-magbox {
+  position: relative;
+  width: min(680px, 100%);
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: none;
+  background: #222 center / cover no-repeat;
+}
+
+.anim-lente {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 5px solid var(--ambar);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+  background: inherit;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.anim-lente::after {
+  content: "";
+  position: absolute;
+  right: -38px;
+  bottom: -38px;
+  width: 64px;
+  height: 14px;
+  background: var(--grafite);
+  border-radius: 8px;
+  transform: rotate(45deg);
+}
+
+.anim-marcador {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ambar);
+  border: 3px solid #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 0 rgba(200, 145, 39, 0.6);
+  animation: anim-pulso 2s infinite;
+}
+
+@keyframes anim-pulso {
+  70% {
+    box-shadow: 0 0 0 14px rgba(200, 145, 39, 0);
+  }
+}
+
+.anim-rotulo {
+  position: absolute;
+  background: var(--grafite);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transform: translate(-50%, -130%);
+  opacity: 0;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.anim-rotulo.anim-visivel {
+  opacity: 1;
+}
+
+@media (max-width: 1023px) {
+  .anim-magbox {
+    cursor: default;
+  }
+}
+
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .anim-drone-wrap,
+  .anim-lupa-scroll,
+  .anim-balancinho-lateral {
+    display: none !important;
+  }
+
+  .anim-lp-root.anim-lp-balancinho .anim-lp-main {
+    padding-right: 0;
+  }
+}

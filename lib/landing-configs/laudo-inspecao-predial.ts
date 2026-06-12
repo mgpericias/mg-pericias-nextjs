@@ -5,6 +5,15 @@ import { PASSOS_INSERCAO_PREDIAL } from "@/lib/landing-configs/passos";
 export const data: LandingData = {
   slug: "laudo-inspecao-predial",
   origem: "laudo-inspecao-predial",
+  animacao: "lupa",
+  lupaInspecao: {
+    imagem: "/images/cards/card-mapeamento-fachadas.webp",
+    marcadores: [
+      { rotulo: "Fissura em revestimento", left: "30%", top: "34%" },
+      { rotulo: "Infiltração ativa", left: "62%", top: "58%" },
+      { rotulo: "Risco de desplacamento", left: "80%", top: "26%" },
+    ],
+  },
   h1: "Laudo de Inspeção Predial em Vitória/ES",
   subtitulo:
     "Laudo vencido, fissuras aparecendo ou cobrança da administradora? Receba o diagnóstico completo do seu prédio, conforme a ABNT NBR 16747, com prioridades claras do que fazer primeiro.",

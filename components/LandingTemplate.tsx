@@ -6,6 +6,10 @@ import ContadorNumeros from "@/components/ContadorNumeros";
 import Avaliacoes from "@/components/Avaliacoes";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ResponsavelTecnico from "@/components/ResponsavelTecnico";
+import LandingAnimLayout, {
+  type AnimacaoLp,
+} from "@/components/anim/LandingAnimLayout";
+import LupaInspecao, { type MarcadorLupa } from "@/components/anim/LupaInspecao";
 import { getAvaliacoes } from "@/lib/avaliacoes";
 import {
   ASSEMBLEIA_TEXTO_GESTAO,
@@ -55,6 +59,11 @@ export interface LandingData {
   mostrarRiscoSindico?: boolean;
   urgenciaTexto: string;
   assembleiaGestao?: boolean;
+  animacao?: AnimacaoLp;
+  lupaInspecao?: {
+    imagem: string;
+    marcadores: MarcadorLupa[];
+  };
 }
 
 function serviceSchema(data: LandingData) {
@@ -120,6 +129,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
 
       <Header contatoHref="#contato" variant="lp" />
 
+      <LandingAnimLayout animacao={data.animacao}>
       <section className="lp-hero-v2">
         <div className="wrap lp-hero-v2-grid">
           <div className="lp-hero-v2-txt">
@@ -225,6 +235,13 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
           )}
         </div>
       </section>
+
+      {data.lupaInspecao && (
+        <LupaInspecao
+          imagem={data.lupaInspecao.imagem}
+          marcadores={data.lupaInspecao.marcadores}
+        />
+      )}
 
       <section className="lp-passos-v2 center">
         <div className="wrap">
@@ -337,6 +354,8 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
           </div>
         </div>
       </section>
+
+      </LandingAnimLayout>
 
       <Footer />
       <WhatsAppButton msg={data.whatsappMsg} />

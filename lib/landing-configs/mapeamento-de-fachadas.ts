@@ -11,6 +11,7 @@ export const metadata = {
 export const data: LandingData = {
   slug: "mapeamento-de-fachadas",
   origem: "mapeamento-de-fachadas",
+  animacao: "balancinho",
   h1: "Mapeamento de Fachadas em Vitória/ES",
   subtitulo:
     "Vai restaurar a fachada ou teme desplacamento de revestimento? O mapeamento identifica cada patologia, classifica a gravidade e entrega o escopo pronto para orçar o restauro sem surpresa.",

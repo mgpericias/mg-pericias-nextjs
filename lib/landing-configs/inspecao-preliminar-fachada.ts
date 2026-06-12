@@ -5,6 +5,7 @@ import { PASSOS_INSPECAO_FACHADA } from "@/lib/landing-configs/passos";
 export const data: LandingData = {
   slug: "inspecao-preliminar-fachada",
   origem: "inspecao-preliminar-fachada",
+  animacao: "drone",
   h1: "Inspeção Preliminar de Fachada com Drone em Vitória/ES",
   subtitulo:
     "Manchas ou fissuras na fachada e dúvida se é grave? O sobrevoo com drone mostra o estado real do revestimento em poucos dias, com custo menor, e indica se vale avançar para um mapeamento completo.",

@@ -11,6 +11,15 @@ export const metadata = {
 export const data: LandingData = {
   slug: "laudo-analise-estrutural",
   origem: "laudo-analise-estrutural",
+  animacao: "lupa",
+  lupaInspecao: {
+    imagem: "/images/cards/card-analise-estrutural.webp",
+    marcadores: [
+      { rotulo: "Armadura exposta", left: "38%", top: "30%" },
+      { rotulo: "Corrosão avançada", left: "55%", top: "62%" },
+      { rotulo: "Desplacamento do cobrimento", left: "75%", top: "40%" },
+    ],
+  },
   h1: "Laudo de Análise Estrutural em Vitória/ES",
   subtitulo:
     "Fissuras em pilares, vigas ou lajes tiram seu sono? Um especialista avalia a gravidade real, explica a causa e indica exatamente o que fazer, sem alarmismo e sem subestimar.",

@@ -5,6 +5,7 @@ import { PASSOS_AUDITORIA } from "@/lib/landing-configs/passos";
 export const data: LandingData = {
   slug: "laudo-auditoria-construcao",
   origem: "laudo-auditoria-construcao",
+  animacao: "lupa",
   h1: "Laudo de Auditoria da Construção em Vitória/ES",
   subtitulo:
     "Recebeu o prédio da construtora e os problemas já apareceram? Documente cada vício ainda na garantia e cobre os reparos com fundamento técnico, antes que o custo vire do condomínio.",

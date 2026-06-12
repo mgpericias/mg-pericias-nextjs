@@ -11,6 +11,7 @@ export const metadata = {
 export const data: LandingData = {
   slug: "laudo-conferencia-fracao-ideal",
   origem: "laudo-conferencia-fracao-ideal",
+  animacao: "lupa",
   h1: "Laudo de Conferência de Fração Ideal em Vitória/ES",
   subtitulo:
     "Condôminos questionando o rateio? A conferência técnica da fração ideal mostra se a conta está certa e encerra a discussão com cálculo assinado por engenheiro.",
