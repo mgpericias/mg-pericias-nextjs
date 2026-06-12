@@ -13,6 +13,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: "https://mgpericias.com.br",
+    images: [
+      {
+        url: "https://mgpericias.com.br/icon.png",
+        width: 512,
+        height: 512,
+        alt: "MG Perícias",
+      },
+    ],
   },
 };
 
@@ -41,6 +49,8 @@ export default function RootLayout({
               telephone: "+5527999704394",
               email: "contato@mgpericias.com.br",
               url: "https://mgpericias.com.br",
+              logo: "https://mgpericias.com.br/icon.png",
+              image: "https://mgpericias.com.br/icon.png",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Rua Italina Pereira Mota, 440 - Sala 107",
