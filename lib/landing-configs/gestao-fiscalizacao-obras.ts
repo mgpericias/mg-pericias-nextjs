@@ -1,15 +1,15 @@
 import type { LandingData } from "@/components/LandingTemplate";
 
 export const metadata = {
-  title: "Gestão e Fiscalização de Obras em Vitória/ES | MG Perícias",
+  title: "Gestão e Fiscalização de Obras na Grande Vitória | MG Perícias",
   description:
-    "Gestão da contratação e fiscalização de obras para condomínios em Vitória/ES. Escopo certo, preço justo e obra acompanhada do início ao fim.",
+    "Gestão da contratação e fiscalização de obras para condomínios na Grande Vitória. Escopo certo, preço justo e obra acompanhada do início ao fim.",
 };
 
 export const data: LandingData = {
   slug: "gestao-fiscalizacao-obras",
   origem: "gestao-fiscalizacao-obras",
-  h1: "Gestão e Fiscalização de Obras em Vitória/ES",
+  h1: "Gestão e Fiscalização de Obras na Grande Vitória",
   subtitulo:
     "Contratar e executar obra de condomínio do jeito certo: escopo bem definido, fornecedor qualificado, preço justo e execução acompanhada por engenheiro do início ao fim. O condomínio paga o combinado e recebe o que contratou.",
   whatsappMsg: "Olá! Quero um orçamento de Gestão e Fiscalização de Obras para meu condomínio.",

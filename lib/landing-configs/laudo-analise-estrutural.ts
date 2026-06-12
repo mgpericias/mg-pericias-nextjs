@@ -1,15 +1,15 @@
 import type { LandingData } from "@/components/LandingTemplate";
 
 export const metadata = {
-  title: "Laudo de Análise Estrutural em Vitória/ES | MG Perícias",
+  title: "Laudo de Análise Estrutural no Estado do Espírito Santo | MG Perícias",
   description:
-    "Análise estrutural de edificações em Vitória/ES. Diagnóstico técnico para identificar riscos, orientar reformas e proteger seu patrimônio.",
+    "Análise estrutural de edificações no Estado do Espírito Santo. Diagnóstico técnico para identificar riscos, orientar reformas e proteger seu patrimônio.",
 };
 
 export const data: LandingData = {
   slug: "laudo-analise-estrutural",
   origem: "laudo-analise-estrutural",
-  h1: "Laudo de Análise Estrutural em Vitória/ES",
+  h1: "Laudo de Análise Estrutural no Estado do Espírito Santo",
   subtitulo:
     "Sua edificação dá sinais de problema estrutural? A análise técnica independente avalia os riscos, identifica as causas e orienta a solução. Para edificações de qualquer idade.",
   whatsappMsg: "Olá! Quero um orçamento de Laudo de Análise Estrutural.",

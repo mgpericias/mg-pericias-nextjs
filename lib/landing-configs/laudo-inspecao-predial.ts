@@ -3,7 +3,7 @@ import type { LandingData } from "@/components/LandingTemplate";
 export const data: LandingData = {
   slug: "laudo-inspecao-predial",
   origem: "laudo-inspecao-predial",
-  h1: "Laudo de Inspeção Predial em Vitória/ES",
+  h1: "Laudo de Inspeção Predial no Estado do Espírito Santo",
   subtitulo:
     "Seu condomínio precisa de um laudo técnico confiável, conforme a ABNT NBR 16747. A MG Perícias entrega Engenharia Diagnóstica há mais de 13 anos, com laudos que classificam anomalias, orientam decisões e protegem patrimônio.",
   whatsappMsg:
@@ -108,7 +108,7 @@ export const data: LandingData = {
     {
       pergunta: "De quanto em quanto tempo a inspeção precisa ser refeita?",
       resposta:
-        "A periodicidade varia conforme a idade do prédio e o nível de inspeção (Nível 1, 2 ou 3 da NBR). Para a maioria dos condomínios residenciais da Grande Vitória, a recomendação fica entre 1 e 3 anos.",
+        "A periodicidade varia conforme a idade do prédio e o nível de inspeção (Nível 1, 2 ou 3 da NBR). Para a maioria dos condomínios residenciais do Estado do Espírito Santo, a recomendação fica entre 1 e 3 anos.",
     },
     {
       pergunta: "Quanto custa um Laudo de Inspeção Predial?",
@@ -131,15 +131,15 @@ export const data: LandingData = {
         "A vistoria é minimamente invasiva e acontece nas áreas comuns. O acesso a unidades só é solicitado em casos específicos, sempre com aviso prévio.",
     },
     {
-      pergunta: "Vocês atendem toda a Grande Vitória?",
+      pergunta: "Vocês atendem todo o Estado do Espírito Santo?",
       resposta:
-        "Sim. Atendemos Vitória, Vila Velha, Serra, Cariacica e região metropolitana. Para outras cidades do ES, consulte sob demanda.",
+        "Sim. Atendemos condomínios em todo o Estado do Espírito Santo.",
     },
   ],
 };
 
 export const metadata = {
-  title: "Laudo de Inspeção Predial em Vitória/ES | MG Perícias",
+  title: "Laudo de Inspeção Predial no Estado do Espírito Santo | MG Perícias",
   description:
-    "Laudo de Inspeção Predial conforme ABNT NBR 16747 para condomínios em Vitória/ES. +13 anos de Engenharia Diagnóstica. Solicite orçamento.",
+    "Laudo de Inspeção Predial conforme ABNT NBR 16747 para condomínios no Estado do Espírito Santo. +13 anos de Engenharia Diagnóstica. Solicite orçamento.",
 };

@@ -1,15 +1,15 @@
 import type { LandingData } from "@/components/LandingTemplate";
 
 export const metadata = {
-  title: "Mapeamento de Fachadas em Vitória/ES | MG Perícias",
+  title: "Mapeamento de Fachadas no Estado do Espírito Santo | MG Perícias",
   description:
-    "Mapeamento técnico de fachadas para condomínios em Vitória/ES. Diagnóstico preciso para reformas, restauros e prevenção de patologias.",
+    "Mapeamento técnico de fachadas para condomínios no Estado do Espírito Santo. Diagnóstico preciso para reformas, restauros e prevenção de patologias.",
 };
 
 export const data: LandingData = {
   slug: "mapeamento-de-fachadas",
   origem: "mapeamento-de-fachadas",
-  h1: "Mapeamento de Fachadas em Vitória/ES",
+  h1: "Mapeamento de Fachadas no Estado do Espírito Santo",
   subtitulo:
     "Diagnóstico técnico detalhado das fachadas do seu condomínio. Identifica patologias, classifica a gravidade e define o escopo correto do restauro ou da reforma.",
   whatsappMsg: "Olá! Quero um orçamento de Mapeamento de Fachadas para meu condomínio.",

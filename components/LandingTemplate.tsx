@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FormularioLead from "@/components/FormularioLead";
 import ContadorNumeros from "@/components/ContadorNumeros";
+import Avaliacoes from "@/components/Avaliacoes";
+import { getAvaliacoes } from "@/lib/avaliacoes";
 import {
   LP_CLIENTES,
   LP_COMO_FUNCIONA,
@@ -78,7 +80,8 @@ function faqSchema(faq: LandingFaqItem[]) {
   };
 }
 
-export default function LandingTemplate({ data }: { data: LandingData }) {
+export default async function LandingTemplate({ data }: { data: LandingData }) {
+  const avaliacoes = await getAvaliacoes();
   const whatsappUrl = `https://wa.me/${LP_WHATSAPP}?text=${encodeURIComponent(data.whatsappMsg)}`;
 
   return (
@@ -242,6 +245,8 @@ export default function LandingTemplate({ data }: { data: LandingData }) {
           </div>
         </div>
       </section>
+
+      <Avaliacoes dados={avaliacoes} />
 
       <section className="lp-form-sec center" id="contato">
         <div className="wrap">

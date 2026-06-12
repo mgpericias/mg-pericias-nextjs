@@ -3,7 +3,7 @@ import type { LandingData } from "@/components/LandingTemplate";
 export const data: LandingData = {
   slug: "inspecao-preliminar-fachada",
   origem: "inspecao-preliminar-fachada",
-  h1: "Inspeção Preliminar de Fachada com Drone em Vitória/ES",
+  h1: "Inspeção Preliminar de Fachada com Drone no Estado do Espírito Santo",
   subtitulo:
     "Avaliação visual completa das fachadas do condomínio feita com drone, sem rapel e sem balancinho. Mostra o estado geral do revestimento com agilidade e custo menor, e indica se o condomínio precisa avançar para um mapeamento completo.",
   whatsappMsg:
@@ -114,7 +114,7 @@ export const data: LandingData = {
 };
 
 export const metadata = {
-  title: "Inspeção Preliminar de Fachada com Drone em Vitória/ES | MG Perícias",
+  title: "Inspeção Preliminar de Fachada com Drone no Estado do Espírito Santo | MG Perícias",
   description:
-    "Inspeção de fachada com drone em Vitória/ES. Visão rápida e econômica do estado do revestimento para orientar a decisão do síndico. Solicite orçamento.",
+    "Inspeção de fachada com drone no Estado do Espírito Santo. Visão rápida e econômica do estado do revestimento para orientar a decisão do síndico. Solicite orçamento.",
 };

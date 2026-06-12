@@ -1,15 +1,15 @@
 import type { LandingData } from "@/components/LandingTemplate";
 
 export const metadata = {
-  title: "Conferência de Fração Ideal em Vitória/ES | MG Perícias",
+  title: "Conferência de Fração Ideal no Estado do Espírito Santo | MG Perícias",
   description:
-    "Conferência técnica de fração ideal para condomínios em Vitória/ES. Garanta que a divisão proporcional está correta. Laudo técnico assinado.",
+    "Conferência técnica de fração ideal para condomínios no Estado do Espírito Santo. Garanta que a divisão proporcional está correta. Laudo técnico assinado.",
 };
 
 export const data: LandingData = {
   slug: "laudo-conferencia-fracao-ideal",
   origem: "laudo-conferencia-fracao-ideal",
-  h1: "Laudo de Conferência de Fração Ideal em Vitória/ES",
+  h1: "Laudo de Conferência de Fração Ideal no Estado do Espírito Santo",
   subtitulo:
     "Garantia técnica de que a divisão proporcional do seu condomínio está correta. A conferência da fração ideal protege contra cobranças injustas e encerra disputas entre condôminos.",
   whatsappMsg: "Olá! Quero um orçamento de Conferência de Fração Ideal para meu condomínio.",

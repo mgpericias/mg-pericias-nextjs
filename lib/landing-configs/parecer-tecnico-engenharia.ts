@@ -3,7 +3,7 @@ import type { LandingData } from "@/components/LandingTemplate";
 export const data: LandingData = {
   slug: "parecer-tecnico-engenharia",
   origem: "parecer-tecnico-engenharia",
-  h1: "Parecer Técnico de Engenharia em Vitória/ES",
+  h1: "Parecer Técnico de Engenharia no Estado do Espírito Santo",
   subtitulo:
     "Quando há divergência técnica, opiniões conflitantes entre prestadores ou dúvida sobre a melhor decisão, um Parecer Técnico independente traz clareza. Análise pontual, objetiva e assinada por engenheiro especialista em Engenharia Diagnóstica.",
   whatsappMsg: "Olá! Preciso de um Parecer Técnico de engenharia.",
@@ -105,7 +105,7 @@ export const data: LandingData = {
 };
 
 export const metadata = {
-  title: "Parecer Técnico de Engenharia em Vitória/ES | MG Perícias",
+  title: "Parecer Técnico de Engenharia no Estado do Espírito Santo | MG Perícias",
   description:
-    "Parecer técnico independente para condomínios, disputas e tomadas de decisão. Engenharia Diagnóstica com +13 anos em Vitória/ES.",
+    "Parecer técnico independente para condomínios, disputas e tomadas de decisão. Engenharia Diagnóstica com +13 anos no Estado do Espírito Santo.",
 };

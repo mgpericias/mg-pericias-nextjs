@@ -3,7 +3,7 @@ import type { LandingData } from "@/components/LandingTemplate";
 export const data: LandingData = {
   slug: "laudo-auditoria-construcao",
   origem: "laudo-auditoria-construcao",
-  h1: "Laudo de Auditoria da Construção em Vitória/ES",
+  h1: "Laudo de Auditoria da Construção no Estado do Espírito Santo",
   subtitulo:
     "Verifique se a construção foi entregue conforme o projeto, com qualidade técnica e dentro dos padrões. Auditoria independente para condomínios novos, recém-entregues e empreendimentos em garantia.",
   whatsappMsg:
@@ -104,7 +104,7 @@ export const data: LandingData = {
 };
 
 export const metadata = {
-  title: "Laudo de Auditoria da Construção em Vitória/ES | MG Perícias",
+  title: "Laudo de Auditoria da Construção no Estado do Espírito Santo | MG Perícias",
   description:
-    "Auditoria técnica de obras em Vitória/ES. Verificamos qualidade, conformidade e adequação da construção entregue. +13 anos de experiência.",
+    "Auditoria técnica de obras no Estado do Espírito Santo. Verificamos qualidade, conformidade e adequação da construção entregue. +13 anos de experiência.",
 };

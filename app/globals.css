@@ -208,6 +208,7 @@ section { padding: 80px 0; }
   overflow: hidden;
 }
 .serv-front {
+  z-index: 2;
   background-size: cover;
   background-position: center;
 }
@@ -231,12 +232,22 @@ section { padding: 80px 0; }
   z-index: 2;
 }
 .serv-back {
+  z-index: 1;
   background: var(--grafite);
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 24px;
+  pointer-events: none;
+}
+.serv-card:hover .serv-front {
+  pointer-events: none;
+  z-index: 1;
+}
+.serv-card:hover .serv-back {
+  pointer-events: auto;
+  z-index: 2;
 }
 .serv-back p {
   font-size: 15px;
@@ -255,6 +266,9 @@ section { padding: 80px 0; }
   border-radius: 4px;
   text-decoration: none;
   transition: opacity 0.2s;
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
 }
 .serv-btn:hover { opacity: 0.9; }
 
@@ -530,6 +544,13 @@ footer { background: var(--grafite-2); color: #bbb; padding: 60px 0 28px; }
   .serv-back {
     transform: none !important;
     border-radius: 0 0 12px 12px;
+    pointer-events: auto;
+    z-index: auto;
+  }
+  .serv-card:hover .serv-front,
+  .serv-card:hover .serv-back {
+    pointer-events: auto;
+    z-index: auto;
   }
   .numeros { padding: 56px 0; }
   .numeros::before { opacity: 0.5; }

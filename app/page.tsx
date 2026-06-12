@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -128,7 +127,7 @@ export default async function Home() {
                   </div>
                   <div className="serv-face serv-back">
                     <p>{s.resumo}</p>
-                    <Link href={s.link} className="serv-btn">Saiba mais</Link>
+                    <a href={s.link} className="serv-btn">Saiba mais</a>
                   </div>
                 </div>
               </div>
