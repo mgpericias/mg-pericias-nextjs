@@ -16,6 +16,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.mgpericias.com.br" }],
+        destination: "https://mgpericias.com.br/:path*",
+        permanent: true,
+      },
       { source: '/inspecao-predial', destination: '/laudo-inspecao-predial', permanent: true },
       { source: '/auditoria-construcao', destination: '/laudo-auditoria-construcao', permanent: true },
       { source: '/parecer-tecnico', destination: '/parecer-tecnico-engenharia', permanent: true },
