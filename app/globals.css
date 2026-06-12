@@ -183,9 +183,13 @@ section { padding: 80px 0; }
 .servicos .sec-titulo, .servicos .sec-sub { text-align: left; margin-left: 0; }
 .serv-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 36px;
+}
+
+@media (max-width: 1023px) {
+  .serv-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .serv-card {
   background: transparent;

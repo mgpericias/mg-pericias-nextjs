@@ -5,6 +5,7 @@ import FormularioLead from "@/components/FormularioLead";
 import ContadorNumeros from "@/components/ContadorNumeros";
 import Avaliacoes from "@/components/Avaliacoes";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import TrackWhatsAppLink from "@/components/TrackWhatsAppLink";
 import ResponsavelTecnico from "@/components/ResponsavelTecnico";
 import LandingAnimLayout, {
   type AnimacaoLp,
@@ -59,6 +60,8 @@ export interface LandingData {
   mostrarRiscoSindico?: boolean;
   urgenciaTexto: string;
   assembleiaGestao?: boolean;
+  assembleiaTitulo?: string;
+  assembleiaTexto?: string;
   animacao?: AnimacaoLp;
   lupaInspecao?: {
     imagem: string;
@@ -112,9 +115,11 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
   const duvidaUrl = `https://wa.me/${LP_WHATSAPP}?text=${encodeURIComponent(
     `Olá! Tenho uma dúvida sobre ${data.nomeServicoDuvida}.`
   )}`;
-  const assembleiaTexto = data.assembleiaGestao
-    ? ASSEMBLEIA_TEXTO_GESTAO
-    : ASSEMBLEIA_TEXTO_PADRAO;
+  const assembleiaTitulo =
+    data.assembleiaTitulo ?? "Apresentamos o resultado na sua assembleia";
+  const assembleiaTexto =
+    data.assembleiaTexto ??
+    (data.assembleiaGestao ? ASSEMBLEIA_TEXTO_GESTAO : ASSEMBLEIA_TEXTO_PADRAO);
 
   return (
     <>
@@ -136,22 +141,26 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
             <h1>{data.h1}</h1>
             <p>{data.subtitulo}</p>
             <div className="lp-hero-v2-btns">
-              <a
+              <TrackWhatsAppLink
                 href={whatsappUrl}
                 className="btn"
                 target="_blank"
                 rel="noopener noreferrer"
+                servico={data.origem}
+                local="hero"
               >
                 Solicitar orçamento via WhatsApp
-              </a>
-              <a
+              </TrackWhatsAppLink>
+              <TrackWhatsAppLink
                 href={duvidaUrl}
                 className="lp-btn-outline"
                 target="_blank"
                 rel="noopener noreferrer"
+                servico={data.origem}
+                local="hero"
               >
                 Tirar uma dúvida rápida
-              </a>
+              </TrackWhatsAppLink>
             </div>
             <ul className="lp-credibilidade">
               {data.credibilidade.map((item) => (
@@ -304,16 +313,18 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
 
       <section className="lp-assembleia center">
         <div className="wrap">
-          <h2 className="sec-titulo">Apresentamos o resultado na sua assembleia</h2>
+          <h2 className="sec-titulo">{assembleiaTitulo}</h2>
           <p>{assembleiaTexto}</p>
-          <a
+          <TrackWhatsAppLink
             href={whatsappUrl}
             className="btn"
             target="_blank"
             rel="noopener noreferrer"
+            servico={data.origem}
+            local="contato"
           >
             Quero esse apoio
-          </a>
+          </TrackWhatsAppLink>
         </div>
       </section>
 
@@ -333,14 +344,16 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
             whatsappUrl={whatsappUrl}
           />
           <div className="lp-contato-info">
-            <a
+            <TrackWhatsAppLink
               href={whatsappUrl}
               className="btn lp-btn-wpp"
               target="_blank"
               rel="noopener noreferrer"
+              servico={data.origem}
+              local="contato"
             >
               Falar no WhatsApp
-            </a>
+            </TrackWhatsAppLink>
             {data.mostrarBotaoPortfolio && (
               <Link href="/obra" className="btn lp-btn-portfolio">
                 Ver portfólio de obras
@@ -358,7 +371,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
       </LandingAnimLayout>
 
       <Footer />
-      <WhatsAppButton msg={data.whatsappMsg} />
+      <WhatsAppButton msg={data.whatsappMsg} servico={data.origem} />
     </>
   );
 }

@@ -145,6 +145,33 @@ export const PASSOS_FRACAO_IDEAL: LandingPasso[] = [
   },
 ];
 
+export const PASSOS_VISTORIA_CHAVES: LandingPasso[] = [
+  {
+    num: "01",
+    titulo: "Solicitação",
+    descricao:
+      "Você fala com nosso engenheiro pelo WhatsApp ou formulário. Em até 24h, enviamos proposta com escopo e prazo.",
+  },
+  {
+    num: "02",
+    titulo: "Vistoria da unidade",
+    descricao:
+      "Vamos ao imóvel no dia combinado e conferimos cada ambiente com checklist técnico e equipamentos.",
+  },
+  {
+    num: "03",
+    titulo: "Registro dos defeitos",
+    descricao:
+      "Cada não conformidade é fotografada, localizada e descrita tecnicamente no laudo.",
+  },
+  {
+    num: "04",
+    titulo: "Entrega",
+    descricao:
+      "Você recebe o laudo pronto para apresentar à construtora e exigir as correções por escrito.",
+  },
+];
+
 export const PASSOS_GESTAO_OBRAS: LandingPasso[] = [
   {
     num: "01",

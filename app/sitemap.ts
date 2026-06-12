@@ -12,6 +12,7 @@ const LANDING_PAGES = [
   "/laudo-analise-estrutural",
   "/laudo-conferencia-fracao-ideal",
   "/gestao-fiscalizacao-obras",
+  "/vistoria-recebimento-chaves",
   "/obra",
 ];
 

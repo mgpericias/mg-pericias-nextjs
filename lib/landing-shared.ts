@@ -59,6 +59,7 @@ export const FOOTER_SERVICOS = [
   { label: "Mapeamento de Fachadas", href: "/mapeamento-de-fachadas" },
   { label: "Laudo de Análise Estrutural", href: "/laudo-analise-estrutural" },
   { label: "Conferência de Fração Ideal", href: "/laudo-conferencia-fracao-ideal" },
+  { label: "Vistoria de Recebimento de Chaves", href: "/vistoria-recebimento-chaves" },
 ];
 
 export const LP_BASE = "https://mgpericias.com.br";

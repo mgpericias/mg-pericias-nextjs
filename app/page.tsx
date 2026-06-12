@@ -34,6 +34,9 @@ const SERVICOS = [
   { titulo: "Laudo de Conferência de Fração Ideal", img: "/images/cards/card-fracao-ideal.webp",
     resumo: "Conferência dos cálculos de fração ideal das unidades. Garante rateio correto das despesas do condomínio.",
     link: "/laudo-conferencia-fracao-ideal" },
+  { titulo: "Vistoria de Recebimento de Chaves", img: "/images/card-recebimento-chaves.webp",
+    resumo: "Conferimos o imóvel novo antes de você assinar o recebimento. Cada defeito é registrado para a construtora corrigir, sem virar problema seu depois.",
+    link: "/vistoria-recebimento-chaves" },
 ];
 
 const DIFERENCIAIS = [
@@ -200,7 +203,7 @@ export default async function Home() {
       </section>
 
       <Footer />
-      <WhatsAppButton />
+      <WhatsAppButton servico="home" />
     </>
   );
 }

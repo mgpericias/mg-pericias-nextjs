@@ -1,12 +1,19 @@
+"use client";
+
+import { trackEvent } from "@/lib/analytics";
+
 type Props = {
   msg?: string;
+  servico?: string;
 };
 
 export default function WhatsAppButton({
   msg = "Olá! Vim pelo site e gostaria de um orçamento.",
+  servico = "home",
 }: Props) {
   const numero = "5527999704394";
   const texto = encodeURIComponent(msg);
+
   return (
     <a
       className="wpp"
@@ -14,6 +21,9 @@ export default function WhatsAppButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"
+      onClick={() =>
+        trackEvent("clique_whatsapp", { servico, local: "flutuante" })
+      }
     >
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
