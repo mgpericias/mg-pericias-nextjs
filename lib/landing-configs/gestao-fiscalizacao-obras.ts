@@ -65,6 +65,20 @@ export const data: LandingData = {
       descricao: "alguém precisa coordenar interfaces e responsabilidades",
     },
   ],
+  dor: {
+    imagem: "/images/dor/dor-bomba.webp",
+    imagemAlt: "Síndico preocupado com um problema prestes a estourar no condomínio",
+    titulo: "O que acontece quando a obra anda sem fiscalização",
+    texto:
+      "Sem alguém técnico acompanhando, o condomínio paga por serviço que não foi feito, aceita material fora da especificação e descobre o problema quando a obra já acabou. O conserto vem depois, e sai do bolso de todos.",
+    pontos: [
+      "Pagamento liberado por medição que ninguém conferiu",
+      "Aditivos e atrasos que ninguém previu no contrato",
+      "Retrabalho que a empreiteira cobra de novo",
+    ],
+    whatsappMsg:
+      "Olá! Quero fiscalizar a obra do meu condomínio antes que vire problema.",
+  },
   recebeTitulo: "O que você recebe:",
   recebe: [
     {

@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState, type CSSProperties } from "react";
-import type { ResumoAvaliacoes } from "@/lib/avaliacoes";
+import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
+import { selecionarAvaliacoes, type ResumoAvaliacoes } from "@/lib/avaliacoes";
 
 const LINK_AVALIAR =
   "https://search.google.com/local/writereview?placeid=ChIJVZ9rPNUZuAARsXO7HdBZZsc";
@@ -15,8 +15,21 @@ function Estrelas({ nota }: { nota: number }) {
   );
 }
 
-export default function Avaliacoes({ dados }: { dados: ResumoAvaliacoes | null }) {
-  const avaliacoes = dados?.avaliacoes ?? [];
+type Props = {
+  dados: ResumoAvaliacoes | null;
+  servicoAtual?: string;
+};
+
+export default function Avaliacoes({ dados, servicoAtual }: Props) {
+  const todas = dados?.avaliacoes ?? [];
+  const avaliacoes = useMemo(
+    () => selecionarAvaliacoes(todas, servicoAtual),
+    [todas, servicoAtual]
+  );
+  const temEspecificas =
+    !!servicoAtual &&
+    todas.some((a) => a.servicos.includes(servicoAtual));
+
   const total = avaliacoes.length;
   const [pos, setPos] = useState(total);
   const [visiveis, setVisiveis] = useState(3);
@@ -65,7 +78,7 @@ export default function Avaliacoes({ dados }: { dados: ResumoAvaliacoes | null }
     }
   }, [pos, total]);
 
-  if (!dados || dados.total === 0) return null;
+  if (!dados || dados.total === 0 || avaliacoes.length === 0) return null;
 
   return (
     <section className="aval center" id="avaliacoes">
@@ -74,7 +87,9 @@ export default function Avaliacoes({ dados }: { dados: ResumoAvaliacoes | null }
           O que dizem nossos <span className="ambar">clientes</span>
         </h2>
         <p className="sec-sub">
-          Avaliações reais de síndicos e administradoras na Grande Vitória.
+          {temEspecificas
+            ? "Quem já contratou a MG fala por nós."
+            : "Avaliações reais de síndicos e administradoras na Grande Vitória."}
         </p>
         <div className="aval-resumo">
           <span className="nota">

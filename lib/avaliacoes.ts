@@ -16,7 +16,128 @@ export type Avaliacao = {
   texto: string;
   data: string;
   foto_autor?: string;
+  servicos: string[];
+  generico: boolean;
 };
+
+type CuradoriaAvaliacao = {
+  servicos: string[];
+  generico: boolean;
+};
+
+const CURADORIA_POR_AUTOR: Record<string, CuradoriaAvaliacao> = {
+  "elci pimentel": {
+    servicos: [
+      "gestao-fiscalizacao-obras",
+      "mapeamento-de-fachadas",
+      "inspecao-preliminar-fachada",
+    ],
+    generico: false,
+  },
+  "lucneia branquinho": {
+    servicos: [
+      "laudo-auditoria-construcao",
+      "parecer-tecnico-engenharia",
+      "vistoria-recebimento-chaves",
+    ],
+    generico: false,
+  },
+  "neimar hubner leite": {
+    servicos: ["gestao-fiscalizacao-obras"],
+    generico: true,
+  },
+  "flavia silva pereira": {
+    servicos: [
+      "gestao-fiscalizacao-obras",
+      "mapeamento-de-fachadas",
+      "inspecao-preliminar-fachada",
+    ],
+    generico: false,
+  },
+  "caroliny brito": {
+    servicos: ["gestao-fiscalizacao-obras", "laudo-inspecao-predial"],
+    generico: true,
+  },
+};
+
+function normalizarAutor(autor: string): string {
+  return autor.trim().toLowerCase();
+}
+
+function enriquecerAvaliacao(avaliacao: Omit<Avaliacao, "servicos" | "generico">): Avaliacao {
+  const curadoria = CURADORIA_POR_AUTOR[normalizarAutor(avaliacao.autor)];
+  return {
+    ...avaliacao,
+    servicos: curadoria?.servicos ?? [],
+    generico: curadoria?.generico ?? false,
+  };
+}
+
+function embaralharComSeed<T>(itens: T[], seed: string): T[] {
+  const copia = [...itens];
+  let estado = seed.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) || 1;
+
+  for (let i = copia.length - 1; i > 0; i--) {
+    estado = (estado * 9301 + 49297) % 233280;
+    const j = Math.floor((estado / 233280) * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+
+  return copia;
+}
+
+function enriquecerResumo(resumo: ResumoAvaliacoes): ResumoAvaliacoes {
+  return {
+    ...resumo,
+    avaliacoes: resumo.avaliacoes.map((a) =>
+      "servicos" in a && Array.isArray(a.servicos)
+        ? (a as Avaliacao)
+        : enriquecerAvaliacao(a)
+    ),
+  };
+}
+
+export function selecionarAvaliacoes(
+  avaliacoes: Avaliacao[],
+  servicoAtual?: string
+): Avaliacao[] {
+  if (!servicoAtual || avaliacoes.length === 0) return avaliacoes;
+
+  const especificas = avaliacoes.filter((a) =>
+    a.servicos.includes(servicoAtual)
+  );
+  const usadas = new Set(especificas);
+  const complementos: Avaliacao[] = [];
+
+  if (especificas.length < 4) {
+    const genericos = embaralharComSeed(
+      avaliacoes.filter((a) => !usadas.has(a) && a.generico),
+      `${servicoAtual}-generico`
+    );
+    for (const avaliacao of genericos) {
+      if (especificas.length + complementos.length >= 4) break;
+      complementos.push(avaliacao);
+      usadas.add(avaliacao);
+    }
+  }
+
+  while (especificas.length + complementos.length < 3) {
+    const restantes = avaliacoes
+      .filter((a) => !usadas.has(a))
+      .sort((a, b) => b.nota - a.nota || a.autor.localeCompare(b.autor));
+    if (restantes.length === 0) break;
+
+    const melhorNota = restantes[0].nota;
+    const candidatos = embaralharComSeed(
+      restantes.filter((a) => a.nota === melhorNota),
+      `${servicoAtual}-nota-${melhorNota}-${complementos.length}`
+    );
+    complementos.push(candidatos[0]);
+    usadas.add(candidatos[0]);
+  }
+
+  return [...especificas, ...complementos];
+}
 
 export type ResumoAvaliacoes = {
   nota_media: number;
@@ -68,13 +189,15 @@ async function buscarNoGoogle(): Promise<ResumoAvaliacoes> {
   if (!res.ok) throw new Error(`Places API retornou ${res.status}`);
   const json = await res.json();
 
-  const avaliacoes: Avaliacao[] = (json.reviews ?? []).map((r: any) => ({
-    autor: r.authorAttribution?.displayName ?? "Cliente Google",
-    nota: r.rating ?? 5,
-    texto: r.text?.text ?? r.originalText?.text ?? "",
-    data: r.relativePublishTimeDescription ?? "",
-    foto_autor: r.authorAttribution?.photoUri,
-  }));
+  const avaliacoes: Avaliacao[] = (json.reviews ?? []).map((r: any) =>
+    enriquecerAvaliacao({
+      autor: r.authorAttribution?.displayName ?? "Cliente Google",
+      nota: r.rating ?? 5,
+      texto: r.text?.text ?? r.originalText?.text ?? "",
+      data: r.relativePublishTimeDescription ?? "",
+      foto_autor: r.authorAttribution?.photoUri,
+    })
+  );
 
   return {
     nota_media: json.rating ?? 0,
@@ -86,11 +209,11 @@ async function buscarNoGoogle(): Promise<ResumoAvaliacoes> {
 
 export async function getAvaliacoes(): Promise<ResumoAvaliacoes | null> {
   const cache = await lerCache();
-  if (cache) return cache;
+  if (cache) return enriquecerResumo(cache);
   try {
     const fresco = await buscarNoGoogle();
     await gravarCache(fresco);
-    return fresco;
+    return enriquecerResumo(fresco);
   } catch {
     try {
       const db = getSupabase();
@@ -99,7 +222,7 @@ export async function getAvaliacoes(): Promise<ResumoAvaliacoes | null> {
         .select("payload")
         .eq("place_id", PLACE_ID)
         .single();
-      if (data?.payload) return data.payload as ResumoAvaliacoes;
+      if (data?.payload) return enriquecerResumo(data.payload as ResumoAvaliacoes);
     } catch {
       /* sem cache disponível */
     }

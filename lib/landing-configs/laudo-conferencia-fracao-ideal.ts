@@ -62,6 +62,20 @@ export const data: LandingData = {
       descricao: "ampliações e incorporações mudam a conta",
     },
   ],
+  dor: {
+    imagem: "/images/dor/dor-notificacao.webp",
+    imagemAlt: "Síndico preocupado ao ler notificação sobre rateio do condomínio",
+    titulo: "Fração errada é cobrança errada, todo mês",
+    texto:
+      "Se a fração ideal está incorreta, alguém paga mais e alguém paga menos do que deveria, mês após mês. Quando os condôminos percebem, vira disputa, e a cobrança acumulada de anos é difícil de desfazer sem um cálculo técnico que comprove o certo.",
+    pontos: [
+      "Rateio injusto repetido em cada cobrança",
+      "Disputa entre condôminos por valores acumulados",
+      "Dificuldade de corrigir sem laudo técnico",
+    ],
+    whatsappMsg: "Olá! Quero conferir a fração ideal do meu condomínio.",
+    imagemDireita: true,
+  },
   recebeTitulo: "O que você recebe:",
   recebe: [
     {

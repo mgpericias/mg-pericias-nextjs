@@ -70,7 +70,20 @@ export const data: LandingData = {
       descricao: "remoção de paredes, aberturas em lajes, sobrecargas novas",
     },
   ],
-  mostrarRiscoSindico: true,
+  dor: {
+    imagem: "/images/dor/dor-trinca.webp",
+    imagemAlt: "Engenheiro avaliando trinca estrutural em edificação",
+    titulo: "Problema estrutural não melhora sozinho",
+    texto:
+      "Fissura em pilar, viga ou laje pode ser superficial ou pode ser sinal de algo sério. Sem avaliação especializada, o condomínio decide no escuro: ou gasta com reforço desnecessário, ou ignora um risco real. As duas saídas são caras.",
+    pontos: [
+      "Risco estrutural subestimado por falta de diagnóstico",
+      "Gasto com reforço que talvez não fosse preciso",
+      "A intervenção fica maior quanto mais se adia",
+    ],
+    whatsappMsg: "Olá! Quero uma análise estrutural do meu prédio.",
+    imagemDireita: true,
+  },
   recebeTitulo: "O que você recebe:",
   recebe: [
     {

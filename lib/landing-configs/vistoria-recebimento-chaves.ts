@@ -64,6 +64,20 @@ export const data: LandingData = {
       descricao: "um engenheiro enxerga o que o olho leigo não vê",
     },
   ],
+  dor: {
+    imagem: "/images/dor/dor-bomba.webp",
+    imagemAlt: "Comprador preocupado com defeitos no imóvel novo antes da entrega",
+    titulo: "Depois que você assina, o problema vira seu",
+    texto:
+      "Ao assinar o termo de recebimento sem vistoria, você assume os defeitos que a construtora deveria corrigir. O que era responsabilidade dela passa a sair do seu bolso, e provar depois que o defeito é de fábrica fica muito mais difícil.",
+    pontos: [
+      "Defeitos de fábrica que viram despesa sua",
+      "Dificuldade de acionar a construtora após a assinatura",
+      "Reparos no imóvel novo logo na chegada",
+    ],
+    whatsappMsg:
+      "Olá! Quero vistoriar meu imóvel antes de assinar o recebimento.",
+  },
   recebeTitulo: "O que está incluso na vistoria",
   recebe: [
     {

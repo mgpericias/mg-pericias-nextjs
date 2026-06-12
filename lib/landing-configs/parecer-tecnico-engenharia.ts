@@ -59,6 +59,20 @@ export const data: LandingData = {
       descricao: "análise técnica focada na questão em disputa",
     },
   ],
+  dor: {
+    imagem: "/images/dor/dor-trinca.webp",
+    imagemAlt: "Síndico diante de decisão técnica difícil no condomínio",
+    titulo: "Decisão sem base técnica custa caro",
+    texto:
+      "Aprovar a reforma errada, contratar o escopo errado ou travar a assembleia em uma discussão sem fim. Sem um parecer independente, a decisão fica no achismo, e o erro de uma escolha técnica mal feita aparece na próxima fatura do condomínio.",
+    pontos: [
+      "Reforma aprovada com escopo errado",
+      "Assembleia paralisada por falta de uma posição técnica",
+      "Dinheiro gasto na solução que não resolve",
+    ],
+    whatsappMsg: "Olá! Preciso de um parecer técnico para decidir com segurança.",
+    imagemDireita: true,
+  },
   recebeTitulo: "O que você recebe",
   recebe: [
     {

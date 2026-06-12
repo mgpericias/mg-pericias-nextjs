@@ -15,8 +15,8 @@ import { getAvaliacoes } from "@/lib/avaliacoes";
 import {
   ASSEMBLEIA_TEXTO_GESTAO,
   ASSEMBLEIA_TEXTO_PADRAO,
-  RISCO_SINDICO_TEXTO,
 } from "@/lib/landing-helpers";
+import SecaoDor, { type SecaoDorProps } from "@/components/SecaoDor";
 import {
   LP_CLIENTES,
   LP_DIFERENCIAIS,
@@ -57,7 +57,7 @@ export interface LandingData {
   prazoFormato?: string;
   faq: LandingFaqItem[];
   mostrarBotaoPortfolio?: boolean;
-  mostrarRiscoSindico?: boolean;
+  dor?: SecaoDorProps;
   urgenciaTexto: string;
   assembleiaGestao?: boolean;
   assembleiaTitulo?: string;
@@ -213,14 +213,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         </div>
       </section>
 
-      {data.mostrarRiscoSindico && (
-        <section className="lp-risco-sindico center">
-          <div className="wrap">
-            <h2 className="sec-titulo">A responsabilidade é do síndico</h2>
-            <p>{RISCO_SINDICO_TEXTO}</p>
-          </div>
-        </section>
-      )}
+      {data.dor && <SecaoDor {...data.dor} />}
 
       <section className="lp-recebe center">
         <div className="wrap">
@@ -328,7 +321,7 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
         </div>
       </section>
 
-      <Avaliacoes dados={avaliacoes} />
+      <Avaliacoes dados={avaliacoes} servicoAtual={data.origem} />
 
       <section className="lp-form-sec center" id="contato">
         <div className="wrap">

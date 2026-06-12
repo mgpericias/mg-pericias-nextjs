@@ -64,7 +64,20 @@ export const data: LandingData = {
         "chuvas intensas e ventanias podem agravar patologias existentes",
     },
   ],
-  mostrarRiscoSindico: true,
+  dor: {
+    imagem: "/images/dor/dor-bomba.webp",
+    imagemAlt: "Síndico preocupado com problema na fachada que pode piorar",
+    titulo: "O problema na fachada cresce enquanto você espera",
+    texto:
+      "Uma fissura pequena hoje vira infiltração e desplacamento amanhã. Sem um diagnóstico, fica a dúvida: é grave ou não? O sobrevoo com drone responde rápido e barato, antes de o problema crescer e o custo junto.",
+    pontos: [
+      "Patologia que avança a cada estação de chuva",
+      "Decisão adiada por falta de informação",
+      "Custo do reparo que sobe quanto mais se espera",
+    ],
+    whatsappMsg:
+      "Olá! Quero uma inspeção de fachada com drone antes que o problema cresça.",
+  },
   recebeTitulo: "O que você recebe",
   recebe: [
     {

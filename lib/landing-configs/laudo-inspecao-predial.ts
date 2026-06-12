@@ -72,7 +72,21 @@ export const data: LandingData = {
         "quando há divergência entre síndicos, moradores ou prestadores",
     },
   ],
-  mostrarRiscoSindico: true,
+  dor: {
+    imagem: "/images/dor/dor-trinca.webp",
+    imagemAlt: "Síndico diante de trinca no prédio, sinal de problema a tratar",
+    titulo: "O prédio dá sinais antes de cobrar a conta",
+    texto:
+      "Anomalias ignoradas não desaparecem, elas se agravam. Quando viram emergência, o custo do reparo é multiplicado e a segurança dos moradores entra em jogo. O laudo mostra o que tratar primeiro, enquanto ainda é manutenção e não acidente.",
+    pontos: [
+      "Pequenos problemas que viram obras caras",
+      "Exposição do síndico em questões de seguro e disputas",
+      "Risco à segurança de moradores e visitantes",
+    ],
+    whatsappMsg:
+      "Olá! Quero um laudo de inspeção predial para o meu condomínio.",
+    imagemDireita: true,
+  },
   recebeTitulo: "O que está incluso no nosso Laudo de Inspeção Predial",
   recebe: [
     {

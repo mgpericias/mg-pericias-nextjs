@@ -61,7 +61,20 @@ export const data: LandingData = {
       descricao: "situação de risco que exige diagnóstico imediato",
     },
   ],
-  mostrarRiscoSindico: true,
+  dor: {
+    imagem: "/images/dor/dor-bomba.webp",
+    imagemAlt: "Síndico preocupado com risco na fachada do condomínio",
+    titulo: "A fachada não avisa antes de cair",
+    texto:
+      "Revestimento solto não dá aviso. Quando uma peça se desprende, o risco é de acidente com pessoas embaixo, e a responsabilidade recai sobre o condomínio. Mapear a fachada a tempo transforma um risco silencioso em um plano de reparo controlado.",
+    pontos: [
+      "Risco de queda de revestimento sobre pedestres e veículos",
+      "Responsabilização do condomínio por acidente",
+      "Restauro emergencial custa muito mais que o preventivo",
+    ],
+    whatsappMsg:
+      "Olá! Quero mapear a fachada do meu condomínio antes que um problema apareça.",
+  },
   recebeTitulo: "O que você recebe:",
   recebe: [
     {

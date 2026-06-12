@@ -61,6 +61,21 @@ export const data: LandingData = {
       descricao: "depois deles, o custo do reparo vira do condomínio",
     },
   ],
+  dor: {
+    imagem: "/images/dor/dor-trinca.webp",
+    imagemAlt: "Síndico diante de problema construtivo em prédio novo",
+    titulo: "A garantia tem prazo, e ele corre contra você",
+    texto:
+      "Os vícios construtivos de um prédio novo têm prazo para serem cobrados da construtora. Sem auditoria, eles passam despercebidos até a garantia vencer. Depois disso, o reparo do que a construtora deveria ter feito vira rateio do condomínio.",
+    pontos: [
+      "Vícios não documentados a tempo",
+      "Garantia que vence sem o problema ser cobrado",
+      "Conta da construtora que vira conta dos condôminos",
+    ],
+    whatsappMsg:
+      "Olá! Quero auditar a construção do meu condomínio dentro da garantia.",
+    imagemDireita: true,
+  },
   recebeTitulo: "O que você recebe",
   recebe: [
     {
