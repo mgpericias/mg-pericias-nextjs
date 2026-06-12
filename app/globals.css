@@ -68,7 +68,7 @@ header { position: sticky; top: 0; z-index: 50; background: var(--cimento); bord
   bottom: 0;
   width: 50%;
   background-image: url('/images/banner-hero.webp');
-  background-position: 90% 36%;
+  background-position: 96% 36%;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 0;
