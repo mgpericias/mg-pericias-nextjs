@@ -14,7 +14,7 @@ export default function ResponsavelTecnico() {
             Especialista em Engenharia Diagnóstica, participa pessoalmente das vistorias e
             assina os documentos com ART registrada no CREA. Você fala direto com quem faz.
           </p>
-          <p className="lp-responsavel-crea">CREA-ES [PREENCHER NÚMERO]</p>
+          <p className="lp-responsavel-crea">CREA-ES 44.551 D/ES</p>
         </div>
       </div>
     </section>

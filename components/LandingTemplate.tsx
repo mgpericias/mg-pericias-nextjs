@@ -149,12 +149,12 @@ export default async function LandingTemplate({ data }: { data: LandingData }) {
               ))}
             </ul>
           </div>
-          <div
-            className="lp-hero-v2-img"
-            style={{ backgroundImage: `url(${data.cardImg})` }}
-            role="img"
-            aria-label={data.h1}
-          />
+          <div className="lp-hero-v2-img">
+            <img
+              src="/images/julio-machado-quadrado.webp"
+              alt="Júlio Machado Gomes, engenheiro civil da MG Perícias"
+            />
+          </div>
         </div>
       </section>
 
