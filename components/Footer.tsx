@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { FOOTER_SERVICOS } from "@/lib/landing-shared";
+
 export default function Footer() {
   return (
     <footer>
@@ -14,19 +17,31 @@ export default function Footer() {
             </ul>
           </div>
           <div>
+            <h4>Serviços</h4>
+            <ul>
+              {FOOTER_SERVICOS.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href}>{s.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
             <h4>Contato</h4>
             <p style={{ marginTop: 14 }}>
-              27 99970-4394<br /><br />
+              (27) 99970-4394<br /><br />
               contato@mgpericias.com.br<br /><br />
-              R. Italina Pereira Mota, 440 – Jardim Camburi,<br />
-              Vitória – ES, 29090-370 – Sala 107
+              Rua Italina Pereira Mota, 440, Sala 107, Jardim Camburi,<br />
+              Vitória/ES, CEP 29090-370
             </p>
           </div>
           <div className="foot-logo">
-            <img
-              src="/images/logo-footer.png"
-              alt="MG Perícias"
-            />
+            <Link href="/">
+              <img
+                src="/images/logo-footer.png"
+                alt="MG Perícias"
+              />
+            </Link>
             <div className="foot-social">
               <a href="https://www.linkedin.com/company/mg-perícias" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>

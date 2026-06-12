@@ -1,196 +1,280 @@
 import Link from "next/link";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Avaliacoes from "@/components/Avaliacoes";
 import FormularioLead from "@/components/FormularioLead";
-import type { ResumoAvaliacoes } from "@/lib/avaliacoes";
+import ContadorNumeros from "@/components/ContadorNumeros";
+import {
+  LP_CLIENTES,
+  LP_COMO_FUNCIONA,
+  LP_DIFERENCIAIS,
+  LP_NUMEROS,
+  LP_BASE,
+  LP_WHATSAPP,
+} from "@/lib/landing-shared";
 
-export interface LandingConfig {
+export interface LandingFaqItem {
+  pergunta: string;
+  resposta: string;
+  link?: { href: string; label: string };
+  sufixo?: string;
+}
+
+export interface LandingData {
+  slug: string;
   origem: string;
-  hero: {
-    titulo: string;
-    subtitulo: string;
-    ctaTexto: string;
-    placeholderImagem?: string;
-  };
-  paraQuem: {
-    titulo: string;
-    itens: string[];
-    fecho?: string;
-  };
-  solucao: {
-    titulo: string;
-    texto: string;
-    diferenciais: string[];
-    autoridade?: string;
-  };
-  portfolio?: {
-    texto: string;
-    href: string;
-  };
-  comoFunciona: {
-    titulo: string;
-    passos: { numero: string; titulo: string; descricao: string }[];
-    reforco?: string;
-    ctaTexto?: string;
-  };
-  urgencia: {
-    titulo: string;
-    texto: string;
-  };
-  faq: {
-    titulo: string;
-    itens: { pergunta: string; resposta: string }[];
-  };
-  formulario: {
-    titulo: string;
-    submitTexto: string;
-    sucessoTexto: string;
-    whatsappUrl: string;
+  h1: string;
+  subtitulo: string;
+  whatsappMsg: string;
+  credibilidade: string[];
+  cardImg: string;
+  paraQuemTitulo: string;
+  paraQuem: { perfil: string; descricao: string }[];
+  quandoTitulo: string;
+  quando: { titulo: string; descricao: string }[];
+  recebeTitulo: string;
+  recebe: { item: string; detalhe: string }[];
+  prazoFormato?: string;
+  faq: LandingFaqItem[];
+  mostrarBotaoPortfolio?: boolean;
+}
+
+function serviceSchema(data: LandingData) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: data.h1,
+    provider: {
+      "@type": "LocalBusiness",
+      name: "MG Perícias",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rua Italina Pereira Mota, 440, Sala 107",
+        addressLocality: "Vitória",
+        addressRegion: "ES",
+        postalCode: "29090-370",
+        addressCountry: "BR",
+      },
+      telephone: "+5527999704394",
+      url: LP_BASE,
+    },
+    areaServed: { "@type": "Place", name: "Grande Vitória, Espírito Santo" },
   };
 }
 
-export default function LandingTemplate({
-  config,
-  avaliacoes,
-}: {
-  config: LandingConfig;
-  avaliacoes: ResumoAvaliacoes | null;
-}) {
-  const {
-    hero,
-    paraQuem,
-    solucao,
-    portfolio,
-    comoFunciona,
-    urgencia,
-    faq,
-    formulario,
-    origem,
-  } = config;
+function faqSchema(faq: LandingFaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.pergunta,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.link
+          ? `${item.resposta} ${item.link.label}${item.sufixo ?? ""}`
+          : item.resposta,
+      },
+    })),
+  };
+}
+
+export default function LandingTemplate({ data }: { data: LandingData }) {
+  const whatsappUrl = `https://wa.me/${LP_WHATSAPP}?text=${encodeURIComponent(data.whatsappMsg)}`;
 
   return (
     <>
-      <header className="lp-header">
-        <div className="wrap nav">
-          <a href="/">
-            <img
-              className="logo"
-              src="/images/logo-mgpericias.png"
-              alt="MG Perícias"
-            />
-          </a>
-        </div>
-      </header>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema(data)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(data.faq)) }}
+      />
 
-      <section className="lp-hero">
-        <div className="wrap lp-hero-grid">
-          <div className="lp-hero-txt">
-            <h1>{hero.titulo}</h1>
-            <p>{hero.subtitulo}</p>
-            <a href="#formulario" className="btn">
-              {hero.ctaTexto}
-            </a>
-          </div>
-          <div className="lp-hero-img">
-            <div className="lp-img-placeholder">
-              {hero.placeholderImagem ?? "Foto: inspeção/equipe"}
+      <Header contatoHref="#contato" />
+
+      <section className="lp-hero-v2">
+        <div className="wrap lp-hero-v2-grid">
+          <div className="lp-hero-v2-txt">
+            <h1>{data.h1}</h1>
+            <p>{data.subtitulo}</p>
+            <div className="lp-hero-v2-btns">
+              <a
+                href={whatsappUrl}
+                className="btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Solicitar orçamento via WhatsApp
+              </a>
+              <a href="#contato" className="lp-btn-outline">
+                Falar com um engenheiro
+              </a>
             </div>
+            <ul className="lp-credibilidade">
+              {data.credibilidade.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div
+            className="lp-hero-v2-img"
+            style={{ backgroundImage: `url(${data.cardImg})` }}
+            role="img"
+            aria-label={data.h1}
+          />
+        </div>
+      </section>
+
+      <div className="clientes">
+        <div className="clientes-viewport">
+          <div className="clientes-track">
+            {[...LP_CLIENTES, ...LP_CLIENTES, ...LP_CLIENTES, ...LP_CLIENTES, ...LP_CLIENTES, ...LP_CLIENTES].map((c, i) => (
+              <img key={`${c}-${i}`} src={`/images/${c}.png`} alt={c} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <section className="lp-para-quem center">
+        <div className="wrap">
+          <h2 className="sec-titulo">{data.paraQuemTitulo}</h2>
+          <div className="lp-para-quem-grid">
+            {data.paraQuem.map((p) => (
+              <div className="lp-perfil-card" key={p.perfil}>
+                <p><strong>{p.perfil}:</strong> {p.descricao}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="lp-dores center">
+      <section className="lp-quando center">
         <div className="wrap">
-          <h2 className="sec-titulo">{paraQuem.titulo}</h2>
-          <ul className="lp-dores-list">
-            {paraQuem.itens.map((item) => (
-              <li key={item}>{item}</li>
+          <h2 className="sec-titulo">{data.quandoTitulo}</h2>
+          <ol className="lp-quando-list">
+            {data.quando.map((item) => (
+              <li key={item.titulo}>
+                <strong>{item.titulo}:</strong> {item.descricao}
+              </li>
             ))}
-          </ul>
-          {paraQuem.fecho && <p className="lp-fecho">{paraQuem.fecho}</p>}
+          </ol>
         </div>
       </section>
 
-      <section className="lp-solucao center">
+      <section className="lp-recebe center">
         <div className="wrap">
-          <h2 className="sec-titulo">{solucao.titulo}</h2>
-          <p className="lp-solucao-txt">{solucao.texto}</p>
-          <div className="lp-diffs">
-            {solucao.diferenciais.map((d) => (
-              <span key={d}>{d}</span>
+          <h2 className="sec-titulo">{data.recebeTitulo}</h2>
+          <div className="lp-recebe-grid">
+            {data.recebe.map((r) => (
+              <div className="lp-recebe-item" key={r.item}>
+                <p><strong>{r.item}:</strong> {r.detalhe}</p>
+              </div>
             ))}
           </div>
-          {solucao.autoridade && (
-            <p className="lp-autoridade">{solucao.autoridade}</p>
+          {data.prazoFormato && (
+            <p className="lp-prazo-formato">{data.prazoFormato}</p>
+          )}
+          {data.mostrarBotaoPortfolio && (
+            <div className="lp-portfolio-mid">
+              <Link href="/obra" className="btn lp-btn-portfolio">
+                Ver portfólio de obras
+              </Link>
+            </div>
           )}
         </div>
       </section>
 
-      {portfolio && (
-        <section className="lp-portfolio-cta center">
-          <div className="wrap">
-            <Link href={portfolio.href} className="btn lp-btn-portfolio">
-              {portfolio.texto}
-            </Link>
-          </div>
-        </section>
-      )}
-
-      <section className="lp-passos center">
+      <section className="lp-passos-v2 center">
         <div className="wrap">
-          <h2 className="sec-titulo">{comoFunciona.titulo}</h2>
-          <div className="lp-passos-grid">
-            {comoFunciona.passos.map((p) => (
-              <div className="lp-passo" key={p.numero}>
-                <span className="lp-passo-num">{p.numero}</span>
-                <h3>{p.titulo}</h3>
+          <h2 className="sec-titulo">Como funciona, em 4 passos</h2>
+          <div className="lp-passos-v2-grid">
+            {LP_COMO_FUNCIONA.map((p) => (
+              <div className="lp-passo-v2" key={p.num}>
+                <span className="lp-passo-v2-num">{p.num} · {p.titulo}</span>
                 <p>{p.descricao}</p>
               </div>
             ))}
           </div>
-          {comoFunciona.reforco && (
-            <p className="lp-reforco">{comoFunciona.reforco}</p>
-          )}
-          {comoFunciona.ctaTexto && (
-            <a href="#formulario" className="btn">
-              {comoFunciona.ctaTexto}
-            </a>
-          )}
         </div>
       </section>
 
-      <section className="lp-urgencia center">
+      <section className="lp-porque center">
         <div className="wrap">
-          <h2 className="sec-titulo">{urgencia.titulo}</h2>
-          <p className="lp-urgencia-txt">{urgencia.texto}</p>
+          <h2 className="sec-titulo">
+            Por que escolher a <span className="ambar">MG Perícias</span>?
+          </h2>
+          <div className="dif-grid">
+            {LP_DIFERENCIAIS.map((d) => (
+              <div className="flip" key={d.titulo}>
+                <div className="flip-inner">
+                  <div className="flip-face flip-front"><h3>{d.titulo}</h3></div>
+                  <div className="flip-face flip-back"><p>{d.texto}</p></div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <Avaliacoes dados={avaliacoes} />
+      <ContadorNumeros itens={LP_NUMEROS} />
 
       <section className="lp-faq center">
         <div className="wrap">
-          <h2 className="sec-titulo">{faq.titulo}</h2>
+          <h2 className="sec-titulo">Perguntas frequentes</h2>
           <div className="lp-faq-list">
-            {faq.itens.map((item) => (
+            {data.faq.map((item) => (
               <details key={item.pergunta}>
                 <summary>{item.pergunta}</summary>
-                <p>{item.resposta}</p>
+                <p>
+                  {item.resposta}
+                  {item.link && (
+                    <>
+                      {" "}
+                      <Link href={item.link.href}>{item.link.label}</Link>
+                      {item.sufixo}
+                    </>
+                  )}
+                </p>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="lp-form-sec center" id="formulario">
+      <section className="lp-form-sec center" id="contato">
         <div className="wrap">
-          <h2 className="sec-titulo">{formulario.titulo}</h2>
+          <h2 className="sec-titulo">Solicite seu orçamento</h2>
+          <p className="lp-contato-intro">
+            Em até 24 horas, retornamos sua solicitação com uma proposta personalizada. Sem compromisso.
+          </p>
           <FormularioLead
-            origem={origem}
-            submitTexto={formulario.submitTexto}
-            sucessoTexto={formulario.sucessoTexto}
-            whatsappUrl={formulario.whatsappUrl}
+            origem={data.origem}
+            submitTexto="ENVIAR"
+            sucessoTexto="Recebemos sua solicitação! Em até 24 horas retornaremos com uma proposta personalizada."
+            whatsappUrl={whatsappUrl}
           />
+          <div className="lp-contato-info">
+            <a
+              href={whatsappUrl}
+              className="btn lp-btn-wpp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Falar no WhatsApp
+            </a>
+            {data.mostrarBotaoPortfolio && (
+              <Link href="/obra" className="btn lp-btn-portfolio">
+                Ver portfólio de obras
+              </Link>
+            )}
+            <p>
+              (27) 99970-4394<br />
+              contato@mgpericias.com.br<br />
+              Rua Italina Pereira Mota, 440, Sala 107, Jardim Camburi, Vitória/ES, CEP 29090-370
+            </p>
+          </div>
         </div>
       </section>
 

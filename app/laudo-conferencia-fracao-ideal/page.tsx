@@ -1,6 +1,6 @@
 import LandingTemplate from "@/components/LandingTemplate";
 import { buildLandingMetadata } from "@/lib/landing-metadata";
-import { data, metadata as meta } from "@/lib/landing-configs/gestao-fiscalizacao-obras";
+import { data, metadata as meta } from "@/lib/landing-configs/laudo-conferencia-fracao-ideal";
 
 export const metadata = buildLandingMetadata(data, meta);
 
