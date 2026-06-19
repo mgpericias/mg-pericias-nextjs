@@ -11,6 +11,7 @@ const nextConfig = {
   async rewrites() {
     return [
       { source: '/obra', destination: '/obra.html' },
+      { source: '/vistoria-recebimento', destination: '/vistoria-recebimento.html' },
     ];
   },
   async headers() {
