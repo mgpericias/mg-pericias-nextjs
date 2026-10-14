@@ -81,3 +81,15 @@ preencha `slug`, `titulo`, `resumo`, `conteudo`, `categoria`, marque
 - O formulário precisa de um domínio verificado no Resend para enviar de
   `contato@mgpericias.com.br`. Para testes, use `onboarding@resend.dev` no campo
   `from` em `app/api/contato/route.ts`.
+
+## Portfólio de Obras (/obra)
+
+A página `public/obra.html` é gerada a partir da planilha `dados/obras/DADOS_CLIENTES.xlsx`.
+Não edite o HTML à mão: preencha a planilha (uma linha por obra; fotos em `public/images/obras/`) e rode:
+
+```bash
+pip install openpyxl   # só na primeira vez
+python scripts/gerar-obra.py
+```
+
+O template visual fica em `scripts/obra-template.html`. A aba "Instruções" da planilha explica cada coluna.
