@@ -276,6 +276,49 @@ body{font-family:"Inter",sans-serif;background:var(--light-gray);color:var(--dar
   .obra-video iframe{position:absolute;inset:0;width:100%;height:100%}
   .video-placeholder{position:absolute;inset:0;width:100%;height:100%}
 }
+
+/* FAIXA DE NÚMEROS */
+.stats-band{background:var(--dark);border-top:1px solid rgba(200,145,39,.25);padding:1.1rem 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stat{display:flex;flex-direction:column;gap:.15rem;padding-left:1rem;border-left:1px solid rgba(200,145,39,.3)}
+.stat-num{font-size:1.6rem;font-weight:700;color:var(--gold-light);letter-spacing:-.02em;line-height:1.1}
+.stat-label{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(249,249,249,.55)}
+/* COMO ATUAMOS */
+.como-atua{background:var(--off-white);border-bottom:1px solid var(--lighter);padding:2.2rem 5%;display:grid;grid-template-columns:1.15fr 1fr;gap:2.5rem;align-items:center}
+.como-atua.sem-video{grid-template-columns:1fr}
+.como-atua.sem-video .passos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.como-atua h2{font-size:clamp(1.15rem,2vw,1.5rem);font-weight:700;color:var(--near-black);letter-spacing:-.015em;line-height:1.25;margin-bottom:1.1rem}
+.passos{list-style:none;display:flex;flex-direction:column;gap:.9rem}
+.passos li{display:flex;gap:.8rem;align-items:flex-start}
+.passo-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--near-black);font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:.1rem}
+.passos strong{display:block;font-size:.9rem;font-weight:600;color:var(--near-black);margin-bottom:.15rem}
+.passos p{font-size:.84rem;font-weight:300;color:var(--mid-dark);line-height:1.65}
+.como-atua-nota{margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--lighter);font-size:.8rem;font-weight:500;color:var(--mid-dark)}
+.video-apresentacao{position:relative;aspect-ratio:16/9;background:var(--near-black);border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.video-apresentacao .video-placeholder{background-size:cover;background-position:center}
+.video-apresentacao .video-placeholder::after{content:"";position:absolute;inset:0;background:rgba(27,28,27,.35);transition:background .2s}
+.video-apresentacao .video-placeholder:hover::after{background:rgba(27,28,27,.2)}
+.video-apresentacao .play-ring{position:relative;z-index:1;width:64px;height:64px;background:rgba(27,28,27,.55)}
+.video-apresentacao .play-ring svg{width:22px;height:22px}
+.video-apresentacao .play-label{position:relative;z-index:1;color:#F9F9F9;font-size:.7rem}
+.video-apresentacao iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+/* FILTROS EM GRUPOS */
+.filter-group{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.filter-group.wide{width:100%}
+.filters-bar{row-gap:.55rem}
+.sem-resultado{display:none;padding:3rem 5%;text-align:center;font-size:.9rem;color:var(--muted)}
+.sem-resultado.show{display:block}
+@media(max-width:900px){
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .como-atua,.como-atua.sem-video{grid-template-columns:1fr;gap:1.6rem}
+  .como-atua.sem-video .passos{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .stats-band{padding:1rem 4%;gap:.8rem}
+  .stat-num{font-size:1.3rem}
+  .como-atua{padding:1.6rem 4%}
+  .filter-sep{display:none}
+  .filter-group{width:100%}
+}
 </style>
 </head>
 <body>
@@ -305,19 +348,27 @@ body{font-family:"Inter",sans-serif;background:var(--light-gray);color:var(--dar
     </div>
   </div>
 </div>
-<div class="filters-bar">
-  <span class="filter-label">Serviço:</span>
-  <button class="filter-btn active" onclick="filtrar('todos',this,'tipo')">Todos</button>
-  <button class="filter-btn" onclick="filtrar('gestao',this,'tipo')">Gestão</button>
-  <button class="filter-btn" onclick="filtrar('fiscalizacao',this,'tipo')">Fiscalização</button>
-  <button class="filter-btn" onclick="filtrar('gef',this,'tipo')">Gestão e Fiscalização</button>
-  <span class="filter-sep"></span>
-  <span class="filter-label">Estágio:</span>
-{{FILTROS_ESTAGIO}}
+<div class="stats-band">
+{{NUMEROS}}
 </div>
+<section class="como-atua{{COMO_ATUA_CLASSE}}">
+  <div class="como-atua-texto">
+    <div class="section-tag">Como atuamos</div>
+    <h2>Como a MG Perícias atua na obra do seu condomínio</h2>
+    <ol class="passos">
+      <li><span class="passo-num">1</span><div><strong>Diagnóstico e escopo</strong><p>Vistoriamos o problema, definimos o que precisa ser feito e montamos o termo de referência que as empresas vão orçar.</p></div></li>
+      <li><span class="passo-num">2</span><div><strong>Qualificação e contratação</strong><p>O condomínio escolhe as empresas que vão participar. Nós qualificamos cada uma delas, equalizamos as propostas e apoiamos a assembleia na decisão.</p></div></li>
+      <li><span class="passo-num">3</span><div><strong>Fiscalização até a entrega</strong><p>Acompanhamos a execução, conferimos cada medição antes do pagamento e só liberamos a obra quando está conforme o contratado.</p></div></li>
+    </ol>
+    <p class="como-atua-nota">O condomínio contrata a empreiteira. A MG trabalha para o condomínio, com independência técnica.</p>
+  </div>
+{{VIDEO_APRESENTACAO}}
+</section>
+{{FILTROS}}
 <div class="obras-list" id="obras-list">
 {{CARDS}}
 </div>
+<div class="sem-resultado" id="sem-resultado">Nenhuma obra encontrada com esses filtros.</div>
 <footer class="site-footer">
   <div class="footer-inner">
     <img class="footer-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI0LjMuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkNhbWFkYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIzODAgMzcwIDExNjAgMzQwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTIwIDEwODA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojMzMzNDMzO30KCS5zdDF7ZmlsbDojQzg5MTI3O30KCS5zdDJ7ZmlsbDojRjlGOUY5O30KCS5zdDN7ZmlsbDojRkZGRkZGO30KPC9zdHlsZT4KCjxnPgoJPGc+CgkJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSI4MTIuNDMsMzkzLjkxIDgxMi40Myw0NTEuOTMgNjk2LjM3LDQ1MS45MyA3NTQuNCwzOTMuOTEgCQkiLz4KCQk8cG9seWdvbiBjbGFzcz0ic3QxIiBwb2ludHM9IjgxMi40Myw1MDkuOTYgODEyLjQzLDYyNi4wMiA3NTQuNCw2ODQuMDUgNjM4LjM0LDY4NC4wNSA2OTYuMzcsNjI2LjAyIDc1NC40LDYyNi4wMiA3NTQuNCw1NjcuOTkgCQkKCQkJIi8+CgkJPGc+CgkJCTxwb2x5Z29uIGNsYXNzPSJzdDIiIHBvaW50cz0iNjk2LjM3LDM5My45MSA2OTYuMzcsNjI2LjAyIDYzOC4zNCw2MjYuMDIgNjM4LjM0LDQ1MS45MyA1ODAuMzEsNDUxLjkzIDYzOC4zNCwzOTMuOTEgCQkJIi8+CgkJCTxwb2x5Z29uIGNsYXNzPSJzdDIiIHBvaW50cz0iNTgwLjMxLDQ1MS45MyA1ODAuMzEsNjg0LjA1IDUyMi4yOCw2ODQuMDUgNTIyLjI4LDUwOS45NiA0NjQuMjUsNTA5Ljk2IDUyMi4yOCw0NTEuOTMgCQkJIi8+CgkJCTxwb2x5Z29uIGNsYXNzPSJzdDIiIHBvaW50cz0iNDY0LjI1LDUwOS45NiA0NjQuMjUsNjg0LjA1IDQwNi4yMiw2ODQuMDUgNDA2LjIyLDU2Ny45OSAJCQkiLz4KCQk8L2c+Cgk8L2c+Cgk8Zz4KCQk8cG9seWdvbiBjbGFzcz0ic3QyIiBwb2ludHM9IjEwMjYuNTUsNTUwLjAxIDEwMjYuNTUsNDUxLjkzIDEwMDkuOTMsNDUxLjkzIDk3Ny41MSw1MTcuMDQgOTQ1LjA5LDQ1MS45MyA5MjguNDgsNDUxLjkzIAoJCQk5MjguNDgsNTUwLjAxIDk0NS43Nyw1NTAuMDEgOTQ1Ljc3LDQ5MS40MyA5NzQuMjQsNTUwLjAxIDk4MC43OCw1NTAuMDEgMTAwOS4yNSw0OTEuNDMgMTAwOS4yNSw1NTAuMDEgCQkiLz4KCQk8cGF0aCBjbGFzcz0ic3QyIiBkPSJNMTEyOS41NCw1MDMuODRjMCw5LjQtMS45MiwxNy43NC01Ljc0LDI0Ljk3Yy0zLjgsNy4yNy05LjE5LDEyLjk4LTE2LjE0LDE3LjA2CgkJCWMtNi45NSw0LjExLTE1LjE1LDYuMTctMjQuNTgsNi4xN2MtNi4xNywwLTEyLjA2LTEuMS0xNy42My0zLjNjLTUuNTctMi4yLTEwLjU0LTUuNDYtMTQuODMtOS43NQoJCQljLTQuMjktNC4zMy03LjY2LTkuNjUtMTAuMTQtMTYuMDNjLTIuNDUtNi4zNS0zLjY5LTEzLjY5LTMuNjktMjEuOTljMC0xMC44NSwyLjA2LTIwLjA4LDYuMjEtMjcuNjcKCQkJYzQuMTUtNy42Myw5Ljc1LTEzLjQxLDE2Ljc4LTE3LjQyYzYuOTktNC4wMSwxNC43OS01Ljk5LDIzLjMxLTUuOTljMTIuNjMsMCwyMi41NiwyLjk0LDI5Ljc2LDguOAoJCQljNy4yNCw1Ljg1LDEyLjA2LDE0LjEyLDE0LjUxLDI0Ljg3bC0xOC45NCwyLjdjLTEuNzQtNS43MS00LjY1LTEwLjI5LTguNjUtMTMuNzNjLTQuMDQtMy40MS05LjE5LTUuMTQtMTUuNDMtNS4xOAoJCQljLTYuMjQtMC4xMS0xMS40MiwxLjI0LTE1LjU0LDQuMDFjLTQuMTIsMi43Ny03LjI0LDYuNy05LjI5LDExLjc4Yy0yLjA2LDUuMDctMy4wOCwxMS4wMy0zLjA4LDE3Ljg0YzAsNi44MSwxLjAzLDEyLjc0LDMuMDgsMTcuNwoJCQljMi4wNiw1LDUuMTgsOC45LDkuMjksMTEuNjdjNC4xMiwyLjc3LDkuMjksNC4xOCwxNS41NCw0LjI5YzQuMjIsMC4wNyw4LjA1LTAuNjQsMTEuNDYtMi4yYzMuNDQtMS41Myw2LjM1LTMuOTcsOC42OS03LjI3CgkJCWMyLjM4LTMuMzMsNC4wNC03LjU1LDUuMDQtMTIuNzNoLTI4LjY0bDE0LjMtMTQuMzNoMzQuMTFjMC4xMSwwLjYsMC4xNCwxLjY3LDAuMjEsMy4xNgoJCQlDMTEyOS41LDUwMi43NCwxMTI5LjU0LDUwMy41OSwxMTI5LjU0LDUwMy44NHoiLz4KCQk8cGF0aCBjbGFzcz0ic3QyIiBkPSJNOTkyLjQ2LDU5Mi4zMWMtMy43NC0yLjk1LTguNTUtNC44OC0xNC40LTUuNzljLTEuMjctMC4yMy0yLjcyLTAuMzctNC4zMy0wLjQ0Yy0xLjYxLTAuMDctMi44OS0wLjEtMy44NS0wLjEKCQkJaC00MS40MXY5OC4wN0g5NDd2LTMzLjI0aDIyLjg5YzAuOTEsMCwyLjE4LTAuMDUsMy44MS0wLjE0YzEuNjMtMC4wOSwzLjA5LTAuMjMsNC4zNi0wLjQxYzUuODEtMC45MSwxMC41OS0yLjg0LDE0LjM0LTUuNzkKCQkJYzMuNzQtMi45NSw2LjUxLTYuNjYsOC4zMS0xMS4xNGMxLjc5LTQuNDcsMi42OS05LjQ1LDIuNjktMTQuOTVjMC01LjQ5LTAuODktMTAuNDgtMi42Ni0xNC45NQoJCQlDOTk4Ljk3LDU5OC45Nyw5OTYuMjEsNTk1LjI2LDk5Mi40Niw1OTIuMzF6IE05ODMuOTUsNjI0LjAyYy0wLjUyLDEuOTctMS40NywzLjc3LTIuODMsNS4zOGMtMS4zNiwxLjYxLTMuMjksMi43Ni01Ljc5LDMuNDQKCQkJYy0wLjk1LDAuMjctMiwwLjQ1LTMuMTMsMC41NGMtMS4xNCwwLjA5LTIuMTgsMC4xNC0zLjEzLDAuMTRIOTQ3di0zMC4yNGgyMi4wN2MwLjk1LDAsMiwwLjA1LDMuMTMsMC4xNAoJCQljMS4xMywwLjA5LDIuMTgsMC4yNywzLjEzLDAuNTVjMi41LDAuNjgsNC40MywxLjgzLDUuNzksMy40NGMxLjM2LDEuNjEsMi4zLDMuNDEsMi44Myw1LjM4YzAuNTIsMS45NywwLjc4LDMuODUsMC43OCw1LjYyCgkJCUM5ODQuNzMsNjIwLjE3LDk4NC40Nyw2MjIuMDQsOTgzLjk1LDYyNC4wMnoiLz4KCQk8cG9seWdvbiBjbGFzcz0ic3QyIiBwb2ludHM9IjEwMTMuNjEsNjg0LjA1IDEwNzcuNjMsNjg0LjA1IDEwNzcuNjMsNjY2Ljc1IDEwMzIuMTMsNjY2Ljc1IDEwMzIuMTMsNjQxLjU1IDEwNjkuNDYsNjQxLjU1IAoJCQkxMDY5LjQ2LDYyNC4yNSAxMDMyLjEzLDYyNC4yNSAxMDMyLjEzLDYwMy4yOCAxMDc3LjYzLDYwMy4yOCAxMDc3LjYzLDU4NS45OCAxMDEzLjYxLDU4NS45OCAJCSIvPgoJCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMTU5LjM1LDYzOS40OGM0LjA5LTUuODMsNi4xMy0xMi44Niw2LjEzLTIxLjA4YzAtNS40OS0wLjg5LTEwLjQ4LTIuNjYtMTQuOTVzLTQuNTMtOC4xOC04LjI4LTExLjE0CgkJCWMtMy43NC0yLjk1LTguNTUtNC44OC0xNC40LTUuNzljLTEuMjctMC4yMy0yLjcyLTAuMzctNC4zMy0wLjQ0Yy0xLjYxLTAuMDctMi44OS0wLjEtMy44NS0wLjFoLTQxLjQxdjk4LjA3aDE4LjUydi0zMy4yNGgyMC42NwoJCQlsMTYuMTEsMzMuMjRoMjAuOThsLTE3LjcxLTM2LjMzQzExNTMuNDIsNjQ1LjgyLDExNTYuODMsNjQzLjA4LDExNTkuMzUsNjM5LjQ4eiBNMTEwOS4wOSw2MDMuMjhoMjIuMDdjMC45NSwwLDIsMC4wNSwzLjEzLDAuMTQKCQkJYzEuMTMsMC4wOSwyLjE4LDAuMjcsMy4xMywwLjU1YzIuNSwwLjY4LDQuNDMsMS44Myw1Ljc5LDMuNDRjMS4zNiwxLjYxLDIuMywzLjQxLDIuODMsNS4zOGMwLjUyLDEuOTcsMC43OCwzLjg1LDAuNzgsNS42MgoJCQljMCwxLjc3LTAuMjYsMy42NC0wLjc4LDUuNjJjLTAuNTIsMS45Ny0xLjQ3LDMuNzctMi44Myw1LjM4Yy0xLjM2LDEuNjEtMy4yOSwyLjc2LTUuNzksMy40NGMtMC45NSwwLjI3LTIsMC40NS0zLjEzLDAuNTQKCQkJYy0xLjE0LDAuMDktMi4xOCwwLjE0LTMuMTMsMC4xNGgtMjIuMDdWNjAzLjI4eiIvPgoJCTxyZWN0IHg9IjExNzkuNzkiIHk9IjU4NS45OCIgY2xhc3M9InN0MiIgd2lkdGg9IjE4LjUzIiBoZWlnaHQ9Ijk4LjA3Ii8+CgkJPHBvbHlnb24gY2xhc3M9InN0MiIgcG9pbnRzPSIxMTgyLjQ0LDU3NS43NiAxMTk2LjIsNTc1Ljc2IDEyMDcuNTEsNTQ5LjIgMTE5My43NSw1NDkuMiAJCSIvPgoJCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjQxLjg3LDYwNS41MmM0LjE1LTIuNzcsOS4zNC00LjE2LDE1LjU2LTQuMTZjNi44MSwwLDEyLjM3LDEuNjUsMTYuNjksNC45NAoJCQljNC4zMSwzLjI5LDcuMzgsNy45MSw5LjE5LDEzLjg2bDE4LjY2LTUuMThjLTMuMTMtOS41NC04LjUzLTE3LjA5LTE2LjE4LTIyLjY4Yy03LjY1LTUuNTgtMTcuMTEtOC4zOC0yOC4zNy04LjM4CgkJCWMtOS44MSwwLTE4LjI2LDIuMTMtMjUuMzcsNi40Yy03LjEsNC4yNy0xMi41NywxMC4yNC0xNi40MSwxNy45MWMtMy44NCw3LjY3LTUuNzUsMTYuNi01Ljc1LDI2Ljc3czEuOTIsMTkuMDksNS43NSwyNi43NwoJCQljMy44NCw3LjY3LDkuMzEsMTMuNjQsMTYuNDEsMTcuOTFjNy4xMSw0LjI3LDE1LjU2LDYuNCwyNS4zNyw2LjRjMTEuMjYsMCwyMC43MS0yLjc5LDI4LjM3LTguMzgKCQkJYzcuNjUtNS41OSwxMy4wNC0xMy4xNSwxNi4xOC0yMi42OGwtMTguNjYtNS4xOGMtMS44Miw1LjktNC44OCwxMC41MS05LjE5LDEzLjgyYy00LjMxLDMuMzItOS44OCw0Ljk3LTE2LjY5LDQuOTcKCQkJYy02LjIyLDAtMTEuNDEtMS4zOS0xNS41Ni00LjE2Yy00LjE2LTIuNzctNy4yOC02LjY4LTkuMzctMTEuNzFjLTIuMDktNS4wNC0zLjEzLTEwLjk3LTMuMTMtMTcuNzhzMS4wNC0xMi43NCwzLjEzLTE3Ljc4CgkJCUMxMjM0LjU5LDYxMi4yLDEyMzcuNzEsNjA4LjI5LDEyNDEuODcsNjA1LjUyeiIvPgoJCTxyZWN0IHg9IjEzMTQuOTEiIHk9IjU4NS45OCIgY2xhc3M9InN0MiIgd2lkdGg9IjE4LjUzIiBoZWlnaHQ9Ijk4LjA3Ii8+CgkJPHBhdGggY2xhc3M9InN0MiIgZD0iTTE0MDEuMjgsNTg1Ljk5aC0yNy42N2wtMjkuOTcsOTguMDRoMTkuMDhsNC42OC0xNS40N2wxLjUzLTQuOTdsNS4yNS0xNy4yOGwxMy4wNS00Mi45OWwxMy4yNyw0Mi45OWgtMTQuMjkKCQkJbC0xNy4yNywxNy4yOGgzNi45M2w2LjMxLDIwLjQzaDE5LjA1TDE0MDEuMjgsNTg1Ljk5eiIvPgoJCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xNTExLjAyLDY0Mi42NGMtMS44NC0zLjIyLTQuMTgtNS44Mi03LjAxLTcuOHMtNS44LTMuNTItOC44OS00LjYzYy0zLjA5LTEuMTEtNS45LTIuMDEtOC40NS0yLjY5CgkJCWwtMTcuMDMtNC42M2MtMi4wOS0wLjU0LTQuMTMtMS4yMy02LjEzLTIuMDRjLTItMC44MS0zLjY1LTEuODktNC45Ny0zLjIzYy0xLjMyLTEuMzQtMS45Ny0zLjA4LTEuOTctNS4yMQoJCQljMC0yLjMxLDAuODEtNC4zMSwyLjQyLTUuOTljMS42MS0xLjY4LDMuNy0yLjk2LDYuMjctMy44NWMyLjU2LTAuODgsNS4zLTEuMjgsOC4yMS0xLjE5YzIuOTUsMC4wOSw1Ljc4LDAuNzEsOC40OCwxLjg0CgkJCWMyLjcsMS4xNCw1LjAzLDIuNzksNi45OCw0Ljk3YzEuOTUsMi4xOCwzLjI5LDQuODYsNC4wMiw4LjA0bDIwLjAyLTMuNDFjLTEuNTktNi4xMy00LjE4LTExLjMxLTcuNzYtMTUuNTYKCQkJYy0zLjU5LTQuMjUtOC4wNC03LjQ4LTEzLjM1LTkuNzFjLTUuMzEtMi4yMi0xMS4zNS0zLjM4LTE4LjExLTMuNDdjLTYuNzItMC4wNC0xMi44NSwxLTE4LjM5LDMuMTMKCQkJYy01LjU0LDIuMTMtOS45Nyw1LjM4LTEzLjI4LDkuNzRjLTMuMzIsNC4zNi00Ljk3LDkuODMtNC45NywxNi40MmMwLDQuNjgsMC43OCw4LjU1LDIuMzUsMTEuNjFjMS41NywzLjA3LDMuNTMsNS41Myw1Ljg5LDcuMzkKCQkJYzIuMzYsMS44Niw0LjgsMy4yOSw3LjMyLDQuMjljMi41MiwxLDQuNzQsMS43Nyw2LjY0LDIuMzFsMjUuNDcsNy40OWMxLjkxLDAuNTksMy40OCwxLjI1LDQuNzMsMS45N2MxLjI1LDAuNzMsMi4yMSwxLjUsMi45LDIuMzIKCQkJYzAuNjgsMC44MiwxLjE3LDEuNjksMS40NiwyLjYyYzAuMywwLjkzLDAuNDQsMS44OSwwLjQ0LDIuODljMCwyLjczLTAuOTIsNS4wMi0yLjc2LDYuODhjLTEuODQsMS44Ni00LjE5LDMuMjctNy4wNSw0LjIyCgkJCWMtMi44NiwwLjk1LTUuODEsMS40My04Ljg1LDEuNDNjLTUuNDUsMC0xMC4zMS0xLjUyLTE0LjU3LTQuNTZjLTQuMjctMy4wNC03LjA4LTcuMzgtOC40NS0xMy4wMWwtMTkuMzQsMi44NgoJCQljMSw2LjYzLDMuMzcsMTIuMzQsNy4xMiwxNy4xM2MzLjc1LDQuNzksOC41NCw4LjQ3LDE0LjM3LDExLjAzYzUuODMsMi41NiwxMi4zOCwzLjg1LDE5LjY1LDMuODVjNSwwLDkuODQtMC42NCwxNC41NC0xLjkxCgkJCWM0LjctMS4yNyw4LjkxLTMuMTksMTIuNjMtNS43NWMzLjcyLTIuNTYsNi42OS01LjgxLDguODktOS43NGMyLjItMy45MiwzLjMtOC41MiwzLjMtMTMuNzkKCQkJQzE1MTMuNzgsNjQ5Ljk1LDE1MTIuODYsNjQ1Ljg3LDE1MTEuMDIsNjQyLjY0eiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=" alt="MG Perícias">
@@ -337,23 +388,31 @@ body{font-family:"Inter",sans-serif;background:var(--light-gray);color:var(--dar
     if(!c.querySelector('.obra-video')) c.classList.add('sem-video');
     if(!c.querySelector('.obra-avaliacao')) c.classList.add('sem-avaliacao-col');
   });
-  var fa={tipo:'todos',estagio:'todos'};
+  var fa={servico:'todos',estagio:'todos',obra:'todos',cidade:'todos'};
+  function ok(el){
+    for(var g in fa){
+      if(fa[g]==='todos') continue;
+      var v=(el.getAttribute('data-'+g)||'').split(' ');
+      if(v.indexOf(fa[g])<0) return false;
+    }
+    return true;
+  }
   function filtrar(v,btn,g){
     fa[g]=v;
-    if(g==='tipo') document.querySelectorAll('.filter-btn[onclick*="tipo"]').forEach(b=>b.classList.remove('active'));
-    else document.querySelectorAll('.filter-btn[onclick*="estagio"]').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn[data-grupo="'+g+'"]').forEach(function(b){b.classList.remove('active')});
     btn.classList.add('active');
     var cs=document.querySelectorAll('.obra-card');
-    var ok=function(el){return (fa.tipo==='todos'||(el.dataset.tipo||'').split(' ').indexOf(fa.tipo)>-1)&&(fa.estagio==='todos'||(el.dataset.estagio||'').split(' ').indexOf(fa.estagio)>-1)};
     cs.forEach(function(c){
-      c.style.display=ok(c)?'':'none';
-      c.querySelectorAll('.obra-item-block').forEach(function(b){b.style.display=ok(b)?'':'none'});
+      var itens=c.querySelectorAll('.obra-item-block'),algum=false;
+      itens.forEach(function(b){var o=ok(b);b.style.display=o?'':'none';if(o)algum=true});
+      c.style.display=algum?'':'none';
     });
-    var vs=Array.from(cs).filter(c=>c.style.display!=='none');
+    var vs=Array.from(cs).filter(function(c){return c.style.display!=='none'});
     vs.forEach(function(c,i){var f=i===0,l=i===vs.length-1;c.style.borderRadius=(f&&l)?'8px':f?'8px 8px 0 0':l?'0 0 8px 8px':'0'});
+    var sr=document.getElementById('sem-resultado'); if(sr) sr.classList.toggle('show',vs.length===0);
   }
   function loadVideo(ph,id){
-    var w=ph.closest('.obra-video');ph.remove();
+    var w=ph.closest('.obra-video, .video-apresentacao');ph.remove();
     var f=document.createElement('iframe');
     f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';
     f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';

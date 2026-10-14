@@ -100,6 +100,15 @@ def id_youtube(url):
     return ""
 
 
+def slug(v):
+    return re.sub(r"[^a-z0-9]+", "-", norm(v)).strip("-")
+
+
+def cidade_nome(v):
+    """'Vila Velha – ES' -> 'Vila Velha'"""
+    return re.split(r"\s*[–\-/]\s*ES\b", texto(v))[0].strip() or texto(v)
+
+
 def link_http(url):
     u = texto(url)
     if u and not re.match(r"https?://", u):
@@ -141,8 +150,9 @@ def ler_planilha(caminho):
         "bairro": coluna("bairro"),
         "cidade": coluna("cidade"),
         "ano": coluna("ano"),
-        "tipo": coluna("tipo de servico", "tipo de serviço", "tipo"),
+        "tipo": coluna("tipo de servico", "tipo de serviço"),
         "estagio": coluna("estagio", "estágio"),
+        "categoria": coluna("tipo de obra", "categoria"),
         "titulo": coluna("titulo", "título"),
         "resumo": coluna("resumo"),
         "foto": coluna("foto"),
@@ -167,7 +177,14 @@ def ler_planilha(caminho):
         if not num or not predio or not re.match(r"\d", num):
             continue
         obras.append({k: texto(cel(row, k)) for k in C})
-    return obras
+
+    # aba "Página": pares rótulo | valor
+    config = {}
+    if "Página" in wb.sheetnames:
+        for row in wb["Página"].iter_rows(min_row=1, max_col=2, values_only=True):
+            if row[0] and row[1]:
+                config[norm(row[0])] = texto(row[1])
+    return obras, config
 
 
 # ---------------------------------------------------------------- montagem do HTML
@@ -191,7 +208,7 @@ def agrupar(obras):
     return [grupos[k] for k in ordem]
 
 
-def html_obra(o, avisos):
+def html_obra(o, avisos, cidade):
     tipo = TIPOS.get(norm(o["tipo"]))
     if not tipo:
         avisos.append(f"Obra {o['num']}: tipo de serviço desconhecido '{o['tipo']}' (usando Gestão)")
@@ -204,7 +221,8 @@ def html_obra(o, avisos):
     resumo = f'\n          <p class="obra-item-resumo">{esc(o["resumo"])}</p>' if o["resumo"] else ""
     ano = f'\n          <div class="obra-item-ano">{SVG_CAL}{esc(o["ano"])}</div>' if o["ano"] else ""
     return (
-        f'        <div class="obra-item-block" data-tipo="{tipo[0]}" data-estagio="{est[0]}">\n'
+        f'        <div class="obra-item-block" data-servico="{tipo[0]}" data-estagio="{est[0]}" '
+        f'data-obra="{slug(o["categoria"]) or "outros"}" data-cidade="{slug(cidade_nome(cidade))}">\n'
         f'          <div class="obra-item-meta-row">\n'
         f'            <span class="obra-item-num">Obra {esc(num)}</span>\n'
         f'            {tipo[1]}<span class="estagio-pill estagio-tag-{est[0]}">{est[2]}</span>\n'
@@ -228,8 +246,6 @@ def html_sindico(g):
 def html_card(g, avisos):
     predio = esc(g["predio"])
     endereco = ", ".join(x for x in (texto(g["bairro"]), texto(g["cidade"])) if x)
-    tipos = {TIPOS.get(norm(o["tipo"]), TIPOS["gestao"])[0] for o in g["obras"]}
-    ests = {next((e[0] for e in ESTAGIOS if e[1] == norm(o["estagio"])), "concluido") for o in g["obras"]}
 
     # foto
     if g["foto"]:
@@ -282,9 +298,9 @@ def html_card(g, avisos):
         )
 
     classes = "obra-card" + ("" if video else " sem-video") + ("" if avaliacao else " sem-avaliacao-col")
-    itens = "\n".join(html_obra(o, avisos) for o in g["obras"])
+    itens = "\n".join(html_obra(o, avisos, g["cidade"]) for o in g["obras"])
     return (
-        f'  <div class="{classes}" data-tipo="{" ".join(sorted(tipos))}" data-estagio="{" ".join(sorted(ests))}">\n'
+        f'  <div class="{classes}">\n'
         f'    <div class="obra-nome-mobile">{predio}<div class="obra-endereco-mobile">{SVG_PIN}{esc(endereco)}</div></div>\n'
         f'    <div class="obra-foto">\n{foto}\n    </div>\n'
         f'    <div class="obra-dados">\n'
@@ -299,13 +315,71 @@ def html_card(g, avisos):
     )
 
 
-def html_filtros_estagio(obras):
-    usados = {norm(o["estagio"]) for o in obras}
-    btns = ['  <button class="filter-btn active" onclick="filtrar(\'todos\',this,\'estagio\')">Todos</button>']
-    for slug, chave, rotulo in ESTAGIOS:
-        if chave in usados:
-            btns.append(f'  <button class="filter-btn" onclick="filtrar(\'{slug}\',this,\'estagio\')">{rotulo}</button>')
-    return "\n".join(btns)
+def _grupo(label, grupo, opcoes, wide=False):
+    """opcoes: lista de (slug, rótulo). Só gera o grupo se houver mais de uma opção."""
+    if len(opcoes) < 2:
+        return ""
+    b = [f'  <div class="filter-group{" wide" if wide else ""}"><span class="filter-label">{label}:</span>',
+         f'    <button class="filter-btn active" data-grupo="{grupo}" onclick="filtrar(\'todos\',this,\'{grupo}\')">Todos</button>']
+    for s, r in opcoes:
+        b.append(f'    <button class="filter-btn" data-grupo="{grupo}" onclick="filtrar(\'{s}\',this,\'{grupo}\')">{esc(r)}</button>')
+    b.append("  </div>")
+    return "\n".join(b)
+
+
+def html_filtros(obras, grupos):
+    serv = [(v[0], r) for k, v, r in ((k, v, {"gestao": "Gestão", "fiscalizacao": "Fiscalização",
+            "gef": "Gestão e Fiscalização"}[v[0]]) for k, v in TIPOS.items())
+            if k in {norm(o["tipo"]) for o in obras}]
+    est_usados = {norm(o["estagio"]) for o in obras}
+    est = [(s, r) for s, chave, r in ESTAGIOS if chave in est_usados]
+    # tipo de obra: ordem por quantidade (mais comuns primeiro)
+    cont = {}
+    for o in obras:
+        c = o["categoria"] or "Outros"
+        cont[c] = cont.get(c, 0) + 1
+    cats = sorted(cont, key=lambda c: (c == "Outros", -cont[c], c))
+    cat = [(slug(c), c) for c in cats]
+    # cidade: ordem por quantidade de obras
+    ccont = {}
+    for o in obras:
+        n = cidade_nome(o["cidade"])
+        if n:
+            ccont[n] = ccont.get(n, 0) + 1
+    cid = [(slug(n), n) for n in sorted(ccont, key=lambda n: (-ccont[n], n))]
+    # linha 1: serviço e estágio lado a lado; linhas seguintes: tipo de obra e cidade, cada uma inteira
+    linha1 = [x for x in (_grupo("Serviço", "servico", serv), _grupo("Estágio", "estagio", est)) if x]
+    outras = [x for x in (_grupo("Tipo de obra", "obra", cat, wide=True),
+                          _grupo("Cidade", "cidade", cid, wide=True)) if x]
+    partes = ['\n  <span class="filter-sep"></span>\n'.join(linha1)] + outras
+    return '<div class="filters-bar">\n' + "\n".join(p for p in partes if p) + '\n</div>'
+
+
+def html_numeros(obras, grupos):
+    cidades = {cidade_nome(o["cidade"]) for o in obras if o["cidade"]}
+    avals = sum(1 for g in grupos if g["glink"])
+    itens = [(len(obras), "obras acompanhadas"), (len(grupos), "condomínios atendidos"),
+             (len(cidades), "cidades no Espírito Santo")]
+    if avals:
+        itens.append(("5,0", f"nota no Google · {avals} avaliações"))
+    return "\n".join(f'  <div class="stat"><span class="stat-num">{n}</span><span class="stat-label">{l}</span></div>'
+                      for n, l in itens)
+
+
+def html_video_apresentacao(config, avisos):
+    link = config.get("video de apresentacao (youtube)") or next(
+        (v for k, v in config.items() if k.startswith("video de apresentacao")), "")
+    if not link:
+        return "", " sem-video"
+    vid = id_youtube(link)
+    if not vid:
+        avisos.append(f"Página: não reconheci o link do vídeo de apresentação '{link}'")
+        return "", " sem-video"
+    return (f'  <div class="video-apresentacao">\n'
+            f'    <div class="video-placeholder" style="background-image:url(https://i.ytimg.com/vi/{vid}/hqdefault.jpg)" '
+            f'onclick="loadVideo(this,\'{vid}\')" role="button" aria-label="Assistir vídeo de apresentação">\n'
+            f'      <div class="play-ring">{SVG_PLAY}</div><span class="play-label">Assista: como funciona</span>\n'
+            f'    </div>\n  </div>'), ""
 
 
 def main():
@@ -314,7 +388,7 @@ def main():
     ap.add_argument("--saida", default=SAIDA)
     args = ap.parse_args()
 
-    obras = ler_planilha(args.planilha)
+    obras, config = ler_planilha(args.planilha)
     if not obras:
         sys.exit("Nenhuma obra encontrada na planilha.")
     avisos = []
@@ -323,7 +397,15 @@ def main():
 
     with open(TEMPLATE, encoding="utf-8") as f:
         tpl = f.read()
-    saida = tpl.replace("{{CARDS}}", cards).replace("{{FILTROS_ESTAGIO}}", html_filtros_estagio(obras))
+    video_html, classe = html_video_apresentacao(config, avisos)
+    saida = (tpl.replace("{{CARDS}}", cards)
+             .replace("{{FILTROS}}", html_filtros(obras, grupos))
+             .replace("{{NUMEROS}}", html_numeros(obras, grupos))
+             .replace("{{VIDEO_APRESENTACAO}}", video_html)
+             .replace("{{COMO_ATUA_CLASSE}}", classe))
+    for o in obras:
+        if not o["categoria"]:
+            avisos.append(f"Obra {o['num']}: sem 'Tipo de Obra' (entra no filtro como Outros)")
     with open(args.saida, "w", encoding="utf-8") as f:
         f.write(saida)
 

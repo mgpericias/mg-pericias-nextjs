@@ -92,4 +92,4 @@ pip install openpyxl   # só na primeira vez
 python scripts/gerar-obra.py
 ```
 
-O template visual fica em `scripts/obra-template.html`. A aba "Instruções" da planilha explica cada coluna.
+O template visual fica em `scripts/obra-template.html`. A aba "Instruções" da planilha explica cada coluna; a aba "Página" guarda o link do vídeo de apresentação (YouTube) exibido na seção "Como atuamos".
